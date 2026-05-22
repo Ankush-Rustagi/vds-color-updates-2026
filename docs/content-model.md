@@ -34,16 +34,16 @@ All narrative, migration guides, token reference, and team examples live in this
 
 ## MVP page inventory
 
-### Foundations / Color v2
+### Color v2 Updates
 
 | Page | Format | Figma source | Notes |
 |------|--------|--------------|-------|
 | Overview | MDX + DocsTable | Deck slide 1 | Role picker; links to Intro to Color v2 |
 | What's Changing | MDX + DocsTable | Slides 2–3 | Scope for eng leads |
 | Accessibility | MDX + DocsTable | Slide 5 | Contrast constraints |
-| Greenfield Adoption | MDX + DocsTable | Collection | Day-one token picks |
+| Building new UI? | MDX + DocsTable | Collection | Day-one token picks |
 
-### Migrations / Color v2
+### Color v2 Migrations
 
 | Page | Format | Figma source | Notes |
 |------|--------|--------------|-------|
@@ -65,19 +65,18 @@ All narrative, migration guides, token reference, and team examples live in this
 
 ---
 
-## Phase 2b pages (fast follow)
+## Phase 2b pages (teams)
 
 | Page | Format | Source |
 |------|--------|--------|
-| Teams Overview | MDX | Hub `data.ts` |
-| Video Security | MDX + CSF Canvas | Hub team card |
-| Access Control | MDX + CSF Canvas | Hub team card |
-| Alarms | MDX + CSF Canvas | Hub team card |
-| Intercom | MDX + CSF Canvas | Hub team card |
-| Environmental Sensors | MDX + CSF Canvas | Hub team card |
-| Guest | MDX + CSF Canvas | Hub team card |
-| Maps | MDX + CSF Canvas | Hub team card |
-| Command Analytics | MDX + CSF Canvas | Hub team card |
+| Teams Overview | MDX | Product lines table |
+| Cameras | MDX + CSF Canvas | Team migration example |
+| Access Control | MDX + CSF Canvas | Team migration example |
+| Alarms | MDX + CSF Canvas | Team migration example |
+| Intercom | MDX + CSF Canvas | Team migration example |
+| Sensors | MDX + CSF Canvas | Team migration example |
+| Workplace | MDX + CSF Canvas | Team migration example |
+| Maps | MDX + CSF Canvas | Team migration example |
 
 ---
 

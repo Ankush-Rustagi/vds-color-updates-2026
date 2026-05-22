@@ -94,16 +94,16 @@ TokenExplorer uses this list for category jump chips. Group dropdown uses all 20
 
 | Slide | Content | Storybook page |
 |-------|---------|----------------|
-| 1 | Rollout overview, why v2 | Hub (strategy); Foundations Overview (1 paragraph + link) |
-| 2 | Scope: 567 semantic tokens | Foundations What's Changing |
-| 3 | Visual deltas warning | Foundations What's Changing, Accessibility |
-| 4 | Component state matrices intro | Getting Started |
-| 5 | Accessibility / contrast | Foundations Accessibility |
-| 6 | Alert Button pattern (5 states, white + surface-01) | Migrations Alert Button |
-| 7 | Primary / secondary button context | Token Mapping (reference) |
-| 8 | Checkbox default path | Migrations Checkbox |
-| 9 | Checkbox alert path | Migrations Checkbox |
-| 10 | Next steps / team rollout | Hub team cards; Teams pages (Phase 2b) |
+| 1 | Rollout overview, why v2 | Intro to Color v2 → Strategy; Color v2 Updates → Overview |
+| 2 | Scope: 566 semantic tokens | Color v2 Updates → What's Changing |
+| 3 | Visual deltas warning | Color v2 Updates → What's Changing, Accessibility |
+| 4 | Component state matrices intro | Color v2 Migrations → Getting Started |
+| 5 | Accessibility / contrast | Color v2 Updates → Accessibility |
+| 6 | Alert Button pattern (5 states, white + surface-01) | Color v2 Migrations → Alert Button |
+| 7 | Primary / secondary button context | Color v2 Migrations → Token Mapping |
+| 8 | Checkbox default path | Color v2 Migrations → Checkbox |
+| 9 | Checkbox alert path | Color v2 Migrations → Checkbox |
+| 10 | Next steps / team rollout | Intro to Color v2 → Rollout; Teams pages |
 
 ---
 
@@ -149,5 +149,5 @@ Documented on Reference / Token Naming page.
 | 208 MDX headings broke TOC | TokenExplorer with 29 category chips |
 | MDX pipe tables | DocsTable React component |
 | ReferenceToc hacks | `docs.toc: false` on toolkit pages; custom explorer nav |
-| Rollout phases in Storybook | Removed; hub owns PM narrative |
+| Rollout phases in Storybook | Intro to Color v2 → Strategy, Rollout, Who Does What |
 | Figma iframe embeds | Deep links only |

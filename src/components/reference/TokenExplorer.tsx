@@ -14,6 +14,7 @@ import {
 } from '../../tokens/collection'
 import { copyText, cssDeclaration, figmaToCssVar, topCategory } from '../../tokens/token-utils'
 import { FIGMA_LINKS } from '../../constants/figma'
+import { storybookPath } from '../../constants/doc-links'
 import { SortHeader } from './SortHeader'
 import {
   defaultPrimitiveSort,
@@ -35,7 +36,7 @@ type Props = {
 
 const EXPLORER_VISIBLE_ROWS = 24
 const DEFAULT_VISIBLE_ROWS = 10
-const FIGMA_WORKFLOW_DOC = '?path=/docs/color-v2-migrations-figma-workflow--docs'
+const FIGMA_WORKFLOW_DOC = storybookPath('figmaWorkflow')
 
 const FOOTER_NOTE: Record<TokenDataset, string> = {
   'semantic-colors': 'Dark values: Figma testing',
@@ -645,5 +646,5 @@ export function TokenExplorer({ dataset }: Props) {
 }
 
 export function explorerSearchHref(tokenFragment: string): string {
-  return `?path=/docs/reference-semantic-colors--docs&q=${encodeURIComponent(tokenFragment)}`
+  return `${storybookPath('semanticColors')}&q=${encodeURIComponent(tokenFragment)}`
 }

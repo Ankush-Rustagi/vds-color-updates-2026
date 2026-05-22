@@ -51,7 +51,7 @@ Use these for page layout and typography. Dark mode values exist in Collection; 
 | `--button/background/primary` | `#0285C8` | Primary button fill (brand cyan) |
 | `--button/background/alert` | `#CB2939` | Destructive / danger button fill |
 | `--button/text/on-primary` | `#FFFFFF` | Text on primary fill |
-| `--link/text/default` | `#007FAF` | Hyperlinks |
+| `--link/shape/primary` | `#0285C8` | Hyperlinks |
 | `--support/alert` | `#CB2939` | Error / alert accent |
 | `--support/success` | `#14BA74` | Success states |
 | `--support/warning` | `#FFD959` | Warning states |
