@@ -112,6 +112,7 @@ export function TokenExplorer({ dataset }: Props) {
   const [density, setDensity] = useState<'comfortable' | 'compact'>('comfortable')
   const [toast, setToast] = useState('')
   const parentRef = useRef<HTMLDivElement>(null)
+  const toastTimeoutRef = useRef<number | null>(null)
 
   const rows = useMemo(() => {
     switch (dataset) {
@@ -239,9 +240,30 @@ export function TokenExplorer({ dataset }: Props) {
     overscan: dataset === 'semantic-colors' ? 20 : 12,
   })
 
+  useEffect(() => {
+    return () => {
+      if (toastTimeoutRef.current !== null) {
+        window.clearTimeout(toastTimeoutRef.current)
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    if (dataset !== 'semantic-colors') return
+    if (sortColumn === 'gradation' || sortColumn === 'group') {
+      setSortColumn('token')
+    }
+  }, [dataset, sortColumn])
+
   const showCopied = useCallback((value: string) => {
-    setToast(value)
-    window.setTimeout(() => setToast(''), 2000)
+    if (toastTimeoutRef.current !== null) {
+      window.clearTimeout(toastTimeoutRef.current)
+    }
+    setToast(`Copied ${value}`)
+    toastTimeoutRef.current = window.setTimeout(() => {
+      setToast('')
+      toastTimeoutRef.current = null
+    }, 2000)
   }, [])
 
   const handleSort = (column: string) => {
@@ -397,9 +419,7 @@ export function TokenExplorer({ dataset }: Props) {
             >
               {dataset === 'semantic-colors' ? (
                 <>
-                  <option value="gradation">Gradation (default)</option>
-                  <option value="group">Group</option>
-                  <option value="token">Token name</option>
+                  <option value="token">Token name (default)</option>
                   <option value="light">Light hex</option>
                   <option value="dark">Dark hex</option>
                   <option value="step">Step</option>
