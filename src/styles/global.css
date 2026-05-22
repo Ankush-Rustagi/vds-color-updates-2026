@@ -834,6 +834,15 @@ body {
   color: var(--vds-text-secondary);
 }
 
+.vds-explorer__footer a {
+  color: var(--vds-button-background-primary);
+  text-decoration: none;
+}
+
+.vds-explorer__footer a:hover {
+  text-decoration: underline;
+}
+
 .vds-explorer__col {
   min-width: 0;
   overflow: hidden;
