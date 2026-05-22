@@ -32,6 +32,10 @@ type Props = {
   title?: string
 }
 
+const SEMANTIC_VISIBLE_ROWS = 24
+const DEFAULT_VISIBLE_ROWS = 10
+const FIGMA_WORKFLOW_DOC = '?path=/docs/migrations-color-v2-figma-workflow--docs'
+
 type Row = SemanticTokenRow | SimpleTokenRow
 
 function isSemantic(row: Row): row is SemanticTokenRow {
@@ -214,11 +218,13 @@ export function TokenExplorer({ dataset }: Props) {
   }, [filtered, sortColumn, sortDirection, dataset])
 
   const rowHeight = density === 'compact' ? 44 : 56
+  const maxVisibleRows = dataset === 'semantic-colors' ? SEMANTIC_VISIBLE_ROWS : DEFAULT_VISIBLE_ROWS
+  const scrollHeight = Math.min(sorted.length, maxVisibleRows) * rowHeight + 8
   const virtualizer = useVirtualizer({
     count: sorted.length,
     getScrollElement: () => parentRef.current,
     estimateSize: () => rowHeight,
-    overscan: 12,
+    overscan: dataset === 'semantic-colors' ? 20 : 12,
   })
 
   const showCopied = useCallback(() => {
@@ -279,6 +285,20 @@ export function TokenExplorer({ dataset }: Props) {
           validation.
         </p>
       )}
+
+      {dataset === 'semantic-colors' ? (
+        <p className="vds-explorer__source">
+          <a href={figmaLink} target="_blank" rel="noopener noreferrer">
+            Open semantic table in Figma
+          </a>
+          {' · '}
+          <a href={FIGMA_LINKS.collection} target="_blank" rel="noopener noreferrer">
+            Full Collection
+          </a>
+          {' · '}
+          <a href={FIGMA_WORKFLOW_DOC}>Figma Workflow guide</a>
+        </p>
+      ) : null}
 
       <div
         className={`vds-ref__toolbar vds-explorer__toolbar${
@@ -459,7 +479,7 @@ export function TokenExplorer({ dataset }: Props) {
           <div
             ref={parentRef}
             className="vds-explorer__scroll"
-            style={{ height: Math.min(560, sorted.length * rowHeight + 8) }}
+            style={{ height: scrollHeight }}
           >
             <div style={{ height: virtualizer.getTotalSize(), position: 'relative' }}>
               {virtualizer.getVirtualItems().map((vRow) => {
@@ -550,16 +570,18 @@ export function TokenExplorer({ dataset }: Props) {
 
       {toast && <div className="vds-toast" role="status">{toast}</div>}
 
-      <p className="vds-explorer__footer">
-        Source: Figma Collection ·{' '}
-        <a href={figmaLink} target="_blank" rel="noopener noreferrer">
-          Open in Figma
-        </a>
-        {' · '}
-        <a href={FIGMA_LINKS.collection} target="_blank" rel="noopener noreferrer">
-          Full Collection
-        </a>
-      </p>
+      {dataset !== 'semantic-colors' && (
+        <p className="vds-explorer__footer">
+          Source: Figma Collection ·{' '}
+          <a href={figmaLink} target="_blank" rel="noopener noreferrer">
+            Open in Figma
+          </a>
+          {' · '}
+          <a href={FIGMA_LINKS.collection} target="_blank" rel="noopener noreferrer">
+            Full Collection
+          </a>
+        </p>
+      )}
     </div>
   )
 }

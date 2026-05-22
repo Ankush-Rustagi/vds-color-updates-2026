@@ -568,7 +568,22 @@ body {
 
 /* TokenExplorer */
 .vds-explorer__disclaimer {
+  margin-bottom: 12px;
+}
+
+.vds-explorer__source {
   margin-bottom: 16px;
+  font-size: 13px;
+  color: var(--vds-text-secondary);
+}
+
+.vds-explorer__source a {
+  color: var(--vds-button-background-primary);
+  text-decoration: none;
+}
+
+.vds-explorer__source a:hover {
+  text-decoration: underline;
 }
 
 .vds-explorer__toolbar {
