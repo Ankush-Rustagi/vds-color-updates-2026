@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/blocks'
-import { DocsTable } from '../../src/components/docs/DocsTable'
+import { DocsTable, DocLink } from '../../src/components/docs/DocsTable'
 import { FigmaLink } from '../../src/components/docs/FigmaLink'
 import { GitHubLink } from '../../src/components/docs/GitHubLink'
 import { UX_DESIGN } from '../../src/constants/ux-design'
@@ -8,7 +8,7 @@ import { UX_DESIGN } from '../../src/constants/ux-design'
 
 # Design Platform Strategy
 
-Verkada Design System is moving from fragmented legacy colors to a **single semantic token layer** defined in Figma Collection. Color v2 is the first platform-wide cut of that strategy: one token name, light and dark values, consumed by Figma components and Command code through the same naming rule.
+The Verkada design platform is moving from fragmented legacy colors to a **single semantic token layer** defined in Figma Collection. Color v2 is the first platform-wide cut of that strategy: one token name, light and dark values, consumed by Figma components and Command code through the same naming rule.
 
 ## Primary objective
 
@@ -44,21 +44,16 @@ Verkada Design System is moving from fragmented legacy colors to a **single sema
 
 1. **Figma Collection first.** If it is not in Collection, it is not a token.
 2. **Semantic over primitive in product UI.** Primitives are for scales; components consume semantics.
-3. **No local colors.** Flag gaps to Design System; do not ship team-specific hex.
+3. **No local colors.** Flag gaps to the platform team; do not ship team-specific hex.
 4. **Reference before rollout.** Validate Alert Button + Checkbox patterns, then expand by surface.
 5. **AI-compatible docs.** DESIGN.md and Storybook stay aligned so Claude Design and OpenDesign agents use the same rules.
 
 ## Vibe design and prototypes
 
-For **Claude Design**, **OpenDesign**, or quick vibe prototypes that must match VDS standards, use the shared asset folder in docs-vibes:
-
-- **Path:** <code>{UX_DESIGN.repoPath}</code> (`DESIGN.md`, `design-system-context.md`, Verity excerpts, icons, PM prompts)
-- **GitHub:** <GitHubLink to="docsVibesFolder">17-ux-design</GitHubLink> · <GitHubLink to="docsVibesDesignMd">DESIGN.md</GitHubLink>
-
-Upload `DESIGN.md` first, then `design-system-context.md`, when configuring Claude Design org settings. This Storybook covers Color v2 tokens and migration; `17-ux-design` covers the full component dictionary and handoff workflows.
+For **Claude Design**, **OpenDesign**, or quick vibe prototypes that must match VDS standards, use <GitHubLink to="docsVibesFolder">17-ux-design</GitHubLink> in docs-vibes (<code>{UX_DESIGN.repoPath}</code>). Upload `DESIGN.md` first, then `design-system-context.md`, when configuring Claude Design org settings. For dark mode migration assets and Notion audits, see <DocLink slug="whoDoesWhat">Who Does What</DocLink>.
 
 ## Where to go next
 
-- [Rollout](/docs/intro-to-color-v2-rollout--docs)
-- [Who Does What](/docs/intro-to-color-v2-who-does-what--docs)
-- [Color v2 Overview](/docs/color-v2-updates-overview--docs)
+- <DocLink slug="rollout">Rollout</DocLink>
+- <DocLink slug="whoDoesWhat">Who Does What</DocLink>
+- <DocLink slug="overview">Color v2 Overview</DocLink>

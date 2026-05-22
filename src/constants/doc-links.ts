@@ -20,21 +20,57 @@ export const DOC_PATHS = {
   teamsOverview: 'teams-overview',
 } as const
 
-/** Convert `/docs/slug--docs` (broken on GitHub Pages) to Storybook `?path=` routing. */
-export function toStorybookHref(href: string): string {
-  if (!href.startsWith('/docs/')) return href
+/** Vite base path: `/` in dev, `/vds-color-updates-2026/` on GitHub Pages. */
+export const STORYBOOK_BASE = (import.meta.env.BASE_URL ?? '/').replace(/\/?$/, '/')
 
-  const qIndex = href.indexOf('?')
-  const pathPart = qIndex === -1 ? href : href.slice(0, qIndex)
-  const extraQuery = qIndex === -1 ? '' : `&${href.slice(qIndex + 1)}`
-  return `?path=${pathPart}${extraQuery}`
+function buildStorybookHref(pathPart: string, extraQuery = ''): string {
+  const query = extraQuery ? `&${extraQuery}` : ''
+  return `${STORYBOOK_BASE}?path=${pathPart}${query}`
+}
+
+/** True when href is an in-app Storybook doc route (not external). */
+export function isStorybookDocHref(href?: string): boolean {
+  if (!href) return false
+  const trimmed = href.trim()
+  if (trimmed.startsWith('/docs/')) return true
+  if (trimmed.startsWith('?path=')) return true
+  if (trimmed.startsWith(STORYBOOK_BASE) && trimmed.includes('?path=')) return true
+  if (trimmed.startsWith('#') || trimmed.startsWith('./') || trimmed.startsWith('../')) return false
+  return false
+}
+
+/**
+ * Convert `/docs/slug--docs` or `?path=/docs/...` to absolute manager-shell routing.
+ * Docs render inside iframe.html; links must target the parent shell with BASE prefix.
+ */
+export function toStorybookHref(href: string): string {
+  const trimmed = href.trim()
+
+  if (trimmed.startsWith(STORYBOOK_BASE) && trimmed.includes('?path=')) {
+    return trimmed
+  }
+
+  if (trimmed.startsWith('?path=')) {
+    const pathAndQuery = trimmed.slice('?path='.length)
+    const ampIndex = pathAndQuery.indexOf('&')
+    const pathPart = ampIndex === -1 ? pathAndQuery : pathAndQuery.slice(0, ampIndex)
+    const extraQuery = ampIndex === -1 ? '' : pathAndQuery.slice(ampIndex + 1)
+    return buildStorybookHref(pathPart, extraQuery)
+  }
+
+  if (!trimmed.startsWith('/docs/')) return href
+
+  const qIndex = trimmed.indexOf('?')
+  const pathPart = qIndex === -1 ? trimmed : trimmed.slice(0, qIndex)
+  const extraQuery = qIndex === -1 ? '' : trimmed.slice(qIndex + 1)
+  return buildStorybookHref(pathPart, extraQuery)
 }
 
 export function docHref(slug: keyof typeof DOC_PATHS, extraQuery?: string): string {
   const path = `/docs/${DOC_PATHS[slug]}--docs`
-  if (!extraQuery) return `?path=${path}`
+  if (!extraQuery) return buildStorybookHref(path)
   const query = extraQuery.startsWith('?') ? extraQuery.slice(1) : extraQuery
-  return `?path=${path}&${query}`
+  return buildStorybookHref(path, query)
 }
 
 export function storybookPath(slug: keyof typeof DOC_PATHS): string {

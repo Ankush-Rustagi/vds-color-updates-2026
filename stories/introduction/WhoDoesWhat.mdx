@@ -52,7 +52,7 @@ Designers work in VDS (Figma). Engineers ship Verity components and CSS custom p
       </>,
     ],
     [
-      <strong key="vivien">Vivien</strong>,
+      <strong key="vivien">Vivien Ding</strong>,
       'Product management lead',
       'VDS, Verity, and Web Platform: roadmap, prioritization, and cross-team interlock',
     ],
@@ -66,7 +66,7 @@ This site is the Color v2 migration companion (token tables, legacy mapping, tea
 Product lines (Cameras, Access Control, Alarms, and others) adopt Color v2 in their surfaces. They do not own the token spec.
 
 <DocsTable
-  layout="roles"
+  layout="consumers"
   headers={['Role', 'Responsibility', 'Start here']}
   rows={[
     [
@@ -83,11 +83,14 @@ Product lines (Cameras, Access Control, Alarms, and others) adopt Color v2 in th
       'Use VDS in Figma for on-brand, Verity-compatible mocks; rebind Collection variables',
       <>
         <DocLink slug="figmaWorkflow">Figma Workflow</DocLink>
-        {' → Alert Button + Checkbox'}
+        {' → '}
+        <DocLink slug="alertButton">Alert Button</DocLink>
+        {' + '}
+        <DocLink slug="checkbox">Checkbox</DocLink>
       </>,
     ],
     [
-      <strong key="lead">Eng lead, Eng manager, or PM</strong>,
+      <strong key="lead">Eng / PM lead</strong>,
       'Scope migration, set stakeholder expectations, interlock with platform and peer teams',
       <>
         <DocLink slug="whatsChanging">What's Changing</DocLink>
@@ -98,7 +101,7 @@ Product lines (Cameras, Access Control, Alarms, and others) adopt Color v2 in th
   ]}
 />
 
-Frontend engineers are the primary audience for this guide. Pull in Meg (VDS / Figma), Melina (Verity / Storybook), or Vivien (prioritization) when vetting token or component choices. Work with your product designer and PM on surface scope, dark mode timing, and edge cases.
+Frontend engineers are the primary audience for this guide. Pull in Meg (VDS / Figma), Melina (Verity / Storybook), or Vivien Ding (prioritization) when vetting token or component choices. Work with your product designer and PM on surface scope, dark mode timing, and edge cases.
 
 ## Migration and dark mode resources
 
@@ -138,6 +141,6 @@ For Claude Design / OpenDesign prototypes, see <GitHubLink to="docsVibesFolder">
 
 ## Where to go next
 
-- [Strategy](/docs/intro-to-color-v2-strategy--docs)
-- [Rollout](/docs/intro-to-color-v2-rollout--docs)
-- [Teams Overview](/docs/teams-overview--docs)
+- <DocLink slug="strategy">Strategy</DocLink>
+- <DocLink slug="rollout">Rollout</DocLink>
+- <DocLink slug="teamsOverview">Teams Overview</DocLink>

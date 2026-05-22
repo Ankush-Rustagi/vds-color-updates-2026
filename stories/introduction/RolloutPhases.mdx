@@ -5,7 +5,7 @@ import { DocsTable, DocLink } from '../../src/components/docs/DocsTable'
 
 # Rollout
 
-Color v2 rolls out in four phases. The platform team (Meg, Melina, Vivien) owns VDS and Verity guidance; product teams own surface-by-surface migration in their repos.
+Color v2 rolls out in four phases. The platform team (Meg Kim, Melina O'Dell, Vivien Ding) owns VDS and Verity guidance; product teams own surface-by-surface migration in their repos.
 
 <DocsTable
   layout="rollout"
@@ -20,7 +20,7 @@ Color v2 rolls out in four phases. The platform team (Meg, Melina, Vivien) owns 
     [
       '2. Publish guides',
       'Active',
-      'Platform team (Meg, Melina, Vivien)',
+      'Platform team (Meg, Melina, Vivien Ding)',
       <>
         This Storybook for how-to and reference. Strategy narrative lives under{' '}
         <DocLink slug="strategy">Strategy</DocLink>.
@@ -39,7 +39,7 @@ Color v2 rolls out in four phases. The platform team (Meg, Melina, Vivien) owns 
       '4. Ship + refine',
       'Later',
       'All teams',
-      'Dark mode still in testing. Visual deltas expected. Feedback loop with Design System.',
+      'Dark mode still in testing. Visual deltas expected. Feedback loop with the platform team.',
     ],
   ]}
 />
@@ -53,21 +53,17 @@ Color v2 rolls out in four phases. The platform team (Meg, Melina, Vivien) owns 
 
 ## Phase 3 expectations for teams
 
-1. Pick one real Command surface (see [Teams Overview](/docs/teams-overview--docs))
-2. Map legacy vars using [Token Mapping](/docs/color-v2-migrations-token-mapping--docs)
+1. Pick one real Command surface (see <DocLink slug="teamsOverview">Teams Overview</DocLink>)
+2. Map legacy vars using <DocLink slug="tokenMapping">Token Mapping</DocLink>
 3. Rebind Figma components to Collection variables
 4. Ship behind feature flag or incremental PR; designer sign-off on reference patterns
 
 ## Communication
 
-Eng leads and PMs should set expectations early:
-
-- Alert red tightens (`#DA5959` → `#CB2939`)
-- Surfaces shift to `--background/surface-01` and `--background/surface-02`
-- Dark mode values are directional until Design System validates production theme
+Eng leads and PMs should set stakeholder expectations early. See <DocLink slug="whatsChanging">What's Changing</DocLink> for alert red, surface background, and dark mode deltas.
 
 ## Where to go next
 
-- [Who Does What](/docs/intro-to-color-v2-who-does-what--docs)
-- [What's Changing](/docs/color-v2-updates-what-s-changing--docs)
-- [Getting Started](/docs/color-v2-migrations-getting-started--docs)
+- <DocLink slug="whoDoesWhat">Who Does What</DocLink>
+- <DocLink slug="whatsChanging">What's Changing</DocLink>
+- <DocLink slug="gettingStarted">Getting Started</DocLink>

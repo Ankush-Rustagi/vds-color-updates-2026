@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/blocks'
-import { DocsTable } from '../../src/components/docs/DocsTable'
+import { DocsTable, DocLink } from '../../src/components/docs/DocsTable'
 import { FigmaLink } from '../../src/components/docs/FigmaLink'
 
 <Meta title="Color v2 Updates/Building new UI?" />
@@ -29,11 +29,11 @@ Building **new UI**? Skip legacy mapping and bind directly to v2 semantic tokens
 ## Workflow
 
 1. Open <FigmaLink to="collection">Figma Collection</FigmaLink> and bind component variables to semantic tokens
-2. In code, use CSS custom properties mapped from Figma names (see [Token Naming](/docs/reference-token-naming--docs))
-3. Use [Semantic Colors](/docs/reference-semantic-colors--docs) to look up any token not listed above
+2. In code, use CSS custom properties mapped from Figma names (see <DocLink slug="tokenNaming">Token Naming</DocLink>)
+3. Use <DocLink slug="semanticColors">Semantic Colors</DocLink> to look up any token not listed above
 
 ## Where to go next
 
-- [Token Naming](/docs/reference-token-naming--docs)
-- [Semantic Colors](/docs/reference-semantic-colors--docs)
-- [Figma Workflow](/docs/color-v2-migrations-figma-workflow--docs)
+- <DocLink slug="tokenNaming">Token Naming</DocLink>
+- <DocLink slug="semanticColors">Semantic Colors</DocLink>
+- <DocLink slug="figmaWorkflow">Figma Workflow</DocLink>

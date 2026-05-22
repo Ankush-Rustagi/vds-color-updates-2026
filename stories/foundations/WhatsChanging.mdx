@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/blocks'
-import { DocsTable } from '../../src/components/docs/DocsTable'
+import { DocsTable, DocLink } from '../../src/components/docs/DocsTable'
 import { TOKEN_META } from '../../src/tokens/collection'
 
 <Meta title="Color v2 Updates/What's Changing" />
@@ -8,16 +8,20 @@ import { TOKEN_META } from '../../src/tokens/collection'
 
 Color v2 is a **semantic token system** for all Command surfaces. Eng leads use this page to scope migration work and set expectations with stakeholders.
 
+For named owners and consumer roles, see <DocLink slug="whoDoesWhat">Who Does What</DocLink>.
+
 ## Scope
 
+All assets below are defined in **VDS (Figma Collection)** and published through this Storybook reference. **Meg Kim** owns the Figma spec; **Melina O'Dell** owns Verity implementation.
+
 <DocsTable
-  headers={['Asset', 'Count', 'Owner']}
+  headers={['Asset', 'Count']}
   rows={[
-    ['Semantic color tokens', `${TOKEN_META.counts['semantic-colors']}`, 'Design System (Figma Collection)'],
-    ['Color primitives', `${TOKEN_META.counts['color-primitives']}`, 'Design System'],
-    ['Size tokens', `${TOKEN_META.counts.size}`, 'Design System'],
-    ['Effects tokens', `${TOKEN_META.counts.effects}`, 'Design System'],
-    ['Figma groups', `${Object.keys(TOKEN_META.semanticGroups).length}`, 'Design System'],
+    ['Semantic color tokens', `${TOKEN_META.counts['semantic-colors']}`],
+    ['Color primitives', `${TOKEN_META.counts['color-primitives']}`],
+    ['Size tokens', `${TOKEN_META.counts.size}`],
+    ['Effects tokens', `${TOKEN_META.counts.effects}`],
+    ['Figma groups', `${Object.keys(TOKEN_META.semanticGroups).length}`],
   ]}
 />
 
@@ -26,17 +30,17 @@ Color v2 is a **semantic token system** for all Command surfaces. Eng leads use 
 - **Alert red tightens** from legacy `#DA5959` to v2 `#CB2939`
 - **Surface backgrounds** shift to `--background/surface-01` (canvas) and `--background/surface-02` (cards)
 - **Dark mode is in testing** in Figma (column labeled "Dark Mode Testing")
-- **Legacy CSS var fragmentation** requires explicit mapping per team dialect (see [Token Mapping](/docs/color-v2-migrations-token-mapping--docs))
+- **Legacy CSS var fragmentation** requires explicit mapping per team dialect (see <DocLink slug="tokenMapping">Token Mapping</DocLink>)
 
 ## Engineering impact
 
 1. Replace legacy CSS custom properties with v2 semantic names
 2. Validate against Alert Button and Checkbox reference patterns first
-3. Use [Semantic Colors](/docs/reference-semantic-colors--docs) for full token lookup
-4. Flag missing tokens to Design System rather than creating local colors
+3. Use <DocLink slug="semanticColors">Semantic Colors</DocLink> for full token lookup
+4. Flag missing tokens to the **platform team** (Meg Kim for Figma, Melina O'Dell for Verity) rather than creating local colors
 
 ## Where to go next
 
-- [Accessibility](/docs/color-v2-updates-accessibility--docs)
-- [Token Mapping](/docs/color-v2-migrations-token-mapping--docs)
-- [Rollout](/docs/intro-to-color-v2-rollout--docs)
+- <DocLink slug="accessibility">Accessibility</DocLink>
+- <DocLink slug="tokenMapping">Token Mapping</DocLink>
+- <DocLink slug="rollout">Rollout</DocLink>

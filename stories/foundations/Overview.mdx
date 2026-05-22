@@ -1,26 +1,39 @@
 import { Meta } from '@storybook/blocks'
-import { DocsTable } from '../../src/components/docs/DocsTable'
+import { DocsTable, DocLink } from '../../src/components/docs/DocsTable'
 import { TOKEN_META } from '../../src/tokens/collection'
 
 <Meta title="Color v2 Updates/Overview" />
 
 # Color v2 Overview
 
-Verkada Design System Color v2 replaces fragmented legacy CSS dialects with **{TOKEN_META.counts['semantic-colors']} semantic tokens** defined once in Figma Collection. Each token has light and dark values.
+Color v2 on the Verkada design platform replaces fragmented legacy CSS dialects with **{TOKEN_META.counts['semantic-colors']} semantic tokens** defined once in Figma Collection. Each token has light and dark values.
 
-For rollout strategy, phases, and **platform vs product team ownership**, start with [Strategy](/docs/intro-to-color-v2-strategy--docs) and [Who Does What](/docs/intro-to-color-v2-who-does-what--docs).
+For rollout strategy, phases, and **platform vs product team ownership**, start with <DocLink slug="strategy">Strategy</DocLink> and <DocLink slug="whoDoesWhat">Who Does What</DocLink>.
 
 ## Who should read what
 
 <DocsTable
-  headers={['Role', 'Start here']}
+  headers={['Audience', 'Start here']}
   rows={[
-    ['Designer migrating Figma components', 'Color v2 Migrations → Figma Workflow → Alert Button'],
-    ['Engineer swapping CSS variables', 'Color v2 Migrations → Getting Started → Token Mapping'],
-    ['Need a specific token name or hex', 'Reference → Semantic Colors'],
-    ['Eng lead scoping the rollout', "Color v2 Updates → What's Changing"],
-    ['Building new UI (no legacy vars)', 'Color v2 Updates → Building new UI?'],
-    ['PM / stakeholder narrative', 'Intro to Color v2 → Strategy → Rollout'],
+    [
+      'Engineers and designers migrating surfaces',
+      <>
+        <DocLink slug="whoDoesWhat">Who Does What</DocLink>
+        {' (role-based paths)'}
+      </>,
+    ],
+    [
+      'Eng leads scoping work',
+      <DocLink slug="whatsChanging">What's Changing</DocLink>,
+    ],
+    [
+      'PMs and stakeholders',
+      <>
+        <DocLink slug="strategy">Strategy</DocLink>
+        {' → '}
+        <DocLink slug="rollout">Rollout</DocLink>
+      </>,
+    ],
   ]}
 />
 
@@ -37,6 +50,6 @@ For rollout strategy, phases, and **platform vs product team ownership**, start 
 
 ## Where to go next
 
-- [Getting Started](/docs/color-v2-migrations-getting-started--docs)
-- [Figma Workflow](/docs/color-v2-migrations-figma-workflow--docs)
-- [Semantic Colors](/docs/reference-semantic-colors--docs)
+- <DocLink slug="gettingStarted">Getting Started</DocLink>
+- <DocLink slug="figmaWorkflow">Figma Workflow</DocLink>
+- <DocLink slug="semanticColors">Semantic Colors</DocLink>

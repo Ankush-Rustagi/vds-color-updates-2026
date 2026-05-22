@@ -3,7 +3,7 @@ import { isHex } from '../../tokens/collection'
 import { DocsAnchor } from './DocsAnchor'
 import { docHref, DOC_PATHS } from '../../constants/doc-links'
 
-type DocsTableLayout = 'default' | 'rollout' | 'roles' | 'compare' | 'layers' | 'platform'
+type DocsTableLayout = 'default' | 'rollout' | 'roles' | 'consumers' | 'compare' | 'layers' | 'platform'
 
 type DocsTableProps = {
   headers: string[]
