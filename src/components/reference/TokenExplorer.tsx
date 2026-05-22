@@ -14,6 +14,16 @@ import {
 } from '../../tokens/collection'
 import { copyText, cssDeclaration, figmaToCssVar, topCategory } from '../../tokens/token-utils'
 import { FIGMA_LINKS } from '../../constants/figma'
+import { SortHeader } from './SortHeader'
+import {
+  defaultPrimitiveSort,
+  defaultSemanticSort,
+  defaultSimpleSort,
+  nextSortDirection,
+  sortSemanticRows,
+  sortSimpleRows,
+  type SortDirection,
+} from './sort-utils'
 
 export type TokenDataset = 'semantic-colors' | 'color-primitives' | 'size' | 'effects'
 
@@ -26,6 +36,17 @@ type Row = SemanticTokenRow | SimpleTokenRow
 
 function isSemantic(row: Row): row is SemanticTokenRow {
   return 'light' in row
+}
+
+function initialSort(dataset: TokenDataset): { column: string; direction: SortDirection } {
+  switch (dataset) {
+    case 'color-primitives':
+      return defaultPrimitiveSort()
+    case 'semantic-colors':
+      return defaultSemanticSort()
+    default:
+      return defaultSimpleSort()
+  }
 }
 
 function Swatch({ value }: { value?: string | null }) {
@@ -74,12 +95,15 @@ function writeUrlParams(q: string, group: string, category: string) {
   window.history.replaceState({}, '', next)
 }
 
-export function TokenExplorer({ dataset, title }: Props) {
+export function TokenExplorer({ dataset }: Props) {
   const initial = readUrlParams()
+  const defaultSort = initialSort(dataset)
   const [query, setQuery] = useState(initial.q)
   const [debouncedQuery, setDebouncedQuery] = useState(initial.q)
   const [groupFilter, setGroupFilter] = useState(initial.group)
   const [categoryFilter, setCategoryFilter] = useState(initial.category)
+  const [sortColumn, setSortColumn] = useState(defaultSort.column)
+  const [sortDirection, setSortDirection] = useState<SortDirection>(defaultSort.direction)
   const [density, setDensity] = useState<'comfortable' | 'compact'>('comfortable')
   const [toast, setToast] = useState('')
   const parentRef = useRef<HTMLDivElement>(null)
@@ -117,6 +141,10 @@ export function TokenExplorer({ dataset, title }: Props) {
     writeUrlParams(debouncedQuery, groupFilter, categoryFilter)
   }, [debouncedQuery, groupFilter, categoryFilter])
 
+  useEffect(() => {
+    parentRef.current?.scrollTo({ top: 0 })
+  }, [sortColumn, sortDirection])
+
   const filtered = useMemo(() => {
     const q = debouncedQuery.trim().toLowerCase()
     return rows.filter((row) => {
@@ -142,9 +170,17 @@ export function TokenExplorer({ dataset, title }: Props) {
     })
   }, [rows, debouncedQuery, groupFilter, categoryFilter, dataset])
 
+  const sorted = useMemo(() => {
+    if (dataset === 'semantic-colors') {
+      return sortSemanticRows(filtered as SemanticTokenRow[], sortColumn, sortDirection)
+    }
+    const simpleDataset = dataset === 'color-primitives' ? 'color-primitives' : dataset
+    return sortSimpleRows(filtered as SimpleTokenRow[], sortColumn, sortDirection, simpleDataset)
+  }, [filtered, sortColumn, sortDirection, dataset])
+
   const rowHeight = density === 'compact' ? 44 : 56
   const virtualizer = useVirtualizer({
-    count: filtered.length,
+    count: sorted.length,
     getScrollElement: () => parentRef.current,
     estimateSize: () => rowHeight,
     overscan: 12,
@@ -155,11 +191,24 @@ export function TokenExplorer({ dataset, title }: Props) {
     window.setTimeout(() => setToast(''), 1500)
   }, [])
 
+  const handleSort = (column: string) => {
+    setSortDirection((prev) => nextSortDirection(sortColumn, prev, column))
+    setSortColumn(column)
+  }
+
+  const handleSortPreset = (column: string) => {
+    setSortColumn(column)
+    setSortDirection('asc')
+  }
+
   const clearFilters = () => {
     setQuery('')
     setDebouncedQuery('')
     setGroupFilter('')
     setCategoryFilter('')
+    const reset = initialSort(dataset)
+    setSortColumn(reset.column)
+    setSortDirection(reset.direction)
   }
 
   const figmaLink =
@@ -172,6 +221,7 @@ export function TokenExplorer({ dataset, title }: Props) {
           : FIGMA_LINKS.effectsTable
 
   const countLabel = TOKEN_META.counts[dataset]
+  const isSimple = dataset !== 'semantic-colors'
 
   return (
     <div className="vds-ref vds-explorer">
@@ -182,7 +232,9 @@ export function TokenExplorer({ dataset, title }: Props) {
         </p>
       )}
 
-      <div className="vds-ref__toolbar vds-explorer__toolbar">
+      <div
+        className={`vds-ref__toolbar vds-explorer__toolbar${dataset === 'color-primitives' ? ' vds-explorer__toolbar--with-sort' : ''}`}
+      >
         <input
           className="vds-input"
           type="search"
@@ -204,6 +256,20 @@ export function TokenExplorer({ dataset, title }: Props) {
             </option>
           ))}
         </select>
+        {dataset === 'color-primitives' && (
+          <select
+            className="vds-select"
+            value={sortColumn}
+            onChange={(e) => handleSortPreset(e.target.value)}
+            aria-label="Sort order"
+          >
+            <option value="gradation">Gradation (default)</option>
+            <option value="palette">Palette</option>
+            <option value="token">Token name</option>
+            <option value="value">Hex value</option>
+            <option value="step">Step</option>
+          </select>
+        )}
         <div className="vds-explorer__toolbar-actions">
           <button
             type="button"
@@ -213,7 +279,7 @@ export function TokenExplorer({ dataset, title }: Props) {
             {density === 'comfortable' ? 'Compact' : 'Comfortable'}
           </button>
           <span className="vds-count">
-            {filtered.length} / {countLabel}
+            {sorted.length} / {countLabel}
           </span>
         </div>
       </div>
@@ -240,7 +306,7 @@ export function TokenExplorer({ dataset, title }: Props) {
         </div>
       )}
 
-      {filtered.length === 0 ? (
+      {sorted.length === 0 ? (
         <div className="vds-empty vds-explorer__empty">
           No tokens match.{' '}
           <button type="button" className="vds-link-btn" onClick={clearFilters}>
@@ -250,38 +316,99 @@ export function TokenExplorer({ dataset, title }: Props) {
       ) : (
         <div className="vds-table-wrap vds-explorer__table-wrap">
           <div
-            className={`vds-explorer__header-row${dataset !== 'semantic-colors' ? ' vds-explorer__header-row--simple' : ''}`}
+            className={`vds-explorer__header-row${isSimple ? ' vds-explorer__header-row--simple' : ''}`}
           >
-            {dataset === 'semantic-colors' && <span className="vds-explorer__col vds-explorer__col--group">Group</span>}
-            {dataset !== 'semantic-colors' && (
-              <span className="vds-explorer__col vds-explorer__col--group">Palette</span>
+            {dataset === 'semantic-colors' ? (
+              <SortHeader
+                label="Group"
+                column="group"
+                activeColumn={sortColumn}
+                direction={sortDirection}
+                onSort={handleSort}
+                className="vds-explorer__col vds-explorer__col--group"
+              />
+            ) : (
+              <SortHeader
+                label="Palette"
+                column="palette"
+                activeColumn={sortColumn}
+                direction={sortDirection}
+                onSort={handleSort}
+                className="vds-explorer__col vds-explorer__col--group"
+              />
             )}
-            <span className="vds-explorer__col vds-explorer__col--token">Token</span>
+            <SortHeader
+              label="Token"
+              column="token"
+              activeColumn={sortColumn}
+              direction={sortDirection}
+              onSort={handleSort}
+              className="vds-explorer__col vds-explorer__col--token"
+            />
             {dataset === 'semantic-colors' ? (
               <>
-                <span className="vds-explorer__col vds-explorer__col--value">Light</span>
-                <span className="vds-explorer__col vds-explorer__col--value">Dark</span>
-                <span className="vds-explorer__col vds-explorer__col--step">Step</span>
+                <SortHeader
+                  label="Light"
+                  column="light"
+                  activeColumn={sortColumn}
+                  direction={sortDirection}
+                  onSort={handleSort}
+                  className="vds-explorer__col vds-explorer__col--value"
+                />
+                <SortHeader
+                  label="Dark"
+                  column="dark"
+                  activeColumn={sortColumn}
+                  direction={sortDirection}
+                  onSort={handleSort}
+                  className="vds-explorer__col vds-explorer__col--value"
+                />
+                <SortHeader
+                  label="Step"
+                  column="step"
+                  activeColumn={sortColumn}
+                  direction={sortDirection}
+                  onSort={handleSort}
+                  className="vds-explorer__col vds-explorer__col--step"
+                />
               </>
             ) : (
               <>
-                <span className="vds-explorer__col vds-explorer__col--value">Value</span>
-                <span className="vds-explorer__col vds-explorer__col--step">Step</span>
+                <SortHeader
+                  label="Value"
+                  column="value"
+                  activeColumn={sortColumn}
+                  direction={sortDirection}
+                  onSort={handleSort}
+                  className="vds-explorer__col vds-explorer__col--value"
+                />
+                <SortHeader
+                  label="Step"
+                  column="step"
+                  activeColumn={sortColumn}
+                  direction={sortDirection}
+                  onSort={handleSort}
+                  className="vds-explorer__col vds-explorer__col--step"
+                />
               </>
             )}
             <span className="vds-explorer__col vds-explorer__col--copy">Copy</span>
           </div>
-          <div ref={parentRef} className="vds-explorer__scroll" style={{ height: Math.min(560, filtered.length * rowHeight + 8) }}>
+          <div
+            ref={parentRef}
+            className="vds-explorer__scroll"
+            style={{ height: Math.min(560, sorted.length * rowHeight + 8) }}
+          >
             <div style={{ height: virtualizer.getTotalSize(), position: 'relative' }}>
               {virtualizer.getVirtualItems().map((vRow) => {
-                const row = filtered[vRow.index]
+                const row = sorted[vRow.index]
                 const groupKey = isSemantic(row) ? row.group : (row as SimpleTokenRow).palette
                 const lightHex = isSemantic(row) ? row.light : (row as SimpleTokenRow).value
 
                 return (
                   <div
                     key={row.token}
-                    className={`vds-explorer__row${dataset !== 'semantic-colors' ? ' vds-explorer__row--simple' : ''}`}
+                    className={`vds-explorer__row${isSimple ? ' vds-explorer__row--simple' : ''}`}
                     style={{
                       position: 'absolute',
                       top: 0,
@@ -322,7 +449,9 @@ export function TokenExplorer({ dataset, title }: Props) {
                           </div>
                         </span>
                         <span className="vds-explorer__col vds-explorer__col--step vds-muted">
-                          {(row as SimpleTokenRow).step ?? '—'}
+                          {dataset === 'color-primitives'
+                            ? (row as SimpleTokenRow).token.split('/').pop()
+                            : ((row as SimpleTokenRow).step ?? '—')}
                         </span>
                       </>
                     )}

@@ -1,19 +1,39 @@
 import { useMemo, useState } from 'react'
-import { TOKEN_MAPPINGS } from '../../content/token-mappings'
+import { TOKEN_MAPPINGS, type TokenMapping } from '../../content/token-mappings'
+import { SortHeader } from './SortHeader'
+import { nextSortDirection, type SortDirection } from './sort-utils'
+
+type SortColumn = 'legacy' | 'v2' | 'notes'
 
 export function TokenMappingTable() {
   const [query, setQuery] = useState('')
+  const [sortColumn, setSortColumn] = useState<SortColumn>('legacy')
+  const [sortDirection, setSortDirection] = useState<SortDirection>('asc')
 
   const rows = useMemo(() => {
     const q = query.trim().toLowerCase()
-    if (!q) return TOKEN_MAPPINGS
-    return TOKEN_MAPPINGS.filter(
-      (r) =>
-        r.legacy.toLowerCase().includes(q) ||
-        r.v2.toLowerCase().includes(q) ||
-        (r.notes || '').toLowerCase().includes(q),
-    )
-  }, [query])
+    const filtered = !q
+      ? TOKEN_MAPPINGS
+      : TOKEN_MAPPINGS.filter(
+          (r) =>
+            r.legacy.toLowerCase().includes(q) ||
+            r.v2.toLowerCase().includes(q) ||
+            (r.notes || '').toLowerCase().includes(q),
+        )
+
+    return [...filtered].sort((a, b) => {
+      const cmp = (a[sortColumn] ?? '').localeCompare(b[sortColumn] ?? '', undefined, {
+        numeric: true,
+        sensitivity: 'base',
+      })
+      return sortDirection === 'asc' ? cmp : -cmp
+    })
+  }, [query, sortColumn, sortDirection])
+
+  const handleSort = (column: SortColumn) => {
+    setSortDirection((prev) => nextSortDirection(sortColumn, prev, column))
+    setSortColumn(column)
+  }
 
   return (
     <div className="vds-ref">
@@ -28,16 +48,40 @@ export function TokenMappingTable() {
         <span className="vds-count">{rows.length} mappings</span>
       </div>
       <div className="vds-table-wrap">
-        <table className="vds-table">
+        <table className="vds-table vds-table--sortable">
           <thead>
             <tr>
-              <th>Legacy variable</th>
-              <th>Color v2 token</th>
-              <th>Notes</th>
+              <th>
+                <SortHeader
+                  label="Legacy variable"
+                  column="legacy"
+                  activeColumn={sortColumn}
+                  direction={sortDirection}
+                  onSort={(col) => handleSort(col as SortColumn)}
+                />
+              </th>
+              <th>
+                <SortHeader
+                  label="Color v2 token"
+                  column="v2"
+                  activeColumn={sortColumn}
+                  direction={sortDirection}
+                  onSort={(col) => handleSort(col as SortColumn)}
+                />
+              </th>
+              <th>
+                <SortHeader
+                  label="Notes"
+                  column="notes"
+                  activeColumn={sortColumn}
+                  direction={sortDirection}
+                  onSort={(col) => handleSort(col as SortColumn)}
+                />
+              </th>
             </tr>
           </thead>
           <tbody>
-            {rows.map((row) => (
+            {rows.map((row: TokenMapping) => (
               <tr key={row.legacy}>
                 <td>
                   <code className="vds-token-code">{row.legacy}</code>
