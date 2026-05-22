@@ -670,7 +670,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .vds-explorer__controls .vds-ref__toolbar {
@@ -678,30 +678,21 @@ body {
 }
 
 .vds-explorer__active-filters-slot {
-  flex: 0 0 72px;
-  height: 72px;
+  flex: 0 0 32px;
+  height: 32px;
 }
 
 .vds-explorer__active-filters {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  align-content: center;
   gap: 8px;
   box-sizing: border-box;
   height: 100%;
-  padding: 10px 12px;
+  padding: 0;
   font-size: 13px;
   line-height: 1.4;
   color: var(--vds-text-secondary);
-  border: 1px solid transparent;
-  border-radius: var(--vds-radius-small);
-  background: transparent;
-}
-
-.vds-explorer__active-filters--visible {
-  background: var(--vds-background-surface-01);
-  border-color: var(--vds-text-disabled);
 }
 
 .vds-explorer__active-filters-label {
@@ -724,6 +715,13 @@ body {
 .vds-explorer__table-wrap {
   overflow: hidden;
   max-width: 100%;
+  margin-top: 12px;
+}
+
+.vds-explorer__empty {
+  padding: 24px;
+  text-align: center;
+  margin-top: 12px;
 }
 
 .vds-explorer__header-row,
@@ -849,11 +847,6 @@ body {
   margin-top: 16px;
   font-size: 13px;
   color: var(--vds-text-secondary);
-}
-
-.vds-explorer__empty {
-  padding: 24px;
-  text-align: center;
 }
 
 .vds-explorer__col {

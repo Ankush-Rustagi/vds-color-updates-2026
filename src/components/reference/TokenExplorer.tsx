@@ -405,11 +405,7 @@ export function TokenExplorer({ dataset }: Props) {
         </div>
 
         <div className="vds-explorer__active-filters-slot" aria-live="polite">
-          <div
-            className={`vds-explorer__active-filters${
-              activeFilterLabels.length > 0 ? ' vds-explorer__active-filters--visible' : ''
-            }`}
-          >
+          <div className="vds-explorer__active-filters">
             {activeFilterLabels.length > 0 ? (
               <>
                 <span className="vds-explorer__active-filters-label">Active filters:</span>
