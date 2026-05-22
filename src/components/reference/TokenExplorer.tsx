@@ -257,6 +257,21 @@ export function TokenExplorer({ dataset }: Props) {
     setGroupFilter('')
   }
 
+  const isSemanticTable = dataset === 'semantic-colors'
+  const isPrimitives = dataset === 'color-primitives'
+  const isSimple = !isSemanticTable
+  const rowLayoutClass = isPrimitives
+    ? ' vds-explorer__row--primitives'
+    : isSimple
+      ? ' vds-explorer__row--simple'
+      : ''
+  const headerLayoutClass = isPrimitives
+    ? ' vds-explorer__header-row--primitives'
+    : isSimple
+      ? ' vds-explorer__header-row--simple'
+      : ''
+  const paletteFilterLabel = isPrimitives ? 'palette' : 'group'
+
   const activeFilterLabels = useMemo(() => {
     const labels: string[] = []
     if (debouncedQuery.trim()) labels.push(`search: "${debouncedQuery.trim()}"`)
@@ -275,20 +290,6 @@ export function TokenExplorer({ dataset }: Props) {
           : FIGMA_LINKS.effectsTable
 
   const countLabel = TOKEN_META.counts[dataset]
-  const isSemanticTable = dataset === 'semantic-colors'
-  const isPrimitives = dataset === 'color-primitives'
-  const isSimple = !isSemanticTable
-  const rowLayoutClass = isPrimitives
-    ? ' vds-explorer__row--primitives'
-    : isSimple
-      ? ' vds-explorer__row--simple'
-      : ''
-  const headerLayoutClass = isPrimitives
-    ? ' vds-explorer__header-row--primitives'
-    : isSimple
-      ? ' vds-explorer__header-row--simple'
-      : ''
-  const paletteFilterLabel = isPrimitives ? 'palette' : 'group'
 
   return (
     <div className="vds-ref vds-explorer">
