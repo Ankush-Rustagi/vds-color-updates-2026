@@ -8,7 +8,7 @@ const preview: Preview = {
     docs: {
       description: {
         component:
-          'VDS Color v2 migration guides. Strategy hub: https://ankush-rustagi.github.io/vds-color-v2/',
+          'VDS Color v2 migration guides. Start with Introduction → Platform Strategy.',
       },
       toc: true,
     },
@@ -21,14 +21,16 @@ const preview: Preview = {
     options: {
       storySort: {
         order: [
+          'Introduction',
+          ['Platform Strategy', 'Rollout Phases', 'Who Does What'],
           'Foundations',
           ['Color v2', ['Overview', "What's Changing", 'Accessibility', 'Greenfield Adoption']],
-          'Migrations',
-          ['Color v2', ['Getting Started', 'Figma Workflow', 'Token Mapping', 'Alert Button', 'Checkbox']],
-          'Teams',
-          ['Overview', '*'],
           'Reference',
           ['Token Naming', 'Semantic Colors', 'Color Primitives', 'Size', 'Effects'],
+          'Teams',
+          ['Overview', '*'],
+          'Migrations',
+          ['Color v2', ['Getting Started', 'Figma Workflow', 'Token Mapping', 'Alert Button', 'Checkbox']],
         ],
       },
     },
