@@ -1,6 +1,7 @@
 import { Meta } from '@storybook/blocks'
 import { DocsTable } from '../../src/components/docs/DocsTable'
 import { FigmaLink } from '../../src/components/docs/FigmaLink'
+import { GitHubLink } from '../../src/components/docs/GitHubLink'
 import { UX_DESIGN } from '../../src/constants/ux-design'
 
 <Meta title="Intro to Color v2/Strategy" parameters={{ docs: { toc: true } }} />
@@ -52,7 +53,7 @@ Verkada Design System is moving from fragmented legacy colors to a **single sema
 For **Claude Design**, **OpenDesign**, or quick vibe prototypes that must match VDS standards, use the shared asset folder in docs-vibes:
 
 - **Path:** <code>{UX_DESIGN.repoPath}</code> (`DESIGN.md`, `design-system-context.md`, Verity excerpts, icons, PM prompts)
-- **GitHub:** <a href={UX_DESIGN.githubUrl}>17-ux-design</a>
+- **GitHub:** <GitHubLink to="docsVibesFolder">17-ux-design</GitHubLink> · <GitHubLink to="docsVibesDesignMd">DESIGN.md</GitHubLink>
 
 Upload `DESIGN.md` first, then `design-system-context.md`, when configuring Claude Design org settings. This Storybook covers Color v2 tokens and migration; `17-ux-design` covers the full component dictionary and handoff workflows.
 

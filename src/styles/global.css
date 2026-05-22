@@ -476,13 +476,15 @@ body {
 }
 
 .sbdocs .vds-docs-table a,
-.sbdocs .sbdocs-content a[href*='figma.com'] {
+.sbdocs .sbdocs-content a[href*='figma.com'],
+.sbdocs .sbdocs-content a[href*='github.com'] {
   color: var(--vds-button-background-primary, #0285c8);
   text-decoration: none;
 }
 
 .sbdocs .vds-docs-table a:hover,
-.sbdocs .sbdocs-content a[href*='figma.com']:hover {
+.sbdocs .sbdocs-content a[href*='figma.com']:hover,
+.sbdocs .sbdocs-content a[href*='github.com']:hover {
   text-decoration: underline;
 }
 

@@ -1,5 +1,6 @@
 import { Meta } from '@storybook/blocks'
 import { DocsTable, DocLink } from '../../src/components/docs/DocsTable'
+import { GitHubLink } from '../../src/components/docs/GitHubLink'
 import { UX_DESIGN } from '../../src/constants/ux-design'
 
 <Meta title="Intro to Color v2/Who Does What" parameters={{ docs: { toc: false } }} />
@@ -55,12 +56,12 @@ Melina is updating the **production Verity Storybook** (`master.vstyleguide.prod
 
 ## Vibe design and prototype tools
 
-PMs and designers building **vibe prototypes** or configuring **Claude Design / OpenDesign** should start from <a href={UX_DESIGN.githubUrl}>17-ux-design</a> in docs-vibes:
+PMs and designers building **vibe prototypes** or configuring **Claude Design / OpenDesign** should start from <GitHubLink to="docsVibesFolder">17-ux-design</GitHubLink> in docs-vibes:
 
-- **`DESIGN.md`** — OpenDesign spec with Color v2 semantic tokens (upload first)
-- **`design-system-context.md`** — Full VDS component dictionary, layout, icons
-- **`vds-verity-component-bridge.md`** — Verity import paths for engineering handoff
-- **`verity/`** — TypeScript component excerpts for Claude Design codebase link
+- <GitHubLink to="docsVibesDesignMd">`DESIGN.md`</GitHubLink> — OpenDesign spec with Color v2 semantic tokens (upload first)
+- <GitHubLink to="docsVibesDesignSystemContext">`design-system-context.md`</GitHubLink> — Full VDS component dictionary, layout, icons
+- <GitHubLink to="docsVibesVerityBridge">`vds-verity-component-bridge.md`</GitHubLink> — Verity import paths for engineering handoff
+- <GitHubLink to="docsVibesVerityFolder">`verity/`</GitHubLink> — TypeScript component excerpts for Claude Design codebase link
 
 Repo path: <code>{UX_DESIGN.repoPath}</code>. Do not rely on pre-v2 Figma exports or deprecated external hubs.
 

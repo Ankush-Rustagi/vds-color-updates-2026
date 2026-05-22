@@ -4,7 +4,7 @@
 **Status:** Active migration. Figma Collection is authoritative.  
 **Canonical reference:** https://ankush-rustagi.github.io/vds-color-updates-2026/
 
-This file follows the [OpenDesign](https://github.com/nicepkg/open-design) pattern: a single markdown spec for AI design and code agents. **Do not invent colors, token names, or component variants not listed here.**
+This file follows the [OpenDesign](https://github.com/nexu-io/open-design) pattern: a single markdown spec for AI design and code agents. **Do not invent colors, token names, or component variants not listed here.**
 
 ---
 
