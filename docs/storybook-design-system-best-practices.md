@@ -63,20 +63,16 @@ These are the concrete failures from the VDS Color v2 Storybook v1 attempt and w
 
 ---
 
-## The two-site model (strategy hub vs Storybook)
+## Single-site model (current)
 
-Leading design systems separate **why/when/who** from **how/implement/reference**.
+VDS Color v2 uses **one Storybook** for strategy, migration, reference, and team examples. The former `vds-color-v2` rollout hub is archived and unpublished.
 
-| Site | URL pattern | Owns |
-|------|-------------|------|
-| **Strategy / rollout hub** | `vds-color-v2/` (Vite docs app) | Rollout phases, team cards, PM narrative, links to Figma deck |
-| **Storybook** | `vds-color-v2-storybook/` | Migration how-tos, before/after stories, token lookup, component examples |
+| Site | URL | Owns |
+|------|-----|------|
+| **Color v2 Storybook** | `vds-color-updates-2026/` | Intro to Color v2 (strategy, rollout, who does what), migrations, token reference, teams |
+| **Vibe design assets** | `documentation/17-ux-design/` in docs-vibes | DESIGN.md, Claude Design setup, Verity handoff |
 
-**Do not iframe Storybook into the hub.** Cross-link with stable deep URLs.
-
-**Do not put PM rollout strategy inside Storybook.** Non-engineers will not live in Storybook.
-
-Official Storybook guidance on styling/tokens acknowledges that token *concept* docs often sit alongside component docs, but large systems frequently use a marketing or guidelines site for narrative and Storybook for implementation ([styling and CSS docs](https://storybook.js.org/docs/configure/styling-and-css#documenting-design-tokens)).
+**Do not link to** `https://ankush-rustagi.github.io/vds-color-v2/` (retired).
 
 ---
 
@@ -584,8 +580,8 @@ Use this before shipping Storybook changes.
 
 | Resource | URL |
 |----------|-----|
-| VDS Color v2 docs hub | https://ankush-rustagi.github.io/vds-color-v2/ |
-| VDS Color v2 Storybook | https://ankush-rustagi.github.io/vds-color-v2-storybook/ |
+| VDS Color v2 Storybook | https://ankush-rustagi.github.io/vds-color-updates-2026/ |
+| 17-ux-design (vibe / Claude Design) | https://github.com/verkada/docs-vibes/tree/main/17-ux-design |
 | VDS Figma | https://www.figma.com/design/ErBiDvqI7wPQKKXWfhC6yl/VDS---Verkada-Design-System |
 
 ---
