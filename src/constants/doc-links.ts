@@ -20,10 +20,23 @@ export const DOC_PATHS = {
   teamsOverview: 'teams-overview',
 } as const
 
-export function docHref(slug: keyof typeof DOC_PATHS): string {
-  return `/docs/${DOC_PATHS[slug]}--docs`
+/** Convert `/docs/slug--docs` (broken on GitHub Pages) to Storybook `?path=` routing. */
+export function toStorybookHref(href: string): string {
+  if (!href.startsWith('/docs/')) return href
+
+  const qIndex = href.indexOf('?')
+  const pathPart = qIndex === -1 ? href : href.slice(0, qIndex)
+  const extraQuery = qIndex === -1 ? '' : `&${href.slice(qIndex + 1)}`
+  return `?path=${pathPart}${extraQuery}`
+}
+
+export function docHref(slug: keyof typeof DOC_PATHS, extraQuery?: string): string {
+  const path = `/docs/${DOC_PATHS[slug]}--docs`
+  if (!extraQuery) return `?path=${path}`
+  const query = extraQuery.startsWith('?') ? extraQuery.slice(1) : extraQuery
+  return `?path=${path}&${query}`
 }
 
 export function storybookPath(slug: keyof typeof DOC_PATHS): string {
-  return `?path=/docs/${DOC_PATHS[slug]}--docs`
+  return docHref(slug)
 }

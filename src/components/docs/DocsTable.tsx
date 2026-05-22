@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { isHex } from '../../tokens/collection'
 import { DocsAnchor } from './DocsAnchor'
+import { docHref, DOC_PATHS } from '../../constants/doc-links'
 
 type DocsTableLayout = 'default' | 'rollout' | 'roles' | 'compare'
 
@@ -94,6 +95,16 @@ export function DocsTable({
 }
 
 /** Internal Storybook doc link for DocsTable cells */
-export function DocLink({ href, children }: { href: string; children: ReactNode }) {
-  return <DocsAnchor href={href}>{children}</DocsAnchor>
+export function DocLink({
+  href,
+  slug,
+  children,
+}: {
+  href?: string
+  slug?: keyof typeof DOC_PATHS
+  children: ReactNode
+}) {
+  const resolved = slug ? docHref(slug) : href
+  if (!resolved) return <>{children}</>
+  return <DocsAnchor href={resolved}>{children}</DocsAnchor>
 }

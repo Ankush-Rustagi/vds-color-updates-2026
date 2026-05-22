@@ -1,4 +1,5 @@
 import type { AnchorHTMLAttributes, ReactNode } from 'react'
+import { toStorybookHref } from '../../constants/doc-links'
 
 /** True for http(s), protocol-relative, mailto, and tel links. */
 export function isExternalHref(href?: string): boolean {
@@ -23,11 +24,12 @@ type DocsAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
 
 /** Storybook docs anchor: external links open in a new tab; internal doc links stay in-app. */
 export function DocsAnchor({ href, children, target, rel, ...rest }: DocsAnchorProps) {
-  const external = isExternalHref(href)
+  const resolvedHref = href ? toStorybookHref(href) : href
+  const external = isExternalHref(resolvedHref)
 
   return (
     <a
-      href={href}
+      href={resolvedHref}
       {...(external
         ? {
             target: target ?? '_blank',
