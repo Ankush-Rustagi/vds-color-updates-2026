@@ -132,6 +132,31 @@ export function TokenExplorer({ dataset }: Props) {
     return Array.from(palettes).sort()
   }, [dataset, rows])
 
+  const visibleGroups = useMemo(() => {
+    if (dataset !== 'semantic-colors' || !categoryFilter) return groups
+    return groups.filter((g) => topCategory(g) === categoryFilter)
+  }, [groups, categoryFilter, dataset])
+
+  // Heal stale URLs where a category name (e.g. "scheduler") was stored as group=
+  useEffect(() => {
+    if (dataset !== 'semantic-colors') return
+    if (groupFilter && !groups.includes(groupFilter)) {
+      const isCategory = TOP_CATEGORIES.some(([cat]) => cat === groupFilter)
+      if (isCategory && !categoryFilter) {
+        setCategoryFilter(groupFilter)
+      }
+      setGroupFilter('')
+    }
+  }, [dataset, groups, groupFilter, categoryFilter])
+
+  // If group falls outside selected category, reset it
+  useEffect(() => {
+    if (dataset !== 'semantic-colors' || !categoryFilter || !groupFilter) return
+    if (topCategory(groupFilter) !== categoryFilter) {
+      setGroupFilter('')
+    }
+  }, [dataset, categoryFilter, groupFilter])
+
   useEffect(() => {
     const t = window.setTimeout(() => setDebouncedQuery(query), 200)
     return () => window.clearTimeout(t)
@@ -150,7 +175,12 @@ export function TokenExplorer({ dataset }: Props) {
     return rows.filter((row) => {
       const groupKey = isSemantic(row) ? row.group : (row as SimpleTokenRow).palette
       if (groupFilter && groupKey !== groupFilter) return false
-      if (categoryFilter && dataset === 'semantic-colors' && topCategory(row.group) !== categoryFilter) {
+      if (
+        categoryFilter &&
+        dataset === 'semantic-colors' &&
+        isSemantic(row) &&
+        topCategory(row.group) !== categoryFilter
+      ) {
         return false
       }
       if (!q) return true
@@ -211,6 +241,19 @@ export function TokenExplorer({ dataset }: Props) {
     setSortDirection(reset.direction)
   }
 
+  const handleCategoryChange = (value: string) => {
+    setCategoryFilter(value)
+    setGroupFilter('')
+  }
+
+  const activeFilterLabels = useMemo(() => {
+    const labels: string[] = []
+    if (debouncedQuery.trim()) labels.push(`search: "${debouncedQuery.trim()}"`)
+    if (categoryFilter) labels.push(`category: ${categoryFilter}`)
+    if (groupFilter) labels.push(`group: ${groupFilter}`)
+    return labels
+  }, [debouncedQuery, categoryFilter, groupFilter])
+
   const figmaLink =
     dataset === 'semantic-colors'
       ? FIGMA_LINKS.semanticTable
@@ -233,7 +276,13 @@ export function TokenExplorer({ dataset }: Props) {
       )}
 
       <div
-        className={`vds-ref__toolbar vds-explorer__toolbar${dataset === 'color-primitives' ? ' vds-explorer__toolbar--with-sort' : ''}`}
+        className={`vds-ref__toolbar vds-explorer__toolbar${
+          dataset === 'color-primitives'
+            ? ' vds-explorer__toolbar--with-sort'
+            : dataset === 'semantic-colors'
+              ? ' vds-explorer__toolbar--semantic'
+              : ''
+        }`}
       >
         <input
           className="vds-input"
@@ -243,14 +292,29 @@ export function TokenExplorer({ dataset }: Props) {
           onChange={(e) => setQuery(e.target.value)}
           aria-label="Search tokens"
         />
+        {dataset === 'semantic-colors' && (
+          <select
+            className="vds-select"
+            value={categoryFilter}
+            onChange={(e) => handleCategoryChange(e.target.value)}
+            aria-label="Filter by category"
+          >
+            <option value="">All categories</option>
+            {TOP_CATEGORIES.map(([cat, n]) => (
+              <option key={cat} value={cat}>
+                {cat} ({n})
+              </option>
+            ))}
+          </select>
+        )}
         <select
           className="vds-select"
-          value={groupFilter}
+          value={groups.includes(groupFilter) || groupFilter === '' ? groupFilter : ''}
           onChange={(e) => setGroupFilter(e.target.value)}
-          aria-label="Filter by group"
+          aria-label={dataset === 'semantic-colors' ? 'Filter by Figma group' : 'Filter by group'}
         >
-          <option value="">All groups</option>
-          {groups.map((g) => (
+          <option value="">{dataset === 'semantic-colors' ? 'All groups' : 'All groups'}</option>
+          {visibleGroups.map((g) => (
             <option key={g} value={g}>
               {g}
             </option>
@@ -284,31 +348,24 @@ export function TokenExplorer({ dataset }: Props) {
         </div>
       </div>
 
-      {dataset === 'semantic-colors' && (
-        <div className="vds-explorer__categories">
-          <button
-            type="button"
-            className={`vds-chip${categoryFilter === '' ? ' vds-chip--active' : ''}`}
-            onClick={() => setCategoryFilter('')}
-          >
-            All
-          </button>
-          {TOP_CATEGORIES.map(([cat, n]) => (
-            <button
-              key={cat}
-              type="button"
-              className={`vds-chip${categoryFilter === cat ? ' vds-chip--active' : ''}`}
-              onClick={() => setCategoryFilter(cat === categoryFilter ? '' : cat)}
-            >
-              {cat} ({n})
-            </button>
+      {activeFilterLabels.length > 0 && (
+        <div className="vds-explorer__active-filters">
+          <span className="vds-explorer__active-filters-label">Active filters:</span>
+          {activeFilterLabels.map((label) => (
+            <span key={label} className="vds-explorer__filter-tag">
+              {label}
+            </span>
           ))}
+          <button type="button" className="vds-link-btn" onClick={clearFilters}>
+            Clear all
+          </button>
         </div>
       )}
 
       {sorted.length === 0 ? (
         <div className="vds-empty vds-explorer__empty">
-          No tokens match.{' '}
+          No tokens match
+          {activeFilterLabels.length > 0 ? ` (${activeFilterLabels.join(' · ')})` : ''}.{' '}
           <button type="button" className="vds-link-btn" onClick={clearFilters}>
             Clear filters
           </button>
