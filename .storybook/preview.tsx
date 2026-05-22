@@ -26,7 +26,7 @@ const preview: Preview = {
           'Foundations',
           ['Color v2', ['Overview', "What's Changing", 'Accessibility', 'Greenfield Adoption']],
           'Reference',
-          ['Token Naming', 'Semantic Colors', 'Color Primitives', 'Size', 'Effects'],
+          ['Semantic Colors', 'Color Primitives', 'Size', 'Effects', 'Token Naming'],
           'Teams',
           ['Overview', '*'],
           'Migrations',
