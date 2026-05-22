@@ -53,14 +53,14 @@ export const PRODUCT_TEAMS: ProductTeam[] = [
     engOwner: 'Intercom eng',
   },
   {
-    id: 'centers',
-    name: 'Centers',
+    id: 'sensors',
+    name: 'Sensors',
     surface: 'Sensor reading cards, threshold alerts, trend charts',
     example: 'Warning state on CO2 threshold breach',
     mapping: { legacy: '--color-warning', v2: '--support/warning' },
     status: 'not-started',
-    designOwner: 'Centers design',
-    engOwner: 'Centers eng',
+    designOwner: 'Sensors design',
+    engOwner: 'Sensors eng',
   },
   {
     id: 'workplace',

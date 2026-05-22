@@ -123,7 +123,7 @@ function TeamSurfaceMock({ team, variant }: { team: ProductTeam; variant: 'legac
         </AlertButton>
       )}
 
-      {team.id === 'centers' && (
+      {team.id === 'sensors' && (
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <span
             style={{
@@ -152,7 +152,7 @@ function TeamSurfaceMock({ team, variant }: { team: ProductTeam; variant: 'legac
         </span>
       )}
 
-      {!['access-control', 'workplace', 'maps', 'alarms', 'intercom', 'centers', 'cameras'].includes(team.id) && (
+      {!['access-control', 'workplace', 'maps', 'alarms', 'intercom', 'sensors', 'cameras'].includes(team.id) && (
         <p style={{ fontSize: 13, color: 'var(--vds-text-secondary)' }}>{team.surface}</p>
       )}
 
