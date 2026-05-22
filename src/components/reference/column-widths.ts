@@ -6,9 +6,11 @@ const FONT_SANS_11 = '11px system-ui, -apple-system, Segoe UI, sans-serif'
 const FONT_SANS_12 = '12px system-ui, -apple-system, Segoe UI, sans-serif'
 const FONT_HEADER = '600 11px system-ui, -apple-system, Segoe UI, sans-serif'
 
-const SWATCH_AND_GAP = 34 // 24px swatch + 10px gap
+const SWATCH_AND_GAP = 36 // 24px swatch + 12px gap
 const CELL_PAD = 12
-const GRID_GAP = 8
+const VALUE_H_PAD = 20 // horizontal breathing room inside value cells
+const VALUE_COL_BUFFER = 10 // extra track width so hex never clips at column edge
+const GRID_GAP = 12
 
 let measureCanvas: HTMLCanvasElement | null = null
 
@@ -44,6 +46,16 @@ function fixedTrack(width: number): string {
   return `minmax(${width}px, ${width}px)`
 }
 
+function valueColumnWidth(values: string[], font: string, min = 104): number {
+  return (
+    columnWidth(values, font, {
+      min,
+      extra: SWATCH_AND_GAP,
+      pad: VALUE_H_PAD,
+    }) + VALUE_COL_BUFFER
+  )
+}
+
 function copyColumnWidth(semantic: boolean): number {
   const labels = semantic ? ['Name', 'Light', 'Dark', 'CSS'] : ['Name', 'Hex', 'CSS']
   let total = CELL_PAD
@@ -77,15 +89,13 @@ export function computeExplorerGridColumns(
       FONT_MONO_12,
       { min: 120, max: 520 },
     )
-    const lightW = columnWidth(
+    const lightW = valueColumnWidth(
       [...semantic.map((r) => r.light ?? '—'), 'Light'],
       FONT_MONO_12,
-      { min: 88, extra: SWATCH_AND_GAP },
     )
-    const darkW = columnWidth(
+    const darkW = valueColumnWidth(
       [...semantic.map((r) => r.dark ?? '—'), 'Dark'],
       FONT_MONO_12,
-      { min: 88, extra: SWATCH_AND_GAP },
     )
     const stepW = columnWidth(
       [...semantic.map((r) => String(r.lightStep ?? '—')), 'Step'],
@@ -110,10 +120,9 @@ export function computeExplorerGridColumns(
       FONT_MONO_12,
       { min: 120, max: 480 },
     )
-    const valueW = columnWidth(
+    const valueW = valueColumnWidth(
       [...simple.map((r) => r.value ?? '—'), 'Value'],
       FONT_MONO_12,
-      { min: 88, extra: SWATCH_AND_GAP },
     )
     const stepW = columnWidth(
       [...simple.map((r) => primitiveStep(r)), 'Step'],
@@ -142,11 +151,18 @@ export function computeExplorerGridColumns(
     FONT_MONO_12,
     { min: 100, max: 360 },
   )
-  const valueW = columnWidth(
-    [...simple.map((r) => r.value ?? '—'), 'Value'],
-    FONT_MONO_12,
-    { min: 72, extra: dataset === 'effects' ? SWATCH_AND_GAP : 0 },
-  )
+  const valueW =
+    dataset === 'effects'
+      ? valueColumnWidth(
+          [...simple.map((r) => r.value ?? '—'), 'Value'],
+          FONT_MONO_12,
+          72,
+        )
+      : columnWidth(
+          [...simple.map((r) => r.value ?? '—'), 'Value'],
+          FONT_MONO_12,
+          { min: 72 },
+        )
   const stepW = columnWidth(
     [...simple.map((r) => simpleStep(r, dataset)), 'Step'],
     FONT_SANS_12,

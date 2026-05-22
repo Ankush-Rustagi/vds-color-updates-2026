@@ -366,18 +366,16 @@ body {
 .vds-value-cell {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   min-width: 0;
-}
-
-.vds-value-cell__text {
-  min-width: 0;
+  padding-right: 2px;
 }
 
 .vds-value-cell__hex {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 12px;
   line-height: 1.3;
+  white-space: nowrap;
 }
 
 .vds-value-cell__step {
@@ -729,7 +727,7 @@ body {
   display: grid;
   grid-template-columns: var(--vds-explorer-grid-columns);
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   padding: 0 12px;
   border-bottom: 1px solid var(--vds-text-disabled);
 }
@@ -834,6 +832,10 @@ body {
   overflow: visible;
   white-space: nowrap;
   text-overflow: clip;
+}
+
+.vds-explorer__col--value {
+  overflow: visible;
 }
 
 @media (max-width: 900px) {
