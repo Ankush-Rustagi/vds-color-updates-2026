@@ -1,0 +1,52 @@
+import { Meta } from '@storybook/blocks'
+import { DocsTable } from '../../src/components/docs/DocsTable'
+import { FIGMA_LINKS } from '../../src/constants/figma'
+
+<Meta title="Introduction/Platform Strategy" parameters={{ docs: { toc: true } }} />
+
+# Design Platform Strategy
+
+Verkada Design System is moving from fragmented legacy colors to a **single semantic token layer** defined in Figma Collection. Color v2 is the first platform-wide cut of that strategy: one token name, light and dark values, consumed by Figma components and Command code through the same naming rule.
+
+## Primary objective
+
+**Semantic tokens replace raw hex and per-component overrides.** Components bind to names like `--button/background/alert`, not `#CB2939`. Primitives (palette steps) resolve into semantics at the component level. Teams migrate surfaces; Design System owns the Collection.
+
+## Problem we are solving
+
+<DocsTable
+  headers={['Today (legacy)', 'Target (Color v2)']}
+  rows={[
+    ['Three CSS dialects in Command (`--bg-canvas`, `--color-surface-default`, `--vc-*`)', 'One v2 naming rule: `--{component}/{property}/{state}`'],
+    ['Per-component dark mode hacks', 'Paired light + dark columns in Figma Collection'],
+    ['Designers and engineers pick different hex values', 'Figma Collection is source of truth; Storybook is the published reference'],
+    ['Claude Design / AI tools trained on old tokens', 'Updated DESIGN.md and design-system-context with v2 semantics'],
+  ]}
+/>
+
+## What is in scope (Color v2)
+
+- **566 semantic color tokens** (light + dark)
+- **237 color primitives**, size, and effects tables from [Figma Collection]({FIGMA_LINKS.collection})
+- **Reference migration patterns:** Alert Button, Checkbox (from Color Updates deck slides 6, 8–9)
+- **Per product line examples** under Teams (Cameras, Access Control, Alarms, etc.)
+
+## What is out of scope (for now)
+
+- Full Verity component library rewrite (Melina's Storybook work continues separately)
+- Production dark mode sign-off (Figma column is **Dark Mode Testing**)
+- Typography, motion, and non-color tokens beyond the Collection export
+
+## Design platform principles
+
+1. **Figma Collection first.** If it is not in Collection, it is not a token.
+2. **Semantic over primitive in product UI.** Primitives are for scales; components consume semantics.
+3. **No local colors.** Flag gaps to Design System; do not ship team-specific hex.
+4. **Reference before rollout.** Validate Alert Button + Checkbox patterns, then expand by surface.
+5. **AI-compatible docs.** DESIGN.md and Storybook stay aligned so Claude Design and OpenDesign agents use the same rules.
+
+## Where to go next
+
+- [Rollout Phases](/docs/introduction-rollout-phases--docs)
+- [Who Does What](/docs/introduction-who-does-what--docs)
+- [Color v2 Overview](/docs/foundations-color-v2-overview--docs)

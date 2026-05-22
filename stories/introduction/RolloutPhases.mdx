@@ -1,0 +1,46 @@
+import { Meta } from '@storybook/blocks'
+import { DocsTable } from '../../src/components/docs/DocsTable'
+
+<Meta title="Introduction/Rollout Phases" parameters={{ docs: { toc: false } }} />
+
+# Rollout Phases
+
+Color v2 rolls out in four phases. Design System owns the token spec; product teams own surface-by-surface migration.
+
+<DocsTable
+  headers={['Phase', 'Status', 'Owner', 'Detail']}
+  rows={[
+    ['1. Define tokens', 'Done', 'Design System', '566 semantic tokens in Figma Collection. Light + dark pairs per component.'],
+    ['2. Publish guides', 'Active', 'Design System + PM', 'This Storybook for how-to and reference. Strategy narrative lives here under Introduction.'],
+    ['3. Migrate by product line', 'Next', 'Each product team', 'Swap legacy CSS vars and Figma bindings surface by surface. One example per line under Teams.'],
+    ['4. Ship + refine', 'Later', 'All teams', 'Dark mode still in testing. Visual deltas expected. Feedback loop with Design System.'],
+  ]}
+/>
+
+## Phase 2 deliverables (now)
+
+- Semantic Colors, Primitives, Size, and Effects reference tables (searchable)
+- Migration guides: Getting Started, Figma Workflow, Token Mapping
+- Before/after patterns: Alert Button, Checkbox
+- Teams pages with legacy → v2 mapping examples
+
+## Phase 3 expectations for teams
+
+1. Pick one real Command surface (see [Teams Overview](/docs/teams-overview--docs))
+2. Map legacy vars using [Token Mapping](/docs/migrations-color-v2-token-mapping--docs)
+3. Rebind Figma components to Collection variables
+4. Ship behind feature flag or incremental PR; designer sign-off on reference patterns
+
+## Communication
+
+Eng leads and PMs should set expectations early:
+
+- Alert red tightens (`#DA5959` → `#CB2939`)
+- Surfaces shift to `--background/canvas` and `--background/surface-01`
+- Dark mode values are directional until Design System validates production theme
+
+## Where to go next
+
+- [Who Does What](/docs/introduction-who-does-what--docs)
+- [What's Changing](/docs/foundations-color-v2-whats-changing--docs)
+- [Getting Started](/docs/migrations-color-v2-getting-started--docs)

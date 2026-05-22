@@ -1,0 +1,47 @@
+import { Meta } from '@storybook/blocks'
+import { DocsTable } from '../../src/components/docs/DocsTable'
+
+<Meta title="Introduction/Who Does What" parameters={{ docs: { toc: false } }} />
+
+# Who Does What
+
+Clear ownership keeps Color v2 migration out of ad hoc hex edits. Use this table in kickoffs and PR reviews.
+
+<DocsTable
+  headers={['Role', 'Responsibility', 'First action']}
+  rows={[
+    [
+      'Design System',
+      'Owns token spec in Figma Collection',
+      '[Semantic Colors](/docs/reference-semantic-colors--docs) · keep Collection current · review team PRs against spec',
+    ],
+    [
+      'Product designer',
+      'Rebind Figma components to semantic variables',
+      '[Figma Workflow](/docs/migrations-color-v2-figma-workflow--docs) · start with Alert Button + Checkbox',
+    ],
+    [
+      'Frontend engineer',
+      'Replace legacy CSS vars in product surfaces',
+      '[Getting Started](/docs/migrations-color-v2-getting-started--docs) · [Token Mapping](/docs/migrations-color-v2-token-mapping--docs)',
+    ],
+    [
+      'Eng lead / PM',
+      'Communicate scope and visual deltas to stakeholders',
+      "[What's Changing](/docs/foundations-color-v2-whats-changing--docs) · track team status under Teams",
+    ],
+  ]}
+/>
+
+## Design manager note (Melina / Storybook)
+
+Melina is updating the **production Verity Storybook** (`master.vstyleguide.prod1.cf.verkada.com`). This site is the **Color v2 migration and token reference** companion: deeper token tables, legacy mapping, and team migration examples. The two should converge over time; until then, treat **Figma Collection + this Storybook** as the Color v2 source of truth.
+
+## AI / prototype tools
+
+PMs and designers using Claude Design or OpenDesign should upload the updated **`DESIGN.md`** and **`design-system-context.md`** from `documentation/17-ux-design/` (Color v2 section). Do not rely on auto-extracted tokens from pre-v2 Figma exports.
+
+## Where to go next
+
+- [Platform Strategy](/docs/introduction-platform-strategy--docs)
+- [Teams Overview](/docs/teams-overview--docs)
