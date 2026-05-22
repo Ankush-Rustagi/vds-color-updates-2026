@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import { useVirtualizer } from '@tanstack/react-virtual'
 import {
   COLOR_PRIMITIVES,
@@ -24,6 +24,7 @@ import {
   sortSimpleRows,
   type SortDirection,
 } from './sort-utils'
+import { computeExplorerGridColumns } from './column-widths'
 
 export type TokenDataset = 'semantic-colors' | 'color-primitives' | 'size' | 'effects'
 
@@ -216,6 +217,16 @@ export function TokenExplorer({ dataset }: Props) {
     const simpleDataset = dataset === 'color-primitives' ? 'color-primitives' : dataset
     return sortSimpleRows(filtered as SimpleTokenRow[], sortColumn, sortDirection, simpleDataset)
   }, [filtered, sortColumn, sortDirection, dataset])
+
+  const gridColumns = useMemo(
+    () => computeExplorerGridColumns(dataset, sorted),
+    [dataset, sorted],
+  )
+
+  const tableGridStyle = useMemo(
+    () => ({ '--vds-explorer-grid-columns': gridColumns }) as CSSProperties,
+    [gridColumns],
+  )
 
   const rowHeight = density === 'compact' ? 44 : 56
   const maxVisibleRows = dataset === 'semantic-colors' ? SEMANTIC_VISIBLE_ROWS : DEFAULT_VISIBLE_ROWS
@@ -432,7 +443,7 @@ export function TokenExplorer({ dataset }: Props) {
           </button>
         </div>
       ) : (
-        <div className="vds-table-wrap vds-explorer__table-wrap">
+        <div className="vds-table-wrap vds-explorer__table-wrap" style={tableGridStyle}>
           <div className={`vds-explorer__header-row${headerLayoutClass}`}>
             {!isPrimitives && !isSemanticTable ? (
               <SortHeader

@@ -570,7 +570,6 @@ body {
 .vds-explorer {
   min-width: 0;
   max-width: 100%;
-  --vds-explorer-step-width: 120px;
 }
 
 .vds-explorer__disclaimer {
@@ -727,35 +726,11 @@ body {
 .vds-explorer__header-row,
 .vds-explorer__row {
   display: grid;
-  grid-template-columns: 14% 28% 16% 16% 8% 18%;
+  grid-template-columns: var(--vds-explorer-grid-columns);
   align-items: center;
   gap: 8px;
   padding: 0 12px;
   border-bottom: 1px solid var(--vds-text-disabled);
-}
-
-.vds-explorer__header-row--simple,
-.vds-explorer__row--simple {
-  grid-template-columns: 14% 32% 22% 10% 22%;
-}
-
-.vds-explorer__header-row--semantic,
-.vds-explorer__row--semantic {
-  grid-template-columns:
-    minmax(0, 1fr)
-    minmax(96px, 14%)
-    minmax(96px, 14%)
-    minmax(var(--vds-explorer-step-width), var(--vds-explorer-step-width))
-    minmax(180px, 26%);
-}
-
-.vds-explorer__header-row--primitives,
-.vds-explorer__row--primitives {
-  grid-template-columns:
-    minmax(0, 1fr)
-    minmax(100px, 18%)
-    minmax(var(--vds-explorer-step-width), var(--vds-explorer-step-width))
-    minmax(160px, 26%);
 }
 
 .vds-explorer__header-row {
@@ -855,10 +830,8 @@ body {
 }
 
 .vds-explorer__col--step {
-  min-width: var(--vds-explorer-step-width);
   overflow: visible;
   white-space: nowrap;
-  padding-right: 12px;
   text-overflow: clip;
 }
 
