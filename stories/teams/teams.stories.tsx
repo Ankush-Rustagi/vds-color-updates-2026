@@ -37,11 +37,10 @@ function makeTeamStory(teamId: string) {
   }
 }
 
-export const VideoSecurity = makeTeamStory('video-security')
+export const Cameras = makeTeamStory('cameras')
 export const AccessControl = makeTeamStory('access-control')
 export const Alarms = makeTeamStory('alarms')
 export const Intercom = makeTeamStory('intercom')
-export const Sensors = makeTeamStory('sensors')
-export const Guest = makeTeamStory('guest')
+export const Centers = makeTeamStory('centers')
+export const Workplace = makeTeamStory('workplace')
 export const Maps = makeTeamStory('maps')
-export const CommandAnalytics = makeTeamStory('command-analytics')

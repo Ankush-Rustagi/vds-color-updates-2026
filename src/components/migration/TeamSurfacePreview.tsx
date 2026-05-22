@@ -78,22 +78,11 @@ function TeamSurfaceMock({ team, variant }: { team: ProductTeam; variant: 'legac
         <AlertButton tokenVariant={tokenVariant}>Force unlock</AlertButton>
       )}
 
-      {team.id === 'guest' && (
+      {team.id === 'workplace' && (
         <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13 }}>
           <Checkbox tokenVariant={tokenVariant} visual="selected" />
           I agree to visitor terms
         </label>
-      )}
-
-      {team.id === 'command-analytics' && (
-        <div>
-          <div style={{ display: 'flex', gap: 4, marginBottom: 8 }}>
-            {['#0285C8', '#FF8A3D', '#14BA74', '#CB2939'].map((c) => (
-              <div key={c} style={{ width: 24, height: 24, borderRadius: 3, background: c }} />
-            ))}
-          </div>
-          <div style={{ fontSize: 11, color: 'var(--vds-text-secondary)' }}>Chart series palette</div>
-        </div>
       )}
 
       {team.id === 'maps' && (
@@ -134,7 +123,7 @@ function TeamSurfaceMock({ team, variant }: { team: ProductTeam; variant: 'legac
         </AlertButton>
       )}
 
-      {team.id === 'sensors' && (
+      {team.id === 'centers' && (
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <span
             style={{
@@ -148,7 +137,7 @@ function TeamSurfaceMock({ team, variant }: { team: ProductTeam; variant: 'legac
         </div>
       )}
 
-      {team.id === 'video-security' && (
+      {team.id === 'cameras' && (
         <span
           style={{
             fontSize: 11,
@@ -163,7 +152,7 @@ function TeamSurfaceMock({ team, variant }: { team: ProductTeam; variant: 'legac
         </span>
       )}
 
-      {!['access-control', 'guest', 'command-analytics', 'maps', 'alarms', 'intercom', 'sensors', 'video-security'].includes(team.id) && (
+      {!['access-control', 'workplace', 'maps', 'alarms', 'intercom', 'centers', 'cameras'].includes(team.id) && (
         <p style={{ fontSize: 13, color: 'var(--vds-text-secondary)' }}>{team.surface}</p>
       )}
 
