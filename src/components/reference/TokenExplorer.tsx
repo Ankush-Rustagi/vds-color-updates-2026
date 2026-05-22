@@ -24,7 +24,7 @@ import {
   sortSimpleRows,
   type SortDirection,
 } from './sort-utils'
-import { computeExplorerGridColumns } from './column-widths'
+import { computeExplorerGridLayout } from './column-widths'
 
 export type TokenDataset = 'semantic-colors' | 'color-primitives' | 'size' | 'effects'
 
@@ -218,14 +218,15 @@ export function TokenExplorer({ dataset }: Props) {
     return sortSimpleRows(filtered as SimpleTokenRow[], sortColumn, sortDirection, simpleDataset)
   }, [filtered, sortColumn, sortDirection, dataset])
 
-  const gridColumns = useMemo(
-    () => computeExplorerGridColumns(dataset, rows),
-    [dataset, rows],
-  )
+  const gridLayout = useMemo(() => computeExplorerGridLayout(dataset, rows), [dataset, rows])
 
   const tableGridStyle = useMemo(
-    () => ({ '--vds-explorer-grid-columns': gridColumns }) as CSSProperties,
-    [gridColumns],
+    () =>
+      ({
+        '--vds-explorer-grid-columns': gridLayout.columns,
+        '--vds-explorer-grid-min-width': `${gridLayout.minWidth}px`,
+      }) as CSSProperties,
+    [gridLayout],
   )
 
   const rowHeight = density === 'compact' ? 44 : 56
@@ -532,7 +533,7 @@ export function TokenExplorer({ dataset }: Props) {
                       position: 'absolute',
                       top: 0,
                       left: 0,
-                      width: '100%',
+                      width: 'var(--vds-explorer-grid-min-width)',
                       height: vRow.size,
                       transform: `translateY(${vRow.start}px)`,
                     }}

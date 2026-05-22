@@ -367,8 +367,7 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-  min-width: 0;
-  padding-right: 2px;
+  width: max-content;
 }
 
 .vds-value-cell__hex {
@@ -376,6 +375,7 @@ body {
   font-size: 12px;
   line-height: 1.3;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .vds-value-cell__step {
@@ -712,6 +712,7 @@ body {
 .vds-explorer__table-wrap {
   overflow-x: auto;
   width: fit-content;
+  min-width: min(100%, var(--vds-explorer-grid-min-width, 0px));
   max-width: 100%;
   margin-top: 12px;
 }
@@ -730,6 +731,7 @@ body {
   gap: 12px;
   padding: 0 12px;
   border-bottom: 1px solid var(--vds-text-disabled);
+  min-width: var(--vds-explorer-grid-min-width, 0);
 }
 
 .vds-explorer__header-row {
@@ -751,8 +753,9 @@ body {
 }
 
 .vds-explorer__scroll {
-  overflow-x: hidden;
+  overflow-x: auto;
   overflow-y: auto;
+  scrollbar-gutter: stable;
 }
 
 .vds-explorer__row--primitives .vds-token-code,
@@ -835,6 +838,7 @@ body {
 }
 
 .vds-explorer__col--value {
+  min-width: auto;
   overflow: visible;
 }
 

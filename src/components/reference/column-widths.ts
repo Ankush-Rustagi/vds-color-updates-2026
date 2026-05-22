@@ -1,42 +1,72 @@
 import type { SemanticTokenRow, SimpleTokenRow } from '../../tokens/collection'
 import type { TokenDataset } from './TokenExplorer'
 
-const FONT_MONO_12 = '12px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace'
-const FONT_SANS_11 = '11px system-ui, -apple-system, Segoe UI, sans-serif'
-const FONT_SANS_12 = '12px system-ui, -apple-system, Segoe UI, sans-serif'
-const FONT_HEADER = '600 11px system-ui, -apple-system, Segoe UI, sans-serif'
+const FONT_SANS_11 = '11px system-ui, sans-serif'
+const FONT_SANS_12 = '12px system-ui, sans-serif'
+const FONT_HEADER = '600 11px system-ui, sans-serif'
 
-const SWATCH_AND_GAP = 36 // 24px swatch + 12px gap
+/** 24px swatch + 2px border + 12px flex gap */
+const SWATCH_AND_GAP = 38
 const CELL_PAD = 12
-const VALUE_H_PAD = 20 // horizontal breathing room inside value cells
-const VALUE_COL_BUFFER = 10 // extra track width so hex never clips at column edge
+const VALUE_H_PAD = 24
+const VALUE_COL_BUFFER = 8
 const GRID_GAP = 12
+const ROW_PADDING = 24
+
+/** Conservative per-char width when DOM/canvas is unavailable (#FFFFFF00). */
+const MONO_CHAR_PX = 9.5
 
 let measureCanvas: HTMLCanvasElement | null = null
+let measureHexEl: HTMLSpanElement | null = null
+
+function measureMonoHex(text: string): number {
+  if (!text) return 0
+
+  if (typeof document !== 'undefined') {
+    measureHexEl ??= document.createElement('span')
+    measureHexEl.className = 'vds-value-cell__hex'
+    measureHexEl.style.position = 'absolute'
+    measureHexEl.style.visibility = 'hidden'
+    measureHexEl.style.pointerEvents = 'none'
+    measureHexEl.style.whiteSpace = 'nowrap'
+    measureHexEl.textContent = text
+    document.body.appendChild(measureHexEl)
+    const width = Math.ceil(measureHexEl.getBoundingClientRect().width)
+    document.body.removeChild(measureHexEl)
+    return width
+  }
+
+  return Math.ceil(text.length * MONO_CHAR_PX)
+}
 
 function measureTextPx(text: string, font: string): number {
   if (!text) return 0
-  if (typeof document === 'undefined') return text.length * 7
+  if (typeof document === 'undefined') return Math.ceil(text.length * 7)
+
   measureCanvas ??= document.createElement('canvas')
   const ctx = measureCanvas.getContext('2d')
-  if (!ctx) return text.length * 7
-  ctx.font = font
+  if (!ctx) return Math.ceil(text.length * 7)
+
+  // Canvas font does not parse CSS fallback lists; use a single family.
+  ctx.font = font.includes('monospace') ? '12px monospace' : font
   return ctx.measureText(text).width
 }
 
 function columnWidth(
   values: string[],
   font: string,
-  { min = 40, max = 640, pad = CELL_PAD, extra = 0 }: { min?: number; max?: number; pad?: number; extra?: number } = {},
+  {
+    min = 40,
+    max = 640,
+    pad = CELL_PAD,
+    extra = 0,
+    mono = false,
+  }: { min?: number; max?: number; pad?: number; extra?: number; mono?: boolean } = {},
 ): number {
-  let widest = ''
   let widestPx = 0
   for (const value of values) {
-    const px = measureTextPx(value, font)
-    if (px > widestPx) {
-      widestPx = px
-      widest = value
-    }
+    const px = mono ? measureMonoHex(value) : measureTextPx(value, font)
+    if (px > widestPx) widestPx = px
   }
   const measured = Math.ceil(widestPx) + extra + pad
   return Math.min(max, Math.max(min, measured))
@@ -46,12 +76,13 @@ function fixedTrack(width: number): string {
   return `minmax(${width}px, ${width}px)`
 }
 
-function valueColumnWidth(values: string[], font: string, min = 104): number {
+function valueColumnWidth(values: string[], min = 108): number {
   return (
-    columnWidth(values, font, {
+    columnWidth(values, '12px monospace', {
       min,
       extra: SWATCH_AND_GAP,
       pad: VALUE_H_PAD,
+      mono: true,
     }) + VALUE_COL_BUFFER
   )
 }
@@ -75,6 +106,31 @@ function simpleStep(row: SimpleTokenRow, dataset: TokenDataset): string {
   return row.step ?? '—'
 }
 
+function parseTrackWidths(gridColumns: string): number[] {
+  return [...gridColumns.matchAll(/minmax\((\d+)px,\s*\1px\)/g)].map((match) => Number(match[1]))
+}
+
+/** Sum of fixed tracks + inter-column gaps + row horizontal padding. */
+export function computeExplorerGridMinWidth(gridColumns: string): number {
+  const tracks = parseTrackWidths(gridColumns)
+  if (tracks.length === 0) return 0
+  return tracks.reduce((sum, width) => sum + width, 0) + (tracks.length - 1) * GRID_GAP + ROW_PADDING
+}
+
+export type ExplorerGridLayout = {
+  columns: string
+  minWidth: number
+}
+
+/** Grid columns sized from the full dataset so widths stay stable while filtering. */
+export function computeExplorerGridLayout(
+  dataset: TokenDataset,
+  rows: Array<SemanticTokenRow | SimpleTokenRow>,
+): ExplorerGridLayout {
+  const columns = computeExplorerGridColumns(dataset, rows)
+  return { columns, minWidth: computeExplorerGridMinWidth(columns) }
+}
+
 /** Grid columns sized from the full dataset so widths stay stable while filtering. */
 export function computeExplorerGridColumns(
   dataset: TokenDataset,
@@ -86,17 +142,11 @@ export function computeExplorerGridColumns(
     const semantic = sample as SemanticTokenRow[]
     const tokenW = columnWidth(
       [...semantic.map((r) => r.token), 'Token'],
-      FONT_MONO_12,
-      { min: 120, max: 520 },
+      '12px monospace',
+      { min: 120, max: 520, mono: true },
     )
-    const lightW = valueColumnWidth(
-      [...semantic.map((r) => r.light ?? '—'), 'Light'],
-      FONT_MONO_12,
-    )
-    const darkW = valueColumnWidth(
-      [...semantic.map((r) => r.dark ?? '—'), 'Dark'],
-      FONT_MONO_12,
-    )
+    const lightW = valueColumnWidth([...semantic.map((r) => r.light ?? '—'), 'Light'])
+    const darkW = valueColumnWidth([...semantic.map((r) => r.dark ?? '—'), 'Dark'])
     const stepW = columnWidth(
       [...semantic.map((r) => String(r.lightStep ?? '—')), 'Step'],
       FONT_SANS_12,
@@ -117,13 +167,10 @@ export function computeExplorerGridColumns(
     const simple = sample as SimpleTokenRow[]
     const tokenW = columnWidth(
       [...simple.map((r) => r.token), 'Token'],
-      FONT_MONO_12,
-      { min: 120, max: 480 },
+      '12px monospace',
+      { min: 120, max: 480, mono: true },
     )
-    const valueW = valueColumnWidth(
-      [...simple.map((r) => r.value ?? '—'), 'Value'],
-      FONT_MONO_12,
-    )
+    const valueW = valueColumnWidth([...simple.map((r) => r.value ?? '—'), 'Value'])
     const stepW = columnWidth(
       [...simple.map((r) => primitiveStep(r)), 'Step'],
       FONT_SANS_12,
@@ -148,21 +195,13 @@ export function computeExplorerGridColumns(
   )
   const tokenW = columnWidth(
     [...simple.map((r) => r.token), 'Token'],
-    FONT_MONO_12,
-    { min: 100, max: 360 },
+    '12px monospace',
+    { min: 100, max: 360, mono: true },
   )
   const valueW =
     dataset === 'effects'
-      ? valueColumnWidth(
-          [...simple.map((r) => r.value ?? '—'), 'Value'],
-          FONT_MONO_12,
-          72,
-        )
-      : columnWidth(
-          [...simple.map((r) => r.value ?? '—'), 'Value'],
-          FONT_MONO_12,
-          { min: 72 },
-        )
+      ? valueColumnWidth([...simple.map((r) => r.value ?? '—'), 'Value'], 72)
+      : columnWidth([...simple.map((r) => r.value ?? '—'), 'Value'], FONT_SANS_12, { min: 72 })
   const stepW = columnWidth(
     [...simple.map((r) => simpleStep(r, dataset)), 'Step'],
     FONT_SANS_12,
