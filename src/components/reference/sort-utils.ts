@@ -4,6 +4,7 @@ import { isHex } from '../../tokens/collection'
 export type SortDirection = 'asc' | 'desc'
 
 export type PrimitiveSortPreset = 'gradation' | 'palette' | 'token' | 'value' | 'step'
+export type SemanticSortPreset = 'gradation' | 'group' | 'token' | 'light' | 'dark' | 'step'
 
 /** Numeric step from token suffix, e.g. `--color-primitives/cyan/100` → 100 */
 export function parsePrimitiveStep(token: string): number {
@@ -48,6 +49,22 @@ export function compareColorPrimitivesGradation(a: SimpleTokenRow, b: SimpleToke
   return parsePrimitiveStep(a.token) - parsePrimitiveStep(b.token)
 }
 
+/** Numeric step from Figma lightStep, e.g. `600`, `transparent`. */
+export function parseSemanticStep(step?: string | null): number {
+  if (!step) return 9999
+  if (step === 'transparent') return -1
+  if (/^\d+$/.test(step)) return parseInt(step, 10)
+  return 9999
+}
+
+export function compareSemanticGradation(a: SemanticTokenRow, b: SemanticTokenRow): number {
+  const groupCmp = compareStrings(a.group, b.group)
+  if (groupCmp !== 0) return groupCmp
+  const stepCmp = parseSemanticStep(a.lightStep) - parseSemanticStep(b.lightStep)
+  if (stepCmp !== 0) return stepCmp
+  return compareStrings(a.token, b.token)
+}
+
 export function sortSemanticRows(
   rows: SemanticTokenRow[],
   column: string,
@@ -56,6 +73,9 @@ export function sortSemanticRows(
   const sorted = [...rows].sort((a, b) => {
     let cmp = 0
     switch (column) {
+      case 'gradation':
+        cmp = compareSemanticGradation(a, b)
+        break
       case 'group':
         cmp = compareStrings(a.group, b.group)
         break
@@ -72,7 +92,7 @@ export function sortSemanticRows(
         cmp = compareNullableStrings(a.lightStep, b.lightStep)
         break
       default:
-        cmp = compareStrings(a.group, b.group) || compareStrings(a.token, b.token)
+        cmp = compareSemanticGradation(a, b)
     }
     return applyDirection(cmp, direction)
   })
@@ -124,8 +144,8 @@ export function defaultPrimitiveSort(): { column: 'gradation'; direction: 'asc' 
   return { column: 'gradation', direction: 'asc' }
 }
 
-export function defaultSemanticSort(): { column: 'group'; direction: 'asc' } {
-  return { column: 'group', direction: 'asc' }
+export function defaultSemanticSort(): { column: 'gradation'; direction: 'asc' } {
+  return { column: 'gradation', direction: 'asc' }
 }
 
 export function defaultSimpleSort(): { column: 'palette'; direction: 'asc' } {

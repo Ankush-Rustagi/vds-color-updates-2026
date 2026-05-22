@@ -61,14 +61,14 @@ function Swatch({ value }: { value?: string | null }) {
   return <span className="vds-swatch" style={{ background: value }} title={value} aria-hidden />
 }
 
-function CopyButton({ label, value, onCopied }: { label: string; value: string; onCopied: () => void }) {
+function CopyButton({ label, value, onCopied }: { label: string; value: string; onCopied: (value: string) => void }) {
   return (
     <button
       type="button"
       className="vds-copy-btn"
       title={`Copy ${label}`}
       onClick={async () => {
-        if (await copyText(value)) onCopied()
+        if (await copyText(value)) onCopied(value)
       }}
     >
       {label}
@@ -239,9 +239,9 @@ export function TokenExplorer({ dataset }: Props) {
     overscan: dataset === 'semantic-colors' ? 20 : 12,
   })
 
-  const showCopied = useCallback(() => {
-    setToast('Copied')
-    window.setTimeout(() => setToast(''), 1500)
+  const showCopied = useCallback((value: string) => {
+    setToast(value)
+    window.setTimeout(() => setToast(''), 2000)
   }, [])
 
   const handleSort = (column: string) => {
@@ -336,7 +336,7 @@ export function TokenExplorer({ dataset }: Props) {
             dataset === 'color-primitives'
               ? ' vds-explorer__toolbar--with-sort'
               : dataset === 'semantic-colors'
-                ? ' vds-explorer__toolbar--semantic'
+                ? ' vds-explorer__toolbar--semantic vds-explorer__toolbar--semantic-with-sort'
                 : ''
           }`}
         >
@@ -388,18 +388,31 @@ export function TokenExplorer({ dataset }: Props) {
               </option>
             ))}
           </select>
-          {dataset === 'color-primitives' && (
+          {(dataset === 'color-primitives' || dataset === 'semantic-colors') && (
             <select
               className="vds-select"
               value={sortColumn}
               onChange={(e) => handleSortPreset(e.target.value)}
               aria-label="Sort order"
             >
-              <option value="gradation">Gradation (default)</option>
-              <option value="palette">Palette</option>
-              <option value="token">Token name</option>
-              <option value="value">Hex value</option>
-              <option value="step">Step</option>
+              {dataset === 'semantic-colors' ? (
+                <>
+                  <option value="gradation">Gradation (default)</option>
+                  <option value="group">Group</option>
+                  <option value="token">Token name</option>
+                  <option value="light">Light hex</option>
+                  <option value="dark">Dark hex</option>
+                  <option value="step">Step</option>
+                </>
+              ) : (
+                <>
+                  <option value="gradation">Gradation (default)</option>
+                  <option value="palette">Palette</option>
+                  <option value="token">Token name</option>
+                  <option value="value">Hex value</option>
+                  <option value="step">Step</option>
+                </>
+              )}
             </select>
           )}
           <div className="vds-explorer__toolbar-actions">
