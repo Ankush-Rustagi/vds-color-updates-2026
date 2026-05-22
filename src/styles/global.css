@@ -570,6 +570,7 @@ body {
 .vds-explorer {
   min-width: 0;
   max-width: 100%;
+  --vds-explorer-step-width: 104px;
 }
 
 .vds-explorer__disclaimer {
@@ -676,18 +677,31 @@ body {
   margin-bottom: 0;
 }
 
+.vds-explorer__active-filters-slot {
+  flex: 0 0 72px;
+  height: 72px;
+}
+
 .vds-explorer__active-filters {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  align-content: center;
   gap: 8px;
+  box-sizing: border-box;
+  height: 100%;
   padding: 10px 12px;
   font-size: 13px;
   line-height: 1.4;
   color: var(--vds-text-secondary);
-  background: var(--vds-background-surface-01);
-  border: 1px solid var(--vds-text-disabled);
+  border: 1px solid transparent;
   border-radius: var(--vds-radius-small);
+  background: transparent;
+}
+
+.vds-explorer__active-filters--visible {
+  background: var(--vds-background-surface-01);
+  border-color: var(--vds-text-disabled);
 }
 
 .vds-explorer__active-filters-label {
@@ -729,12 +743,21 @@ body {
 
 .vds-explorer__header-row--semantic,
 .vds-explorer__row--semantic {
-  grid-template-columns: minmax(0, 32%) minmax(96px, 14%) minmax(96px, 14%) 48px minmax(180px, 26%);
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(96px, 14%)
+    minmax(96px, 14%)
+    var(--vds-explorer-step-width)
+    minmax(180px, 26%);
 }
 
 .vds-explorer__header-row--primitives,
 .vds-explorer__row--primitives {
-  grid-template-columns: minmax(0, 34%) minmax(100px, 18%) 48px minmax(160px, 26%);
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(100px, 18%)
+    var(--vds-explorer-step-width)
+    minmax(160px, 26%);
 }
 
 .vds-explorer__header-row {
@@ -836,6 +859,13 @@ body {
 .vds-explorer__col {
   min-width: 0;
   overflow: hidden;
+}
+
+.vds-explorer__col--step {
+  flex-shrink: 0;
+  white-space: nowrap;
+  padding-right: 12px;
+  overflow: visible;
 }
 
 @media (max-width: 900px) {

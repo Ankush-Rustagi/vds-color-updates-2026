@@ -404,19 +404,27 @@ export function TokenExplorer({ dataset }: Props) {
           </div>
         </div>
 
-        {activeFilterLabels.length > 0 && (
-          <div className="vds-explorer__active-filters">
-            <span className="vds-explorer__active-filters-label">Active filters:</span>
-            {activeFilterLabels.map((label) => (
-              <span key={label} className="vds-explorer__filter-tag">
-                {label}
-              </span>
-            ))}
-            <button type="button" className="vds-link-btn" onClick={clearFilters}>
-              Clear all
-            </button>
+        <div className="vds-explorer__active-filters-slot" aria-live="polite">
+          <div
+            className={`vds-explorer__active-filters${
+              activeFilterLabels.length > 0 ? ' vds-explorer__active-filters--visible' : ''
+            }`}
+          >
+            {activeFilterLabels.length > 0 ? (
+              <>
+                <span className="vds-explorer__active-filters-label">Active filters:</span>
+                {activeFilterLabels.map((label) => (
+                  <span key={label} className="vds-explorer__filter-tag">
+                    {label}
+                  </span>
+                ))}
+                <button type="button" className="vds-link-btn" onClick={clearFilters}>
+                  Clear all
+                </button>
+              </>
+            ) : null}
           </div>
-        )}
+        </div>
       </div>
 
       {sorted.length === 0 ? (
