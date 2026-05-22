@@ -567,6 +567,11 @@ body {
 }
 
 /* TokenExplorer */
+.vds-explorer {
+  min-width: 0;
+  max-width: 100%;
+}
+
 .vds-explorer__disclaimer {
   margin-bottom: 12px;
 }
@@ -684,6 +689,7 @@ body {
 
 .vds-explorer__table-wrap {
   overflow: hidden;
+  max-width: 100%;
 }
 
 .vds-explorer__header-row,
@@ -699,6 +705,11 @@ body {
 .vds-explorer__header-row--simple,
 .vds-explorer__row--simple {
   grid-template-columns: 14% 32% 22% 10% 22%;
+}
+
+.vds-explorer__header-row--primitives,
+.vds-explorer__row--primitives {
+  grid-template-columns: minmax(0, 1fr) minmax(120px, 150px) 56px minmax(108px, 132px);
 }
 
 .vds-explorer__header-row {
@@ -720,7 +731,12 @@ body {
 }
 
 .vds-explorer__scroll {
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.vds-explorer__row--primitives .vds-token-code {
+  word-break: break-word;
 }
 
 .vds-copy-group {
@@ -786,7 +802,9 @@ body {
 
 @media (max-width: 900px) {
   .vds-explorer__header-row,
-  .vds-explorer__row {
+  .vds-explorer__row,
+  .vds-explorer__header-row--primitives,
+  .vds-explorer__row--primitives {
     grid-template-columns: 1fr;
     gap: 4px;
   }

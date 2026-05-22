@@ -261,9 +261,9 @@ export function TokenExplorer({ dataset }: Props) {
     const labels: string[] = []
     if (debouncedQuery.trim()) labels.push(`search: "${debouncedQuery.trim()}"`)
     if (categoryFilter) labels.push(`category: ${categoryFilter}`)
-    if (groupFilter) labels.push(`group: ${groupFilter}`)
+    if (groupFilter) labels.push(`${paletteFilterLabel}: ${groupFilter}`)
     return labels
-  }, [debouncedQuery, categoryFilter, groupFilter])
+  }, [debouncedQuery, categoryFilter, groupFilter, paletteFilterLabel])
 
   const figmaLink =
     dataset === 'semantic-colors'
@@ -275,7 +275,20 @@ export function TokenExplorer({ dataset }: Props) {
           : FIGMA_LINKS.effectsTable
 
   const countLabel = TOKEN_META.counts[dataset]
-  const isSimple = dataset !== 'semantic-colors'
+  const isSemanticTable = dataset === 'semantic-colors'
+  const isPrimitives = dataset === 'color-primitives'
+  const isSimple = !isSemanticTable
+  const rowLayoutClass = isPrimitives
+    ? ' vds-explorer__row--primitives'
+    : isSimple
+      ? ' vds-explorer__row--simple'
+      : ''
+  const headerLayoutClass = isPrimitives
+    ? ' vds-explorer__header-row--primitives'
+    : isSimple
+      ? ' vds-explorer__header-row--simple'
+      : ''
+  const paletteFilterLabel = isPrimitives ? 'palette' : 'group'
 
   return (
     <div className="vds-ref vds-explorer">
@@ -336,9 +349,21 @@ export function TokenExplorer({ dataset }: Props) {
           className="vds-select"
           value={groups.includes(groupFilter) || groupFilter === '' ? groupFilter : ''}
           onChange={(e) => setGroupFilter(e.target.value)}
-          aria-label={dataset === 'semantic-colors' ? 'Filter by Figma group' : 'Filter by group'}
+          aria-label={
+            dataset === 'semantic-colors'
+              ? 'Filter by Figma group'
+              : isPrimitives
+                ? 'Filter by palette'
+                : 'Filter by group'
+          }
         >
-          <option value="">{dataset === 'semantic-colors' ? 'All groups' : 'All groups'}</option>
+          <option value="">
+            {dataset === 'semantic-colors'
+              ? 'All groups'
+              : isPrimitives
+                ? 'All palettes'
+                : 'All groups'}
+          </option>
           {visibleGroups.map((g) => (
             <option key={g} value={g}>
               {g}
@@ -397,9 +422,7 @@ export function TokenExplorer({ dataset }: Props) {
         </div>
       ) : (
         <div className="vds-table-wrap vds-explorer__table-wrap">
-          <div
-            className={`vds-explorer__header-row${isSimple ? ' vds-explorer__header-row--simple' : ''}`}
-          >
+          <div className={`vds-explorer__header-row${headerLayoutClass}`}>
             {dataset === 'semantic-colors' ? (
               <SortHeader
                 label="Group"
@@ -409,7 +432,7 @@ export function TokenExplorer({ dataset }: Props) {
                 onSort={handleSort}
                 className="vds-explorer__col vds-explorer__col--group"
               />
-            ) : (
+            ) : !isPrimitives ? (
               <SortHeader
                 label="Palette"
                 column="palette"
@@ -418,7 +441,7 @@ export function TokenExplorer({ dataset }: Props) {
                 onSort={handleSort}
                 className="vds-explorer__col vds-explorer__col--group"
               />
-            )}
+            ) : null}
             <SortHeader
               label="Token"
               column="token"
@@ -491,7 +514,7 @@ export function TokenExplorer({ dataset }: Props) {
                 return (
                   <div
                     key={row.token}
-                    className={`vds-explorer__row${isSimple ? ' vds-explorer__row--simple' : ''}`}
+                    className={`vds-explorer__row${rowLayoutClass}`}
                     style={{
                       position: 'absolute',
                       top: 0,
@@ -501,7 +524,9 @@ export function TokenExplorer({ dataset }: Props) {
                       transform: `translateY(${vRow.start}px)`,
                     }}
                   >
-                    <span className="vds-explorer__col vds-explorer__col--group vds-group-cell">{groupKey}</span>
+                    {!isPrimitives && (
+                      <span className="vds-explorer__col vds-explorer__col--group vds-group-cell">{groupKey}</span>
+                    )}
                     <span className="vds-explorer__col vds-explorer__col--token">
                       <code className="vds-token-code">{row.token}</code>
                     </span>
