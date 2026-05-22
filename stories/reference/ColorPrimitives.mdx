@@ -1,11 +1,12 @@
 import { Meta } from '@storybook/blocks'
 import { TokenExplorer } from '../../src/components/reference/TokenExplorer'
 import { TOKEN_META } from '../../src/tokens/collection'
+import { FIGMA_LINKS } from '../../src/constants/figma'
 
 <Meta title="Reference/Color Primitives" parameters={{ docs: { toc: false } }} />
 
 # Color Primitives
 
-Palette steps from Figma Collection table `73102:149124` ({TOKEN_META.counts['color-primitives']} tokens). Primitives resolve into semantic tokens at the component level.
+Palette steps from the [Figma collection table]({FIGMA_LINKS.primitivesTable}) ({TOKEN_META.counts['color-primitives']} tokens). Primitives resolve into semantic tokens at the component level.
 
 <TokenExplorer dataset="color-primitives" />

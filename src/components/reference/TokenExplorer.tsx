@@ -109,7 +109,6 @@ export function TokenExplorer({ dataset }: Props) {
   const [categoryFilter, setCategoryFilter] = useState(initial.category)
   const [sortColumn, setSortColumn] = useState(defaultSort.column)
   const [sortDirection, setSortDirection] = useState<SortDirection>(defaultSort.direction)
-  const [density, setDensity] = useState<'comfortable' | 'compact'>('comfortable')
   const [toast, setToast] = useState('')
   const parentRef = useRef<HTMLDivElement>(null)
   const toastTimeoutRef = useRef<number | null>(null)
@@ -230,7 +229,7 @@ export function TokenExplorer({ dataset }: Props) {
     [gridLayout],
   )
 
-  const rowHeight = density === 'compact' ? 44 : 56
+  const rowHeight = 56
   const maxVisibleRows = dataset === 'semantic-colors' ? SEMANTIC_VISIBLE_ROWS : DEFAULT_VISIBLE_ROWS
   const scrollHeight = Math.min(sorted.length, maxVisibleRows) * rowHeight + 8
   const virtualizer = useVirtualizer({
@@ -436,13 +435,6 @@ export function TokenExplorer({ dataset }: Props) {
             </select>
           )}
           <div className="vds-explorer__toolbar-actions">
-            <button
-              type="button"
-              className="vds-density-btn"
-              onClick={() => setDensity((d) => (d === 'comfortable' ? 'compact' : 'comfortable'))}
-            >
-              {density === 'comfortable' ? 'Compact' : 'Comfortable'}
-            </button>
             <span className="vds-count">
               {sorted.length} / {countLabel}
             </span>
