@@ -1,0 +1,806 @@
+{
+  "rows": [
+    {
+      "token": "--xxsmall-01",
+      "palette": "root",
+      "type": "float",
+      "value": "12",
+      "step": null
+    },
+    {
+      "token": "--xxsmall-02",
+      "palette": "root",
+      "type": "float",
+      "value": "14",
+      "step": null
+    },
+    {
+      "token": "--xsmall-01",
+      "palette": "root",
+      "type": "float",
+      "value": "16",
+      "step": null
+    },
+    {
+      "token": "--xsmall-02",
+      "palette": "root",
+      "type": "float",
+      "value": "18",
+      "step": null
+    },
+    {
+      "token": "--small-01",
+      "palette": "root",
+      "type": "float",
+      "value": "20",
+      "step": null
+    },
+    {
+      "token": "--small-02",
+      "palette": "root",
+      "type": "float",
+      "value": "22",
+      "step": null
+    },
+    {
+      "token": "--medium-01",
+      "palette": "root",
+      "type": "float",
+      "value": "24",
+      "step": null
+    },
+    {
+      "token": "--medium-02",
+      "palette": "root",
+      "type": "float",
+      "value": "26",
+      "step": null
+    },
+    {
+      "token": "--large-01",
+      "palette": "root",
+      "type": "float",
+      "value": "28",
+      "step": null
+    },
+    {
+      "token": "--large-02",
+      "palette": "root",
+      "type": "float",
+      "value": "32",
+      "step": null
+    },
+    {
+      "token": "--xlarge-01",
+      "palette": "root",
+      "type": "float",
+      "value": "36",
+      "step": null
+    },
+    {
+      "token": "--xlarge-02",
+      "palette": "root",
+      "type": "float",
+      "value": "2",
+      "step": null
+    },
+    {
+      "token": "--xxsmall-01",
+      "palette": "root",
+      "type": "float",
+      "value": "2",
+      "step": null
+    },
+    {
+      "token": "--xxsmall-02",
+      "palette": "root",
+      "type": "float",
+      "value": "3",
+      "step": null
+    },
+    {
+      "token": "--xxsmall-03",
+      "palette": "root",
+      "type": "float",
+      "value": "4",
+      "step": null
+    },
+    {
+      "token": "--xsmall-01",
+      "palette": "root",
+      "type": "float",
+      "value": "5",
+      "step": null
+    },
+    {
+      "token": "--xsmall-02",
+      "palette": "root",
+      "type": "float",
+      "value": "6",
+      "step": null
+    },
+    {
+      "token": "--xsmall-03",
+      "palette": "root",
+      "type": "float",
+      "value": "5",
+      "step": null
+    },
+    {
+      "token": "--small-01",
+      "palette": "root",
+      "type": "float",
+      "value": "6",
+      "step": null
+    },
+    {
+      "token": "--small-02",
+      "palette": "root",
+      "type": "float",
+      "value": "7",
+      "step": null
+    },
+    {
+      "token": "--small-03",
+      "palette": "root",
+      "type": "float",
+      "value": "8",
+      "step": null
+    },
+    {
+      "token": "--medium-01",
+      "palette": "root",
+      "type": "float",
+      "value": "9",
+      "step": null
+    },
+    {
+      "token": "--medium-02",
+      "palette": "root",
+      "type": "float",
+      "value": "10",
+      "step": null
+    },
+    {
+      "token": "--medium-03",
+      "palette": "root",
+      "type": "float",
+      "value": "11",
+      "step": null
+    },
+    {
+      "token": "--large-01",
+      "palette": "root",
+      "type": "float",
+      "value": "12",
+      "step": null
+    },
+    {
+      "token": "--large-02",
+      "palette": "root",
+      "type": "float",
+      "value": "13",
+      "step": null
+    },
+    {
+      "token": "--large-03",
+      "palette": "root",
+      "type": "float",
+      "value": "14",
+      "step": null
+    },
+    {
+      "token": "--large-04",
+      "palette": "root",
+      "type": "float",
+      "value": "15",
+      "step": null
+    },
+    {
+      "token": "--xlarge-01",
+      "palette": "root",
+      "type": "float",
+      "value": "15",
+      "step": null
+    },
+    {
+      "token": "--xlarge-02",
+      "palette": "root",
+      "type": "float",
+      "value": "16",
+      "step": null
+    },
+    {
+      "token": "--xlarge-03",
+      "palette": "root",
+      "type": "float",
+      "value": "17",
+      "step": null
+    },
+    {
+      "token": "--xlarge-04",
+      "palette": "root",
+      "type": "float",
+      "value": "18",
+      "step": null
+    },
+    {
+      "token": "--xxlarge-01",
+      "palette": "root",
+      "type": "float",
+      "value": "19",
+      "step": null
+    },
+    {
+      "token": "--xxlarge-02",
+      "palette": "root",
+      "type": "float",
+      "value": "20",
+      "step": null
+    },
+    {
+      "token": "--xxlarge-03",
+      "palette": "root",
+      "type": "float",
+      "value": "21",
+      "step": null
+    },
+    {
+      "token": "--xxlarge-04",
+      "palette": "root",
+      "type": "float",
+      "value": "22",
+      "step": null
+    },
+    {
+      "token": "--jumbo",
+      "palette": "root",
+      "type": "float",
+      "value": "24",
+      "step": null
+    },
+    {
+      "token": "--full",
+      "palette": "root",
+      "type": "float",
+      "value": "9999",
+      "step": null
+    },
+    {
+      "token": "--00",
+      "palette": "root",
+      "type": "float",
+      "value": "0",
+      "step": null
+    },
+    {
+      "token": "--01",
+      "palette": "root",
+      "type": "float",
+      "value": "2",
+      "step": null
+    },
+    {
+      "token": "--02",
+      "palette": "root",
+      "type": "float",
+      "value": "4",
+      "step": null
+    },
+    {
+      "token": "--03",
+      "palette": "root",
+      "type": "float",
+      "value": "8",
+      "step": null
+    },
+    {
+      "token": "--04",
+      "palette": "root",
+      "type": "float",
+      "value": "12",
+      "step": null
+    },
+    {
+      "token": "--05",
+      "palette": "root",
+      "type": "float",
+      "value": "16",
+      "step": null
+    },
+    {
+      "token": "--06",
+      "palette": "root",
+      "type": "float",
+      "value": "24",
+      "step": null
+    },
+    {
+      "token": "--07",
+      "palette": "root",
+      "type": "float",
+      "value": "32",
+      "step": null
+    },
+    {
+      "token": "--08",
+      "palette": "root",
+      "type": "float",
+      "value": "40",
+      "step": null
+    },
+    {
+      "token": "--09",
+      "palette": "root",
+      "type": "float",
+      "value": "48",
+      "step": null
+    },
+    {
+      "token": "--10",
+      "palette": "root",
+      "type": "float",
+      "value": "64",
+      "step": null
+    },
+    {
+      "token": "--11",
+      "palette": "root",
+      "type": "float",
+      "value": "80",
+      "step": null
+    },
+    {
+      "token": "--12",
+      "palette": "root",
+      "type": "float",
+      "value": "96",
+      "step": null
+    },
+    {
+      "token": "--13",
+      "palette": "root",
+      "type": "float",
+      "value": "160",
+      "step": null
+    },
+    {
+      "token": "--space/negative/00",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "0",
+      "step": null
+    },
+    {
+      "token": "--space/negative/1",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "-2",
+      "step": null
+    },
+    {
+      "token": "--space/negative/2",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "-4",
+      "step": null
+    },
+    {
+      "token": "--space/negative/3",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "-8",
+      "step": null
+    },
+    {
+      "token": "--space/negative/4",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "-12",
+      "step": null
+    },
+    {
+      "token": "--space/negative/5",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "-16",
+      "step": null
+    },
+    {
+      "token": "--space/negative/6",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "-24",
+      "step": null
+    },
+    {
+      "token": "--space/negative/7",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "-32",
+      "step": null
+    },
+    {
+      "token": "--space/negative/8",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "-40",
+      "step": null
+    },
+    {
+      "token": "--space/negative/9",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "-48",
+      "step": null
+    },
+    {
+      "token": "--space/negative/10",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "-64",
+      "step": null
+    },
+    {
+      "token": "--space/negative/11",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "-80",
+      "step": null
+    },
+    {
+      "token": "--space/negative/12",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "-96",
+      "step": null
+    },
+    {
+      "token": "--space/negative/13",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "-160",
+      "step": null
+    },
+    {
+      "token": "--space/negative/hairline",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "0.30000001192092896",
+      "step": null
+    },
+    {
+      "token": "--space/negative/thin-01",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "0.5",
+      "step": null
+    },
+    {
+      "token": "--space/negative/thin-02",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "0.800000011920929",
+      "step": null
+    },
+    {
+      "token": "--space/negative/regular-01",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "1",
+      "step": null
+    },
+    {
+      "token": "--space/negative/regular-02",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "1.100000023841858",
+      "step": null
+    },
+    {
+      "token": "--space/negative/medium-01",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "1.2000000476837158",
+      "step": null
+    },
+    {
+      "token": "--space/negative/medium-02",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "1.2999999523162842",
+      "step": null
+    },
+    {
+      "token": "--space/negative/semibold-01",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "1.5",
+      "step": null
+    },
+    {
+      "token": "--space/negative/semibold-02",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "1.7999999523162842",
+      "step": null
+    },
+    {
+      "token": "--space/negative/bold-01",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "2",
+      "step": null
+    },
+    {
+      "token": "--space/negative/extra-bold",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "2.5",
+      "step": null
+    },
+    {
+      "token": "--space/negative/heavy",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "3",
+      "step": null
+    },
+    {
+      "token": "--space/negative/ultra",
+      "palette": "space/negative",
+      "type": "float",
+      "value": "4",
+      "step": null
+    }
+  ],
+  "source": "VDS Figma Collection 73102:139464",
+  "exportedAt": "2026-05-22",
+  "counts": {
+    "semantic-colors": 566,
+    "color-primitives": 237,
+    "size": 79,
+    "effects": 15
+  },
+  "semanticGroups": {
+    "button/background": 57,
+    "badges/muted": 40,
+    "misc/switch": 31,
+    "link/shape": 26,
+    "link/text": 26,
+    "button/icon": 22,
+    "button/text": 20,
+    "icon/content": 20,
+    "badges/vibrant": 16,
+    "banner/inline": 16,
+    "banner/system": 12,
+    "misc/shape": 12,
+    "misc/tooltip": 11,
+    "button/border": 10,
+    "field/text": 10,
+    "badges/support": 9,
+    "banner/toast": 9,
+    "tags/not dismissible": 7,
+    "field/outlined": 6,
+    "misc/busy": 6,
+    "misc/slider": 5,
+    "device/sensor": 3,
+    "field/search": 3,
+    "tags/button": 3,
+    "device/gateway": 2,
+    "icon/background": 2,
+    "attention": 1,
+    "background/back-selected": 1,
+    "background/brand": 1,
+    "background/elevated-on-surface": 1,
+    "background/elevated-on-surface-hover": 1,
+    "background/error": 1,
+    "background/front-selected": 1,
+    "background/on-surface-01": 1,
+    "background/on-surface-02": 1,
+    "background/on-surface-03": 1,
+    "background/product-thumbnail": 1,
+    "background/successful": 1,
+    "background/surface-01": 1,
+    "background/surface-01-active": 1,
+    "background/surface-01-hover": 1,
+    "background/surface-02": 1,
+    "background/surface-02-active": 1,
+    "background/surface-02-hover": 1,
+    "background/surface-03": 1,
+    "background/surface-03-active": 1,
+    "background/surface-03-hover": 1,
+    "background/transparent": 1,
+    "border/accent-blue": 1,
+    "border/alert": 1,
+    "border/disabled": 1,
+    "border/focus-ring": 1,
+    "border/interactive": 1,
+    "border/inverse": 1,
+    "border/medium-01": 1,
+    "border/medium-02": 1,
+    "border/on-surface": 1,
+    "border/on-surface-inverse": 1,
+    "border/selected-ring": 1,
+    "border/strong-01": 1,
+    "border/subtle-01": 1,
+    "border/subtle-02": 1,
+    "border/subtle-03": 1,
+    "border/successful": 1,
+    "border/trasparent": 1,
+    "border/white": 1,
+    "calendar/background-day-range": 1,
+    "calendar/background-hover": 1,
+    "calendar/background-today": 1,
+    "calendar/text-disabled": 1,
+    "calendar/text-outside-month": 1,
+    "calendar/text-primary": 1,
+    "calendar/text-selected": 1,
+    "calendar/text-today": 1,
+    "checkbox/alert-background": 1,
+    "checkbox/alert-background-active": 1,
+    "checkbox/alert-background-hover": 1,
+    "checkbox/alert-background-unselected-active": 1,
+    "checkbox/alert-background-unselected-hover": 1,
+    "checkbox/alert-border": 1,
+    "checkbox/default-background": 1,
+    "checkbox/default-background-active": 1,
+    "checkbox/default-background-hover": 1,
+    "checkbox/default-background-unselected-active": 1,
+    "checkbox/default-background-unselected-hover": 1,
+    "checkbox/default-border": 1,
+    "checkbox/disabled-background": 1,
+    "checkbox/disabled-border": 1,
+    "critical alerts/evacuate-background": 1,
+    "critical alerts/evacuate-border": 1,
+    "critical alerts/hold-background": 1,
+    "critical alerts/hold-border": 1,
+    "critical alerts/lockdown-background": 1,
+    "critical alerts/lockdown-border": 1,
+    "critical alerts/secure-background": 1,
+    "critical alerts/secure-border": 1,
+    "critical alerts/shelter-background": 1,
+    "critical alerts/shelter-border": 1,
+    "default": 1,
+    "disabled": 1,
+    "field/icon": 1,
+    "message/error-color-background": 1,
+    "message/error-color-border": 1,
+    "message/info-color-background": 1,
+    "message/info-color-border": 1,
+    "message/ok-color-background": 1,
+    "message/ok-color-border": 1,
+    "message/warning-color-background": 1,
+    "message/warning-color-border": 1,
+    "meta item/icon-primary": 1,
+    "meta item/icon-secondary": 1,
+    "meta item/icon-tertiary": 1,
+    "meta item/text-primary": 1,
+    "meta item/text-secondary": 1,
+    "meta item/text-tertiary": 1,
+    "misc/carat-default": 1,
+    "misc/carat-error": 1,
+    "misc/carat-inverse": 1,
+    "misc/carat-primary": 1,
+    "misc/divider-01": 1,
+    "misc/divider-02": 1,
+    "misc/divider-03": 1,
+    "misc/handle": 1,
+    "misc/scroll-bar": 1,
+    "modal/background": 1,
+    "modal/popover-background": 1,
+    "modal/popover-border": 1,
+    "modal/theme-adaptive-border": 1,
+    "on": 1,
+    "overlay/default": 1,
+    "overlay/dimming": 1,
+    "overlay/extra-high": 1,
+    "overlay/high": 1,
+    "overlay/light": 1,
+    "overlay/medium": 1,
+    "overlay/scrim": 1,
+    "radio/alert-background-hover": 1,
+    "radio/alert-border": 1,
+    "radio/alert-border-hover": 1,
+    "radio/alert-dot": 1,
+    "radio/alert-dot-hover": 1,
+    "radio/background": 1,
+    "radio/default-background-hover": 1,
+    "radio/default-border": 1,
+    "radio/default-border-hover": 1,
+    "radio/default-dot": 1,
+    "radio/default-dot-hover": 1,
+    "radio/disabled-background": 1,
+    "radio/disabled-border": 1,
+    "radio/disabled-dot": 1,
+    "scheduler/block": 1,
+    "scheduler/border": 1,
+    "scheduler/border-selected": 1,
+    "scheduler/hour-column": 1,
+    "shadow/dark": 1,
+    "shadow/inverse": 1,
+    "shadow/light": 1,
+    "support/alert": 1,
+    "support/info": 1,
+    "support/on-alert": 1,
+    "support/on-info": 1,
+    "support/on-success": 1,
+    "support/on-warning": 1,
+    "support/success": 1,
+    "support/warning": 1,
+    "table/header-background": 1,
+    "table/header-background-hover": 1,
+    "table/header-text": 1,
+    "table/link-text": 1,
+    "table/row-background": 1,
+    "table/row-background-hover": 1,
+    "tags/background": 1,
+    "tags/dismissible": 1,
+    "tags/icon": 1,
+    "tags/text": 1,
+    "text/brand": 1,
+    "text/disabled": 1,
+    "text/disabled-light": 1,
+    "text/emphasis": 1,
+    "text/error": 1,
+    "text/high-contrast": 1,
+    "text/inverse-strong": 1,
+    "text/placeholder": 1,
+    "text/primary": 1,
+    "text/secondary": 1,
+    "text/secondary-inverse": 1,
+    "text/sublte-03": 1,
+    "text/subtle-01": 1,
+    "text/subtle-02": 1,
+    "text/success": 1,
+    "text/text": 1,
+    "text/text-on-color": 1,
+    "toggle/backgroud": 1,
+    "toggle/backgroud-active": 1,
+    "toggle/backgroud-disabled": 1,
+    "toggle/backgroud-hover": 1,
+    "toggle/backgroud-pill-disabled": 1,
+    "toggle/backgroud-pill-selected": 1,
+    "toggle/border": 1,
+    "toggle/border-focus-inset": 1,
+    "toggle/icon": 1,
+    "toggle/icon-disabled": 1,
+    "toggle/icon-disabled-on-color": 1,
+    "toggle/icon-on-color": 1,
+    "toggle/text": 1,
+    "toggle/text-disabled": 1,
+    "toggle/text-on-color": 1,
+    "toggle/text-on-color-disabled": 1
+  },
+  "topCategories": {
+    "button": 109,
+    "misc": 74,
+    "badges": 65,
+    "link": 52,
+    "banner": 37,
+    "icon": 22,
+    "background": 21,
+    "field": 20,
+    "border": 18,
+    "text": 17,
+    "toggle": 16,
+    "checkbox": 14,
+    "radio": 14,
+    "tags": 14,
+    "critical alerts": 10,
+    "calendar": 8,
+    "message": 8,
+    "support": 8,
+    "overlay": 7,
+    "meta item": 6,
+    "table": 6,
+    "device": 5,
+    "modal": 4,
+    "scheduler": 4,
+    "shadow": 3,
+    "attention": 1,
+    "default": 1,
+    "disabled": 1,
+    "on": 1
+  }
+}

@@ -1,0 +1,33 @@
+import { Meta, Canvas } from '@storybook/blocks'
+import { DocsTable } from '../../src/components/docs/DocsTable'
+import { PRODUCT_TEAMS } from '../../src/content/teams'
+import * as TeamStories from './teams.stories'
+
+<Meta title="Teams/Overview" />
+
+# Teams Overview
+
+Each major **product line** gets a concrete migration example: a real Command surface, a before/after preview, and the legacy → new token mapping.
+
+Track migration status on the [strategy hub](https://ankush-rustagi.github.io/vds-color-v2/).
+
+## Product lines
+
+<DocsTable
+  headers={['Product line', 'Example', 'Status']}
+  rows={PRODUCT_TEAMS.map((t) => [
+    t.name,
+    t.example,
+    t.status === 'in-progress' ? 'In progress' : t.status === 'example-ready' ? 'Example ready' : 'Not started',
+  ])}
+/>
+
+## All teams preview
+
+<Canvas of={TeamStories.AllTeams} />
+
+## Where to go next
+
+- Pick your product line from the sidebar under **Teams**
+- [Token Mapping](/docs/migrations-color-v2-token-mapping--docs)
+- [Semantic Colors](/docs/reference-semantic-colors--docs)

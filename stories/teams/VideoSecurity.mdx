@@ -1,0 +1,14 @@
+import { Meta, Canvas } from '@storybook/blocks'
+import * as TeamStories from './teams.stories'
+
+<Meta title="Teams/Video Security" />
+
+# Video Security
+
+**Surface:** Camera grid, live view chrome, device health badges
+
+**Example migration:** Status pill colors on camera tiles
+
+**Mapping:** `--color-text-secondary → --text/secondary`
+
+<Canvas of={TeamStories.VideoSecurity} />

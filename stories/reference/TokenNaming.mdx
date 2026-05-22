@@ -1,0 +1,51 @@
+import { Meta } from '@storybook/blocks'
+import { DocsTable } from '../../src/components/docs/DocsTable'
+import { figmaToCssVar } from '../../src/tokens/token-utils'
+
+<Meta title="Reference/Token Naming" />
+
+# Token Naming
+
+Color v2 uses a hierarchical naming convention aligned with Figma variables.
+
+## Pattern
+
+```
+--{component}/{property}/{state}
+```
+
+Examples:
+
+<DocsTable
+  headers={['Token', 'Meaning']}
+  codeColumns={[0]}
+  rows={[
+    ['--button/background/alert', 'Destructive button fill'],
+    ['--text/secondary', 'Supporting body text'],
+    ['--background/surface-01', 'Subtle panel background'],
+    ['--checkbox/default-border', 'Checkbox outline'],
+  ]}
+/>
+
+## Figma to CSS mapping
+
+Figma uses slashes in token names. In CSS custom properties, map to a valid name:
+
+<DocsTable
+  headers={['Figma token', 'CSS custom property']}
+  codeColumns={[0, 1]}
+  rows={[
+    ['--button/background/alert', figmaToCssVar('--button/background/alert')],
+    ['--text/primary', figmaToCssVar('--text/primary')],
+    ['--background/canvas', figmaToCssVar('--background/canvas')],
+  ]}
+/>
+
+**Rule:** Strip leading `--`, replace `/` with `-`, prefix `--vds-`, lowercase.
+
+TokenExplorer "Copy CSS" uses this transform and outputs a full declaration with the light hex value.
+
+## Where to go next
+
+- [Semantic Colors](/docs/reference-semantic-colors--docs)
+- [Token Mapping](/docs/migrations-color-v2-token-mapping--docs)

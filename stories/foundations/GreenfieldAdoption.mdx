@@ -1,0 +1,38 @@
+import { Meta } from '@storybook/blocks'
+import { DocsTable } from '../../src/components/docs/DocsTable'
+
+<Meta title="Foundations/Color v2/Greenfield Adoption" />
+
+# Greenfield Adoption
+
+Building **new UI**? Skip legacy mapping and bind directly to v2 semantic tokens from day one.
+
+## Recommended starter tokens
+
+<DocsTable
+  headers={['Use case', 'Token', 'Light hex']}
+  codeColumns={[1]}
+  hexColumns={[2]}
+  rows={[
+    ['Page background', '--background/canvas', '#FFFFFF'],
+    ['Panel / card background', '--background/surface-01', '#F7F9FB'],
+    ['Body text', '--text/primary', '#232426'],
+    ['Secondary text', '--text/secondary', '#536573'],
+    ['Primary action', '--button/background/primary', '#0285C8'],
+    ['Destructive action', '--button/background/alert', '#CB2939'],
+    ['Default border', '--border/default', '#B0B6BE'],
+    ['Focus ring', '--focus', '#0285C8'],
+  ]}
+/>
+
+## Workflow
+
+1. Open [Figma Collection](https://www.figma.com/design/ErBiDvqI7wPQKKXWfhC6yl/VDS---Verkada-Design-System?node-id=73102-139464) and bind component variables to semantic tokens
+2. In code, use CSS custom properties mapped from Figma names (see [Token Naming](/docs/reference-token-naming--docs))
+3. Use [Semantic Colors](/docs/reference-semantic-colors--docs) to look up any token not listed above
+
+## Where to go next
+
+- [Token Naming](/docs/reference-token-naming--docs)
+- [Semantic Colors](/docs/reference-semantic-colors--docs)
+- [Figma Workflow](/docs/migrations-color-v2-figma-workflow--docs)

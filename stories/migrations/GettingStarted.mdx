@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title="Migrations/Color v2/Getting Started" />
+
+# Getting Started
+
+Follow these steps to migrate a Command surface from legacy CSS variables to Color v2 semantic tokens.
+
+## Step 1: Understand the scope
+
+Read [What's Changing](/docs/foundations-color-v2-whats-changing--docs) for token counts and visual deltas your stakeholders should expect.
+
+## Step 2: Map your legacy variables
+
+Open [Token Mapping](/docs/migrations-color-v2-token-mapping--docs) and search for your team's legacy `--color-*`, `--bg-*`, or `--vc-*` prefixes. For anything not listed, use [Semantic Colors](/docs/reference-semantic-colors--docs).
+
+## Step 3: Learn the reference patterns
+
+Work through [Alert Button](/docs/migrations-color-v2-alert-button--docs) and [Checkbox](/docs/migrations-color-v2-checkbox--docs) before migrating other components. These cover destructive actions and form controls.
+
+## Step 4: Designers — rebind in Figma
+
+Follow [Figma Workflow](/docs/migrations-color-v2-figma-workflow--docs) to replace raw hex with semantic variables from Collection.
+
+## Step 5: Ship and validate
+
+Use the PR checklist on each migration page. Compare swatches in Semantic Colors against your implementation.
+
+## Where to go next
+
+- [Figma Workflow](/docs/migrations-color-v2-figma-workflow--docs)
+- [Alert Button](/docs/migrations-color-v2-alert-button--docs)
+- [Semantic Colors](/docs/reference-semantic-colors--docs)

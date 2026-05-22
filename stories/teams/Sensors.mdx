@@ -1,0 +1,14 @@
+import { Meta, Canvas } from '@storybook/blocks'
+import * as TeamStories from './teams.stories'
+
+<Meta title="Teams/Environmental Sensors" />
+
+# Environmental Sensors
+
+**Surface:** Sensor reading cards, threshold alerts, trend charts
+
+**Example migration:** Warning state on CO2 threshold breach
+
+**Mapping:** `--color-warning → --support/warning`
+
+<Canvas of={TeamStories.Sensors} />

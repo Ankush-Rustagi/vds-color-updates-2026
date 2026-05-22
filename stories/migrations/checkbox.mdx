@@ -1,0 +1,44 @@
+import { Meta, Canvas } from '@storybook/blocks'
+import { DocsTable } from '../../src/components/docs/DocsTable'
+import * as CheckboxStories from './checkbox.stories'
+import { FIGMA_LINKS } from '../../src/constants/figma'
+
+<Meta of={CheckboxStories} />
+
+# Checkbox Migration
+
+Reference pattern from **Color Updates slides 8–9**. Covers default, selected, mixed, and alert paths on surface-01.
+
+[Open Collection in Figma]({FIGMA_LINKS.collection})
+
+## Token mapping
+
+<DocsTable
+  headers={['Path', 'Color v2 token', 'Light hex']}
+  codeColumns={[1]}
+  hexColumns={[2]}
+  rows={[
+    ['Default fill', '--checkbox/default-background', '#536573'],
+    ['Default hover', '--checkbox/default-background-hover', '#232426'],
+    ['Default border', '--checkbox/default-border', '#536573'],
+    ['Alert fill', '--checkbox/alert-background', '#CB2939'],
+    ['Checkmark', '--checkbox/checkmark', '#FFFFFF'],
+  ]}
+/>
+
+## Before/after matrix
+
+<Canvas of={CheckboxStories.BeforeAfterMatrix} />
+
+## PR checklist
+
+- Replaced legacy checkbox CSS vars with `--checkbox/*` semantic tokens
+- Verified default and alert paths at default, hover, active, disabled, focus
+- Compared hex against [Semantic Colors](/docs/reference-semantic-colors--docs?q=checkbox)
+- Designer sign-off on Figma variable bindings
+
+## Where to go next
+
+- [Alert Button](/docs/migrations-color-v2-alert-button--docs)
+- [Figma Workflow](/docs/migrations-color-v2-figma-workflow--docs)
+- [Semantic Colors](/docs/reference-semantic-colors--docs)

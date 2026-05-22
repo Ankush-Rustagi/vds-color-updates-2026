@@ -1,0 +1,59 @@
+import { Meta } from '@storybook/blocks'
+import { DocsTable } from '../../src/components/docs/DocsTable'
+import { FIGMA_LINKS } from '../../src/constants/figma'
+
+<Meta title="Migrations/Color v2/Figma Workflow" />
+
+# Figma Workflow (Designers)
+
+## Token naming convention
+
+```
+--{component}/{property}/{state}
+```
+
+Examples from the VDS Collection:
+
+<DocsTable
+  headers={['Token', 'Resolved (light)']}
+  codeColumns={[0]}
+  hexColumns={[1]}
+  rows={[
+    ['--button/background/alert', '#CB2939'],
+    ['--checkbox/default-background-hover', '#232426'],
+    ['--background/surface-01', '#F7F9FB'],
+    ['--text/emphasis', '#030E16'],
+  ]}
+/>
+
+## Workflow
+
+1. Open [VDS Figma file](https://www.figma.com/design/ErBiDvqI7wPQKKXWfhC6yl/VDS---Verkada-Design-System)
+2. Navigate to [Collection frame]({FIGMA_LINKS.collection}) for the full semantic inventory
+3. Rebind component fills and strokes to semantic variables (never raw hex)
+4. Verify light and dark columns (dark is labeled "Dark Mode Testing")
+5. Use Alert Button and Checkbox as reference patterns before other components
+
+## Do / Don't
+
+<DocsTable
+  headers={['Do', "Don't"]}
+  rows={[
+    ['Bind to semantic variables from Collection', 'Paste hex from old component libraries'],
+    ['Check both light and dark resolved values', 'Assume 1:1 mapping between modes'],
+    ['Flag missing tokens to Design System', 'Create local color styles per team'],
+    ['Reference Color Updates deck for state matrices', 'Skip disabled and focus states'],
+  ]}
+/>
+
+## Open in Figma
+
+- [Collection frame (full token spec)]({FIGMA_LINKS.collection})
+- [Semantic colors table]({FIGMA_LINKS.semanticTable})
+- [VDS file root]({FIGMA_LINKS.file})
+
+## Where to go next
+
+- [Alert Button](/docs/migrations-color-v2-alert-button--docs)
+- [Checkbox](/docs/migrations-color-v2-checkbox--docs)
+- [Semantic Colors reference](/docs/reference-semantic-colors--docs)

@@ -1,0 +1,14 @@
+import { Meta, Canvas } from '@storybook/blocks'
+import * as TeamStories from './teams.stories'
+
+<Meta title="Teams/Guest / Workplace" />
+
+# Guest / Workplace
+
+**Surface:** Visitor check-in, badge printing, host notifications
+
+**Example migration:** Checkbox on visitor consent form
+
+**Mapping:** `--checkbox-bg → --checkbox/default-background`
+
+<Canvas of={TeamStories.Guest} />

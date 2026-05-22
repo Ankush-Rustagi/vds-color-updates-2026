@@ -1,0 +1,102 @@
+/* VDS Color v2 semantic tokens (from Figma Collection) */
+:root,
+[data-theme='light'] {
+  --vds-button-background-alert: #cb2939;
+  --vds-button-background-alert-hover: #8d162a;
+  --vds-button-background-alert-active: #cb2939;
+  --vds-button-background-alert-disabled: #b0b6be;
+  --vds-button-background-primary: #0285c8;
+  --vds-button-background-primary-hover: #007faf;
+  --vds-button-text-on-alert: #ffffff;
+  --vds-button-text-on-primary: #ffffff;
+
+  --vds-background-canvas: #ffffff;
+  --vds-background-surface-01: #f7f9fb;
+  --vds-background-alert: #fbecec;
+
+  --vds-text-emphasis: #030e16;
+  --vds-text-primary: #232426;
+  --vds-text-secondary: #536573;
+  --vds-text-disabled: #b0b6be;
+
+  --vds-checkbox-default-background: #536573;
+  --vds-checkbox-default-background-hover: #232426;
+  --vds-checkbox-default-background-active: #3f515f;
+  --vds-checkbox-default-border: #536573;
+  --vds-checkbox-alert-background: #cb2939;
+  --vds-checkbox-alert-background-hover: #8d162a;
+  --vds-checkbox-disabled-background: #b0b6be;
+  --vds-checkbox-checkmark: #ffffff;
+
+  --vds-border-focus: #0285c8;
+  --vds-support-warning: #f2b81a;
+  --vds-support-success: #14ba74;
+
+  --vds-radius-xxsmall: 4px;
+  --vds-radius-small: 6px;
+}
+
+[data-theme='dark'] {
+  --vds-button-background-alert: #cb2939;
+  --vds-button-background-alert-hover: #8d162a;
+  --vds-button-background-alert-active: #cb2939;
+  --vds-button-background-alert-disabled: #4f555e;
+  --vds-button-background-primary: #0285c8;
+  --vds-button-background-primary-hover: #19a0d5;
+
+  --vds-background-canvas: #0e1720;
+  --vds-background-surface-01: #1f2832;
+  --vds-background-alert: #3a2024;
+
+  --vds-text-emphasis: #ffffff;
+  --vds-text-primary: #e6eaee;
+  --vds-text-secondary: #b0b6be;
+  --vds-text-disabled: #4f555e;
+
+  --vds-checkbox-default-background: #536573;
+  --vds-checkbox-default-background-hover: #6b717a;
+  --vds-checkbox-default-background-active: #3f515f;
+  --vds-checkbox-default-border: #8c929a;
+  --vds-checkbox-alert-background: #cb2939;
+  --vds-checkbox-alert-background-hover: #8d162a;
+  --vds-checkbox-disabled-background: #3a404a;
+
+  --vds-border-focus: #0285c8;
+  --vds-support-warning: #ffd959;
+  --vds-support-success: #4fd19b;
+}
+
+/* Legacy Verity / Command token dialect (pre-v2) */
+.legacy-tokens {
+  --legacy-button-danger-bg: #da5959;
+  --legacy-button-danger-hover: #c53d3d;
+  --legacy-button-danger-disabled: #b0b6be;
+  --legacy-button-primary-bg: #0285c8;
+  --legacy-button-primary-hover: #007faf;
+
+  --legacy-bg-canvas: #ffffff;
+  --legacy-bg-surface: #f5f5f5;
+  --legacy-bg-alert: #fce8e8;
+
+  --legacy-text-primary: #1a1a1a;
+  --legacy-text-secondary: #666666;
+  --legacy-text-disabled: #999999;
+
+  --legacy-checkbox-bg: #888888;
+  --legacy-checkbox-hover: #555555;
+  --legacy-checkbox-alert: #da5959;
+  --legacy-checkbox-disabled: #cccccc;
+
+  --legacy-focus: #0066cc;
+  --legacy-warning: #e6a817;
+  --legacy-success: #2ecc71;
+}
+
+[data-theme='dark'] .legacy-tokens {
+  --legacy-button-danger-bg: #c53d3d;
+  --legacy-button-danger-hover: #a52929;
+  --legacy-bg-canvas: #121212;
+  --legacy-bg-surface: #1e1e1e;
+  --legacy-text-primary: #eeeeee;
+  --legacy-text-secondary: #aaaaaa;
+}

@@ -1,0 +1,14 @@
+import { Meta, Canvas } from '@storybook/blocks'
+import * as TeamStories from './teams.stories'
+
+<Meta title="Teams/Access Control" />
+
+# Access Control
+
+**Surface:** Door reader panels, lock state indicators, credential modals
+
+**Example migration:** Alert button on forced-door events
+
+**Mapping:** `--button-danger-bg → --button/background/alert`
+
+<Canvas of={TeamStories.AccessControl} />

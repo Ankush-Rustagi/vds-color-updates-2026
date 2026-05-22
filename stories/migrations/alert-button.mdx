@@ -1,0 +1,49 @@
+import { Meta, Canvas } from '@storybook/blocks'
+import { DocsTable } from '../../src/components/docs/DocsTable'
+import * as AlertButtonStories from './alert-button.stories'
+import { FIGMA_LINKS } from '../../src/constants/figma'
+
+<Meta of={AlertButtonStories} />
+
+# Alert Button Migration
+
+Reference pattern from **Color Updates slide 6**. Every product line uses destructive actions.
+
+[Open Collection in Figma]({FIGMA_LINKS.collection})
+
+## Token mapping
+
+<DocsTable
+  headers={['State', 'Color v2 token', 'Light hex']}
+  codeColumns={[1]}
+  hexColumns={[2]}
+  rows={[
+    ['Default', '--button/background/alert', '#CB2939'],
+    ['Hover', '--button/background/alert-hover', '#8D162A'],
+    ['Active', '--button/background/alert-active', '#CB2939'],
+    ['Disabled', '--button/background/alert-disabled', '#B0B6BE'],
+  ]}
+/>
+
+Legacy: `--button-danger-bg` (`#DA5959`) → v2: `--button/background/alert` (`#CB2939`)
+
+## Before/after on white
+
+<Canvas of={AlertButtonStories.BeforeAfterWhite} />
+
+## Before/after on surface-01
+
+<Canvas of={AlertButtonStories.BeforeAfterSurface01} />
+
+## PR checklist
+
+- Replaced legacy `--button-danger-*` vars with v2 semantic tokens
+- Verified default, hover, active, disabled, and loading on white and surface-01
+- Compared hex against [Semantic Colors](/docs/reference-semantic-colors--docs?q=button%2Fbackground%2Falert)
+- Designer sign-off on Figma variable bindings
+
+## Where to go next
+
+- [Checkbox](/docs/migrations-color-v2-checkbox--docs)
+- [Token Mapping](/docs/migrations-color-v2-token-mapping--docs)
+- [Semantic Colors](/docs/reference-semantic-colors--docs)

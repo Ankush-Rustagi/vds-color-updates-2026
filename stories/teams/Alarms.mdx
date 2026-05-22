@@ -1,0 +1,14 @@
+import { Meta, Canvas } from '@storybook/blocks'
+import * as TeamStories from './teams.stories'
+
+<Meta title="Teams/Alarms" />
+
+# Alarms
+
+**Surface:** Incident banners, zone status, arming controls
+
+**Example migration:** Critical alert banner background
+
+**Mapping:** `--bg-alert → --background/alert`
+
+<Canvas of={TeamStories.Alarms} />

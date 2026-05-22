@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/blocks'
+import { DocsTable } from '../../src/components/docs/DocsTable'
+import { TokenMappingTable } from '../../src/components/reference/TokenMappingTable'
+
+<Meta title="Migrations/Color v2/Token Mapping" />
+
+# Token Mapping
+
+Common legacy Verity and Command CSS variables mapped to Color v2 semantic tokens. This curated list covers frequent dialects; use Semantic Colors for the full inventory.
+
+## Legacy mappings
+
+<TokenMappingTable />
+
+## Dialect notes
+
+<DocsTable
+  headers={['Legacy prefix', 'Origin', 'Migration approach']}
+  codeColumns={[0]}
+  rows={[
+    ['--color-*', 'Verity core', 'Direct mapping to --text/*, --background/*'],
+    ['--bg-*', 'Early Command', 'Map to --background/*'],
+    ['--vc-*', 'Verity charts', 'Map chart vars to --text/secondary, --chart/*'],
+    ['--vs-*', 'Verity shared components', 'Map to component semantic groups'],
+    ['--vd-*', 'Verity docs/internal', 'Map to --link/*, --text/*'],
+  ]}
+/>
+
+## Full inventory
+
+For all 566 semantic tokens, open [Semantic Colors](/docs/reference-semantic-colors--docs) and search by name or hex.
+
+## Where to go next
+
+- [Semantic Colors](/docs/reference-semantic-colors--docs)
+- [Getting Started](/docs/migrations-color-v2-getting-started--docs)
+- [Alert Button](/docs/migrations-color-v2-alert-button--docs)

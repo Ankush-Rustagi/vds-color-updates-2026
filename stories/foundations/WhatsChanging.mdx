@@ -1,0 +1,42 @@
+import { Meta } from '@storybook/blocks'
+import { DocsTable } from '../../src/components/docs/DocsTable'
+import { TOKEN_META } from '../../src/tokens/collection'
+
+<Meta title="Foundations/Color v2/What's Changing" />
+
+# What's Changing
+
+Color v2 is a **semantic token system** for all Command surfaces. Eng leads use this page to scope migration work and set expectations with stakeholders.
+
+## Scope
+
+<DocsTable
+  headers={['Asset', 'Count', 'Owner']}
+  rows={[
+    ['Semantic color tokens', `${TOKEN_META.counts['semantic-colors']}`, 'Design System (Figma Collection)'],
+    ['Color primitives', `${TOKEN_META.counts['color-primitives']}`, 'Design System'],
+    ['Size tokens', `${TOKEN_META.counts.size}`, 'Design System'],
+    ['Effects tokens', `${TOKEN_META.counts.effects}`, 'Design System'],
+    ['Figma groups', `${Object.keys(TOKEN_META.semanticGroups).length}`, 'Design System'],
+  ]}
+/>
+
+## Visual deltas teams should expect
+
+- **Alert red tightens** from legacy `#DA5959` to v2 `#CB2939`
+- **Surface backgrounds** shift to `--background/canvas` and `--background/surface-01`
+- **Dark mode is in testing** in Figma (column labeled "Dark Mode Testing")
+- **Legacy CSS var fragmentation** requires explicit mapping per team dialect (see [Token Mapping](/docs/migrations-color-v2-token-mapping--docs))
+
+## Engineering impact
+
+1. Replace legacy CSS custom properties with v2 semantic names
+2. Validate against Alert Button and Checkbox reference patterns first
+3. Use [Semantic Colors](/docs/reference-semantic-colors--docs) for full token lookup
+4. Flag missing tokens to Design System rather than creating local colors
+
+## Where to go next
+
+- [Accessibility](/docs/foundations-color-v2-accessibility--docs)
+- [Token Mapping](/docs/migrations-color-v2-token-mapping--docs)
+- [Strategy hub](https://ankush-rustagi.github.io/vds-color-v2/)

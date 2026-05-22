@@ -1,0 +1,41 @@
+import { Meta } from '@storybook/blocks'
+import { DocsTable } from '../../src/components/docs/DocsTable'
+
+<Meta title="Foundations/Color v2/Overview" />
+
+# Color v2 Overview
+
+Verkada Design System Color v2 replaces fragmented legacy CSS dialects with **567 semantic tokens** defined once in Figma Collection. Each token has light and dark values.
+
+For rollout strategy, phases, and team ownership, see the [strategy hub](https://ankush-rustagi.github.io/vds-color-v2/).
+
+## Who should read what
+
+<DocsTable
+  headers={['Role', 'Start here']}
+  rows={[
+    ['Designer migrating Figma components', 'Migrations → Figma Workflow → Alert Button'],
+    ['Engineer swapping CSS variables', 'Migrations → Getting Started → Token Mapping'],
+    ['Need a specific token name or hex', 'Reference → Semantic Colors'],
+    ['Eng lead scoping the rollout', "Foundations → What's Changing"],
+    ['Building new UI (no legacy vars)', 'Foundations → Greenfield Adoption'],
+    ['PM / stakeholder narrative', 'Strategy hub (ankush-rustagi.github.io/vds-color-v2/)'],
+  ]}
+/>
+
+## What changed at a glance
+
+<DocsTable
+  headers={['Before (legacy)', 'After (Color v2)']}
+  rows={[
+    ['Each component had its own hex and dark mode hack', 'One semantic name, light + dark values in Figma Collection'],
+    ['Three legacy CSS dialects in Command', 'Single v2 naming: --{component}/{property}/{state}'],
+    ['Alert red #DA5959', 'Alert red #CB2939 (--button/background/alert)'],
+  ]}
+/>
+
+## Where to go next
+
+- [Getting Started](/docs/migrations-color-v2-getting-started--docs)
+- [Figma Workflow](/docs/migrations-color-v2-figma-workflow--docs)
+- [Semantic Colors reference](/docs/reference-semantic-colors--docs)

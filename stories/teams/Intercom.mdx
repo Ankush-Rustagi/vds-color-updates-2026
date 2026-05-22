@@ -1,0 +1,14 @@
+import { Meta, Canvas } from '@storybook/blocks'
+import * as TeamStories from './teams.stories'
+
+<Meta title="Teams/Intercom" />
+
+# Intercom
+
+**Surface:** Call UI, directory search, door release buttons
+
+**Example migration:** Primary action button on call panel
+
+**Mapping:** `--button-primary-bg → --button/background/primary`
+
+<Canvas of={TeamStories.Intercom} />

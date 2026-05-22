@@ -1,0 +1,38 @@
+import { Meta } from '@storybook/blocks'
+import { DocsTable } from '../../src/components/docs/DocsTable'
+
+<Meta title="Foundations/Color v2/Accessibility" />
+
+# Accessibility
+
+Color v2 tokens are chosen for contrast on Command surfaces. Validate your migration against these constraints, especially for destructive actions and form controls.
+
+## Alert button contrast
+
+Destructive actions must remain readable on both white and surface-01 backgrounds.
+
+<DocsTable
+  headers={['State', 'Token', 'Light hex', 'Notes']}
+  codeColumns={[1]}
+  hexColumns={[2]}
+  rows={[
+    ['Default', '--button/background/alert', '#CB2939', 'Primary destructive fill'],
+    ['Hover', '--button/background/alert-hover', '#8D162A', 'Darker on hover'],
+    ['Disabled', '--button/background/alert-disabled', '#B0B6BE', 'Meets disabled contrast rules'],
+    ['Text on alert', '--button/text/on-alert', '#FFFFFF', 'White label on red fill'],
+  ]}
+/>
+
+## Checkbox visibility
+
+Ensure selected, mixed, and alert checkbox paths remain distinguishable at default and hover states. See [Checkbox migration](/docs/migrations-color-v2-checkbox--docs) for the full state matrix.
+
+## Dark mode caveat
+
+Dark column values in Figma are labeled **Dark Mode Testing**. Treat them as directional until Design System confirms production dark mode tokens.
+
+## Where to go next
+
+- [Alert Button migration](/docs/migrations-color-v2-alert-button--docs)
+- [Checkbox migration](/docs/migrations-color-v2-checkbox--docs)
+- [Semantic Colors](/docs/reference-semantic-colors--docs)
