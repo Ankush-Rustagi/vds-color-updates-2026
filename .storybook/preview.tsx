@@ -1,11 +1,15 @@
 import type { Preview } from '@storybook/react'
 import '../src/styles/global.css'
 import '../src/tokens/vds-tokens.css'
+import { DocsAnchor } from '../src/components/docs/DocsAnchor'
 
 const preview: Preview = {
   parameters: {
     layout: 'padded',
     docs: {
+      components: {
+        a: DocsAnchor,
+      },
       description: {
         component:
           'VDS Color v2 migration guides. Start with Intro to Color v2 → Strategy.',

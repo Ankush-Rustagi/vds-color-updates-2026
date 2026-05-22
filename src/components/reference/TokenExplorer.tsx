@@ -16,6 +16,7 @@ import { copyText, cssDeclaration, figmaToCssVar, topCategory } from '../../toke
 import { FIGMA_LINKS } from '../../constants/figma'
 import { storybookPath } from '../../constants/doc-links'
 import { SortHeader } from './SortHeader'
+import { DocsAnchor } from '../docs/DocsAnchor'
 import {
   defaultPrimitiveSort,
   defaultSemanticSort,
@@ -49,15 +50,11 @@ function ExplorerFooter({ dataset, figmaLink }: { dataset: TokenDataset; figmaLi
   return (
     <p className="vds-explorer__footer">
       {FOOTER_NOTE[dataset]} ·{' '}
-      <a href={figmaLink} target="_blank" rel="noopener noreferrer">
-        Figma table
-      </a>
+      <DocsAnchor href={figmaLink}>Figma table</DocsAnchor>
       {' · '}
-      <a href={FIGMA_LINKS.collection} target="_blank" rel="noopener noreferrer">
-        Collection
-      </a>
+      <DocsAnchor href={FIGMA_LINKS.collection}>Collection</DocsAnchor>
       {' · '}
-      <a href={FIGMA_WORKFLOW_DOC}>Workflow</a>
+      <DocsAnchor href={FIGMA_WORKFLOW_DOC}>Workflow</DocsAnchor>
     </p>
   )
 }

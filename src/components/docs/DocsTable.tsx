@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { isHex } from '../../tokens/collection'
+import { DocsAnchor } from './DocsAnchor'
 
 type DocsTableLayout = 'default' | 'rollout' | 'roles' | 'compare'
 
@@ -94,5 +95,5 @@ export function DocsTable({
 
 /** Internal Storybook doc link for DocsTable cells */
 export function DocLink({ href, children }: { href: string; children: ReactNode }) {
-  return <a href={href}>{children}</a>
+  return <DocsAnchor href={href}>{children}</DocsAnchor>
 }
