@@ -425,6 +425,56 @@ body {
   margin: 16px 0 24px;
 }
 
+/* DocsTable layout presets (table-layout: fixed on .vds-table) */
+.vds-table--rollout th:nth-child(1),
+.vds-table--rollout td:nth-child(1) {
+  width: 22%;
+}
+
+.vds-table--rollout th:nth-child(2),
+.vds-table--rollout td:nth-child(2) {
+  width: 10%;
+}
+
+.vds-table--rollout th:nth-child(3),
+.vds-table--rollout td:nth-child(3) {
+  width: 16%;
+}
+
+.vds-table--rollout th:nth-child(4),
+.vds-table--rollout td:nth-child(4) {
+  width: 52%;
+}
+
+.vds-table--roles th:nth-child(1),
+.vds-table--roles td:nth-child(1) {
+  width: 14%;
+}
+
+.vds-table--roles th:nth-child(2),
+.vds-table--roles td:nth-child(2) {
+  width: 26%;
+}
+
+.vds-table--roles th:nth-child(3),
+.vds-table--roles td:nth-child(3) {
+  width: 60%;
+}
+
+.vds-table--compare th:nth-child(1),
+.vds-table--compare td:nth-child(1),
+.vds-table--compare th:nth-child(2),
+.vds-table--compare td:nth-child(2) {
+  width: 50%;
+}
+
+.vds-docs-table td {
+  vertical-align: top;
+  line-height: 1.45;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+
 .sbdocs .vds-docs-table a {
   color: var(--vds-button-background-primary, #0285c8);
   text-decoration: none;

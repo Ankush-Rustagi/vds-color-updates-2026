@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react'
 import { isHex } from '../../tokens/collection'
 
+type DocsTableLayout = 'default' | 'rollout' | 'roles' | 'compare'
+
 type DocsTableProps = {
   headers: string[]
   rows: (string | ReactNode)[][]
@@ -8,6 +10,8 @@ type DocsTableProps = {
   codeColumns?: number[]
   /** Column indexes that show a color swatch when the cell is a hex value */
   hexColumns?: number[]
+  /** Preset column width balance for common doc tables */
+  layout?: DocsTableLayout
 }
 
 function Swatch({ value }: { value: string }) {
@@ -46,13 +50,21 @@ function CellContent({
   return <>{value}</>
 }
 
-export function DocsTable({ headers, rows, codeColumns = [], hexColumns = [] }: DocsTableProps) {
+export function DocsTable({
+  headers,
+  rows,
+  codeColumns = [],
+  hexColumns = [],
+  layout = 'default',
+}: DocsTableProps) {
   const codeSet = new Set(codeColumns)
   const hexSet = new Set(hexColumns)
+  const layoutClass =
+    layout === 'default' ? '' : ` vds-table--${layout}`
 
   return (
     <div className="vds-table-wrap vds-docs-table">
-      <table className="vds-table">
+      <table className={`vds-table${layoutClass}`}>
         <thead>
           <tr>
             {headers.map((header) => (
@@ -80,7 +92,7 @@ export function DocsTable({ headers, rows, codeColumns = [], hexColumns = [] }: 
   )
 }
 
-/** Inline token list for prose sections */
-export function TokenInline({ children }: { children: ReactNode }) {
-  return <code className="vds-token-code">{children}</code>
+/** Internal Storybook doc link for DocsTable cells */
+export function DocLink({ href, children }: { href: string; children: ReactNode }) {
+  return <a href={href}>{children}</a>
 }

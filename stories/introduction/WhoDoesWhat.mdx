@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/blocks'
-import { DocsTable } from '../../src/components/docs/DocsTable'
+import { DocsTable, DocLink } from '../../src/components/docs/DocsTable'
 
 <Meta title="Intro to Color v2/Who Does What" parameters={{ docs: { toc: false } }} />
 
@@ -8,27 +8,42 @@ import { DocsTable } from '../../src/components/docs/DocsTable'
 Clear ownership keeps Color v2 migration out of ad hoc hex edits. Use this table in kickoffs and PR reviews.
 
 <DocsTable
+  layout="roles"
   headers={['Role', 'Responsibility', 'First action']}
   rows={[
     [
       'Design System',
       'Owns token spec in Figma Collection',
-      '[Semantic Colors](/docs/reference-semantic-colors--docs) · keep Collection current · review team PRs against spec',
+      <>
+        <DocLink href="/docs/reference-semantic-colors--docs">Semantic Colors</DocLink>
+        {' · keep Collection current · review team PRs against spec'}
+      </>,
     ],
     [
       'Product designer',
       'Rebind Figma components to semantic variables',
-      '[Figma Workflow](/docs/color-v2-migrations-figma-workflow--docs) · start with Alert Button + Checkbox',
+      <>
+        <DocLink href="/docs/color-v2-migrations-figma-workflow--docs">Figma Workflow</DocLink>
+        {' · start with Alert Button + Checkbox'}
+      </>,
     ],
     [
       'Frontend engineer',
       'Replace legacy CSS vars in product surfaces',
-      '[Getting Started](/docs/color-v2-migrations-getting-started--docs) · [Token Mapping](/docs/color-v2-migrations-token-mapping--docs)',
+      <>
+        <DocLink href="/docs/color-v2-migrations-getting-started--docs">Getting Started</DocLink>
+        {' · '}
+        <DocLink href="/docs/color-v2-migrations-token-mapping--docs">Token Mapping</DocLink>
+      </>,
     ],
     [
       'Eng lead / PM',
       'Communicate scope and visual deltas to stakeholders',
-      "[What's Changing](/docs/color-v2-updates-whats-changing--docs) · track team status under Teams",
+      <>
+        <DocLink href="/docs/color-v2-updates-whats-changing--docs">What's Changing</DocLink>
+        {' · track team status under '}
+        <DocLink href="/docs/teams-overview--docs">Teams</DocLink>
+      </>,
     ],
   ]}
 />

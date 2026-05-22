@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/blocks'
-import { DocsTable } from '../../src/components/docs/DocsTable'
+import { DocsTable, DocLink } from '../../src/components/docs/DocsTable'
 
 <Meta title="Intro to Color v2/Rollout" parameters={{ docs: { toc: false } }} />
 
@@ -8,12 +8,39 @@ import { DocsTable } from '../../src/components/docs/DocsTable'
 Color v2 rolls out in four phases. Design System owns the token spec; product teams own surface-by-surface migration.
 
 <DocsTable
+  layout="rollout"
   headers={['Phase', 'Status', 'Owner', 'Detail']}
   rows={[
-    ['1. Define tokens', 'Done', 'Design System', '566 semantic tokens in Figma Collection. Light + dark pairs per component.'],
-    ['2. Publish guides', 'Active', 'Design System + PM', 'This Storybook for how-to and reference. Strategy narrative lives here under Introduction.'],
-    ['3. Migrate by product line', 'Next', 'Each product team', 'Swap legacy CSS vars and Figma bindings surface by surface. One example per line under Teams.'],
-    ['4. Ship + refine', 'Later', 'All teams', 'Dark mode still in testing. Visual deltas expected. Feedback loop with Design System.'],
+    [
+      '1. Define tokens',
+      'Done',
+      'Design System',
+      '566 semantic tokens in Figma Collection. Light + dark pairs per component.',
+    ],
+    [
+      '2. Publish guides',
+      'Active',
+      'Design System + PM',
+      <>
+        This Storybook for how-to and reference. Strategy narrative lives under{' '}
+        <DocLink href="/docs/intro-to-color-v2-strategy--docs">Intro to Color v2</DocLink>.
+      </>,
+    ],
+    [
+      '3. Migrate by product line',
+      'Next',
+      'Each product team',
+      <>
+        Swap legacy CSS vars and Figma bindings surface by surface. One example per line under{' '}
+        <DocLink href="/docs/teams-overview--docs">Teams</DocLink>.
+      </>,
+    ],
+    [
+      '4. Ship + refine',
+      'Later',
+      'All teams',
+      'Dark mode still in testing. Visual deltas expected. Feedback loop with Design System.',
+    ],
   ]}
 />
 
