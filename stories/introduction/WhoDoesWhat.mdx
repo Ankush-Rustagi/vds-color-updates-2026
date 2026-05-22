@@ -3,56 +3,107 @@ import { DocsTable, DocLink } from '../../src/components/docs/DocsTable'
 import { GitHubLink } from '../../src/components/docs/GitHubLink'
 import { UX_DESIGN } from '../../src/constants/ux-design'
 
-<Meta title="Intro to Color v2/Who Does What" parameters={{ docs: { toc: false } }} />
+<Meta title="Intro to Color v2/Who Does What" parameters={{ docs: { toc: true } }} />
 
 # Who Does What
 
-Clear ownership keeps Color v2 migration out of ad hoc hex edits. Use this table in kickoffs and PR reviews.
+Color v2 spans **two layers of the design system** and **two groups of people**. Platform owners define and publish VDS. Product teams consume it in Figma and in code.
+
+## Two layers of VDS
+
+<DocsTable
+  layout="compare"
+  headers={['Layer', 'What it is']}
+  rows={[
+    [
+      '**VDS in Figma**',
+      'Semantic tokens, primitives, components, and assets in Figma Collection. Source of truth for design.',
+    ],
+    [
+      '**VDS in code**',
+      '**Verity** (`@verkada/verity` in Verkada-Web): the React component library engineers ship. Documented in production Verity Storybook and this Color v2 migration site.',
+    ],
+  ]}
+/>
+
+Designers work primarily in Figma. Engineers work primarily in Verity and CSS custom properties mapped from Collection token names.
+
+## Platform team (owners)
+
+These owners publish, maintain, and answer questions about the system itself.
 
 <DocsTable
   layout="roles"
-  headers={['Role', 'Responsibility', 'First action']}
+  headers={['Owner', 'Domain', 'Owns']}
   rows={[
     [
-      'Design System',
-      'Owns token spec in Figma Collection',
-      <>
-        <DocLink slug="semanticColors">Semantic Colors</DocLink>
-        {' · keep Collection current · review team PRs against spec'}
-      </>,
+      '**Meg Kim** (Product Design Lead)',
+      'VDS in Figma',
+      'Figma files, assets, components, semantic tokens, and color primitives in Collection',
     ],
     [
-      'Product designer',
-      'Rebind Figma components to semantic variables',
-      <>
-        <DocLink slug="figmaWorkflow">Figma Workflow</DocLink>
-        {' · start with Alert Button + Checkbox'}
-      </>,
+      "**Melina O'Dell**",
+      'VDS Storybook',
+      'Production Verity Storybook (`master.vstyleguide.prod1.cf.verkada.com`) and component documentation',
     ],
     [
-      'Frontend engineer',
-      'Replace legacy CSS vars in product surfaces',
+      '**Vivien** (PM)',
+      'VDS, Verity, and Web Platform',
+      'Roadmap, prioritization, and cross-team interlock for the Verity platform team',
+    ],
+  ]}
+/>
+
+**This Storybook** is the Color v2 migration companion: token tables, legacy mapping, and per-team examples. It complements Melina's production Verity Storybook. For Color v2 token names and hex values, treat **Figma Collection + this site** as the reference until the two Storybooks fully converge.
+
+## Product teams (consumers)
+
+Product teams (Cameras, Access Control, Alarms, and other Command lines) adopt Color v2 in their own surfaces. They do not own the token spec.
+
+<DocsTable
+  layout="roles"
+  headers={['Role', 'Responsibility', 'Start here']}
+  rows={[
+    [
+      '**Frontend engineer**',
+      'Migrate legacy CSS vars to v2 tokens in product repos; implement Verity components in Command surfaces',
       <>
         <DocLink slug="gettingStarted">Getting Started</DocLink>
-        {' · '}
+        {' → '}
         <DocLink slug="tokenMapping">Token Mapping</DocLink>
       </>,
     ],
     [
-      'Eng lead / PM',
-      'Communicate scope and visual deltas to stakeholders',
+      '**Product designer**',
+      'Use VDS in Figma for on-brand, Verity-compatible mocks; rebind components to Collection variables',
+      <>
+        <DocLink slug="figmaWorkflow">Figma Workflow</DocLink>
+        {' → Alert Button + Checkbox'}
+      </>,
+    ],
+    [
+      '**Eng lead, Eng manager, or PM**',
+      'Scope migration work, set stakeholder expectations, and interlock with the Verity platform team and peer product teams',
       <>
         <DocLink slug="whatsChanging">What's Changing</DocLink>
-        {' · track team status under '}
+        {' → '}
         <DocLink slug="teamsOverview">Teams</DocLink>
       </>,
     ],
   ]}
 />
 
-## Design manager note (Melina / Storybook)
+## Migration: who to involve
 
-Melina is updating the **production Verity Storybook** (`master.vstyleguide.prod1.cf.verkada.com`). This site is the **Color v2 migration and token reference** companion: deeper token tables, legacy mapping, and team migration examples. The two should converge over time; until then, treat **Figma Collection + this Storybook** as the Color v2 source of truth.
+**Frontend engineers are the primary audience** for this guide. Read <DocLink slug="gettingStarted">Getting Started</DocLink> and <DocLink slug="tokenMapping">Token Mapping</DocLink>, then apply changes in your team's repos and services.
+
+**Pull in the Verity platform team** when you need help vetting token choices, component patterns, or Storybook references:
+
+- **Vivien** (PM): prioritization, rollout timing, cross-team dependencies
+- **Meg Kim** (design): Figma Collection, token gaps, designer sign-off on semantic bindings
+- **Melina O'Dell / Verity engineering**: Verity components, production Storybook, implementation questions
+
+**Work with your product designer and PM** on product-specific decisions: which surfaces migrate first, dark mode timing, and UI that does not map cleanly to existing tokens. Platform owners define the system; product teams decide how and when to adopt it in their area.
 
 ## Vibe design and prototype tools
 
@@ -68,4 +119,5 @@ Repo path: <code>{UX_DESIGN.repoPath}</code>. Do not rely on pre-v2 Figma export
 ## Where to go next
 
 - [Strategy](/docs/intro-to-color-v2-strategy--docs)
+- [Rollout](/docs/intro-to-color-v2-rollout--docs)
 - [Teams Overview](/docs/teams-overview--docs)
