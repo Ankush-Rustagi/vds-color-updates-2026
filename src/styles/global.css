@@ -781,6 +781,13 @@ body {
   margin-bottom: 8px;
 }
 
+/* Semantic + primitive: cap search/filters to the computed table width */
+.vds-explorer--table-aligned .vds-explorer__controls,
+.vds-explorer--table-aligned .vds-explorer__empty {
+  width: 100%;
+  max-width: min(100%, var(--vds-explorer-grid-min-width, 100%));
+}
+
 .vds-explorer__controls .vds-ref__toolbar {
   margin-bottom: 0;
 }

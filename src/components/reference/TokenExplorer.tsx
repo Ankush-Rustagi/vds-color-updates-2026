@@ -352,7 +352,10 @@ export function TokenExplorer({ dataset }: Props) {
   const countLabel = TOKEN_META.counts[dataset]
 
   return (
-    <div className="vds-ref vds-explorer">
+    <div
+      className={`vds-ref vds-explorer${isLargeTable ? ' vds-explorer--table-aligned' : ''}`}
+      style={isLargeTable ? tableGridStyle : undefined}
+    >
       <div className="vds-explorer__controls">
         <div
           className={`vds-ref__toolbar vds-explorer__toolbar${
@@ -471,7 +474,10 @@ export function TokenExplorer({ dataset }: Props) {
           </button>
         </div>
       ) : (
-        <div className="vds-table-wrap vds-explorer__table-wrap" style={tableGridStyle}>
+        <div
+          className="vds-table-wrap vds-explorer__table-wrap"
+          style={isLargeTable ? undefined : tableGridStyle}
+        >
           <div className={`vds-explorer__header-row${headerLayoutClass}`}>
             {!isPrimitives && !isSemanticTable ? (
               <SortHeader
