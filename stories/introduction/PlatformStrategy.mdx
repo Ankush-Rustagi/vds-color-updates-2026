@@ -1,6 +1,7 @@
 import { Meta } from '@storybook/blocks'
 import { DocsTable } from '../../src/components/docs/DocsTable'
 import { FIGMA_LINKS } from '../../src/constants/figma'
+import { UX_DESIGN } from '../../src/constants/ux-design'
 
 <Meta title="Intro to Color v2/Strategy" parameters={{ docs: { toc: true } }} />
 
@@ -45,6 +46,15 @@ Verkada Design System is moving from fragmented legacy colors to a **single sema
 3. **No local colors.** Flag gaps to Design System; do not ship team-specific hex.
 4. **Reference before rollout.** Validate Alert Button + Checkbox patterns, then expand by surface.
 5. **AI-compatible docs.** DESIGN.md and Storybook stay aligned so Claude Design and OpenDesign agents use the same rules.
+
+## Vibe design and prototypes
+
+For **Claude Design**, **OpenDesign**, or quick vibe prototypes that must match VDS standards, use the shared asset folder in docs-vibes:
+
+- **Path:** <code>{UX_DESIGN.repoPath}</code> (`DESIGN.md`, `design-system-context.md`, Verity excerpts, icons, PM prompts)
+- **GitHub:** <a href={UX_DESIGN.githubUrl}>17-ux-design</a>
+
+Upload `DESIGN.md` first, then `design-system-context.md`, when configuring Claude Design org settings. This Storybook covers Color v2 tokens and migration; `17-ux-design` covers the full component dictionary and handoff workflows.
 
 ## Where to go next
 

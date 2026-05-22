@@ -8,25 +8,27 @@
 
 ## Table of contents
 
-1. [Content split: Storybook vs hub](#content-split-storybook-vs-hub)
+1. [Content model (single site)](#content-model-single-site)
 2. [MVP page inventory](#mvp-page-inventory)
 3. [Phase 2b pages (fast follow)](#phase-2b-pages-fast-follow)
 4. [Cross-links](#cross-links)
 
 ---
 
-## Content split: Storybook vs hub
+## Content model (single site)
 
-| Content | Storybook v2 | Docs hub |
-|---------|--------------|----------|
-| Getting started, Figma workflow, token mapping | Yes | Link only |
-| Alert/Checkbox before-after | Yes (CSF) | Link only |
-| Full token reference | Yes (TokenExplorer) | Link only |
-| Rollout phases, who-does-what | 1 paragraph + hub link | Full version |
-| Team migration status | Phase 2b team pages | Team cards |
-| PM narrative / stakeholder comms | Link out | Full version |
+All narrative, migration guides, token reference, and team examples live in this Storybook. There is no separate strategy hub.
 
-**Hub URL:** https://ankush-rustagi.github.io/vds-color-v2/
+| Content | Location in Storybook |
+|---------|----------------------|
+| Strategy, rollout, who-does-what | Intro to Color v2 |
+| Getting started, Figma workflow, token mapping | Color v2 Migrations |
+| Alert/Checkbox before-after | Color v2 Migrations (CSF) |
+| Full token reference | Reference → Semantic Colors, etc. |
+| Team migration examples | Teams |
+| Vibe design assets (Claude Design, OpenDesign) | [17-ux-design](https://github.com/verkada/docs-vibes/tree/main/17-ux-design) in docs-vibes |
+
+**Live URL:** https://ankush-rustagi.github.io/vds-color-updates-2026/
 
 ---
 
@@ -36,7 +38,7 @@
 
 | Page | Format | Figma source | Notes |
 |------|--------|--------------|-------|
-| Overview | MDX + DocsTable | Deck slide 1 | Role picker; link to hub |
+| Overview | MDX + DocsTable | Deck slide 1 | Role picker; links to Intro to Color v2 |
 | What's Changing | MDX + DocsTable | Slides 2–3 | Scope for eng leads |
 | Accessibility | MDX + DocsTable | Slide 5 | Contrast constraints |
 | Greenfield Adoption | MDX + DocsTable | Collection | Day-one token picks |

@@ -9,5 +9,3 @@ export const FIGMA_LINKS = {
   sizeTable: `${FIGMA_FILE}?node-id=73102-151299`,
   effectsTable: `${FIGMA_FILE}?node-id=73102-151952`,
 } as const
-
-export const DOCS_HUB_BASE = 'https://ankush-rustagi.github.io/vds-color-v2/'

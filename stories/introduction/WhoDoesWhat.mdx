@@ -1,5 +1,6 @@
 import { Meta } from '@storybook/blocks'
 import { DocsTable, DocLink } from '../../src/components/docs/DocsTable'
+import { UX_DESIGN } from '../../src/constants/ux-design'
 
 <Meta title="Intro to Color v2/Who Does What" parameters={{ docs: { toc: false } }} />
 
@@ -52,9 +53,16 @@ Clear ownership keeps Color v2 migration out of ad hoc hex edits. Use this table
 
 Melina is updating the **production Verity Storybook** (`master.vstyleguide.prod1.cf.verkada.com`). This site is the **Color v2 migration and token reference** companion: deeper token tables, legacy mapping, and team migration examples. The two should converge over time; until then, treat **Figma Collection + this Storybook** as the Color v2 source of truth.
 
-## AI / prototype tools
+## Vibe design and prototype tools
 
-PMs and designers using Claude Design or OpenDesign should upload the updated **`DESIGN.md`** and **`design-system-context.md`** from `documentation/17-ux-design/` (Color v2 section). Do not rely on auto-extracted tokens from pre-v2 Figma exports.
+PMs and designers building **vibe prototypes** or configuring **Claude Design / OpenDesign** should start from <a href={UX_DESIGN.githubUrl}>17-ux-design</a> in docs-vibes:
+
+- **`DESIGN.md`** — OpenDesign spec with Color v2 semantic tokens (upload first)
+- **`design-system-context.md`** — Full VDS component dictionary, layout, icons
+- **`vds-verity-component-bridge.md`** — Verity import paths for engineering handoff
+- **`verity/`** — TypeScript component excerpts for Claude Design codebase link
+
+Repo path: <code>{UX_DESIGN.repoPath}</code>. Do not rely on pre-v2 Figma exports or deprecated external hubs.
 
 ## Where to go next
 

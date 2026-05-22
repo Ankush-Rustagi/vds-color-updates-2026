@@ -4,7 +4,7 @@ VDS Color v2 migration guides, before/after demos, and token reference for Verka
 
 **Live site:** https://ankush-rustagi.github.io/vds-color-updates-2026/
 
-**Strategy hub:** https://ankush-rustagi.github.io/vds-color-v2/
+**Vibe design assets:** `documentation/17-ux-design/` in [docs-vibes](https://github.com/verkada/docs-vibes/tree/main/17-ux-design) (DESIGN.md, design-system-context, Verity excerpts, icons, prompts for Claude Design and OpenDesign).
 
 ## Quick start
 
@@ -29,8 +29,9 @@ CI builds use committed JSON only (no Python in CI).
 
 | Section | Content |
 |---------|---------|
-| Foundations | Overview, scope, accessibility, greenfield |
-| Migrations | Getting started, Figma workflow, token mapping, Alert Button, Checkbox |
+| Intro to Color v2 | Strategy, rollout, who does what |
+| Color v2 Updates | Overview, scope, accessibility, greenfield |
+| Color v2 Migrations | Getting started, Figma workflow, token mapping, Alert Button, Checkbox |
 | Reference | TokenExplorer for semantic, primitives, size, effects |
 | Teams | Product-line migration examples |
 
