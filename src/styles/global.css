@@ -468,6 +468,31 @@ body {
   width: 50%;
 }
 
+.vds-table--layers th:nth-child(1),
+.vds-table--layers td:nth-child(1) {
+  width: 28%;
+}
+
+.vds-table--layers th:nth-child(2),
+.vds-table--layers td:nth-child(2) {
+  width: 72%;
+}
+
+.vds-table--platform th:nth-child(1),
+.vds-table--platform td:nth-child(1) {
+  width: 16%;
+}
+
+.vds-table--platform th:nth-child(2),
+.vds-table--platform td:nth-child(2) {
+  width: 24%;
+}
+
+.vds-table--platform th:nth-child(3),
+.vds-table--platform td:nth-child(3) {
+  width: 60%;
+}
+
 .vds-docs-table td {
   vertical-align: top;
   line-height: 1.45;
