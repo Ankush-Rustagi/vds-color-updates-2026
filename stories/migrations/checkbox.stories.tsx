@@ -3,7 +3,7 @@ import { Checkbox, CheckboxMatrix } from '../../src/components/migration/Checkbo
 import { BeforeAfter } from '../../src/components/migration/BeforeAfter'
 
 const meta: Meta<typeof Checkbox> = {
-  title: 'Migrations/Color v2/Checkbox',
+  title: 'Color v2 Migrations/Checkbox',
   component: Checkbox,
   parameters: {
     docs: {

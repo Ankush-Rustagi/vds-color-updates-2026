@@ -3,7 +3,7 @@ import { AlertButton, AlertButtonRow } from '../../src/components/migration/Aler
 import { BeforeAfter } from '../../src/components/migration/BeforeAfter'
 
 const meta: Meta<typeof AlertButton> = {
-  title: 'Migrations/Color v2/Alert Button',
+  title: 'Color v2 Migrations/Alert Button',
   component: AlertButton,
   parameters: {
     docs: {

@@ -8,7 +8,7 @@ const preview: Preview = {
     docs: {
       description: {
         component:
-          'VDS Color v2 migration guides. Start with Introduction → Platform Strategy.',
+          'VDS Color v2 migration guides. Start with Intro to Color v2 → Strategy.',
       },
       toc: true,
     },
@@ -21,16 +21,16 @@ const preview: Preview = {
     options: {
       storySort: {
         order: [
-          'Introduction',
-          ['Platform Strategy', 'Rollout Phases', 'Who Does What'],
-          'Foundations',
-          ['Color v2', ['Overview', "What's Changing", 'Accessibility', 'Greenfield Adoption']],
+          'Intro to Color v2',
+          ['Strategy', 'Rollout', 'Who Does What'],
+          'Color v2 Updates',
+          ['Overview', "What's Changing", 'Accessibility', 'Building new UI?'],
           'Reference',
           ['Semantic Colors', 'Color Primitives', 'Size', 'Effects', 'Token Naming'],
           'Teams',
           ['Overview', '*'],
-          'Migrations',
-          ['Color v2', ['Getting Started', 'Figma Workflow', 'Token Mapping', 'Alert Button', 'Checkbox']],
+          'Color v2 Migrations',
+          ['Getting Started', 'Figma Workflow', 'Token Mapping', 'Alert Button', 'Checkbox'],
         ],
       },
     },

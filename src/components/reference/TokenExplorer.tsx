@@ -35,7 +35,7 @@ type Props = {
 
 const EXPLORER_VISIBLE_ROWS = 24
 const DEFAULT_VISIBLE_ROWS = 10
-const FIGMA_WORKFLOW_DOC = '?path=/docs/migrations-color-v2-figma-workflow--docs'
+const FIGMA_WORKFLOW_DOC = '?path=/docs/color-v2-migrations-figma-workflow--docs'
 
 const FOOTER_NOTE: Record<TokenDataset, string> = {
   'semantic-colors': 'Dark values: Figma testing',
