@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/blocks'
 import { DocsTable } from '../../src/components/docs/DocsTable'
-import { FIGMA_LINKS } from '../../src/constants/figma'
+import { FigmaLink } from '../../src/components/docs/FigmaLink'
 
 <Meta title="Color v2 Migrations/Figma Workflow" />
 
@@ -28,8 +28,8 @@ Examples from the VDS Collection:
 
 ## Workflow
 
-1. Open [VDS Figma file](https://www.figma.com/design/ErBiDvqI7wPQKKXWfhC6yl/VDS---Verkada-Design-System)
-2. Navigate to [Collection frame]({FIGMA_LINKS.collection}) for the full semantic inventory
+1. Open <FigmaLink to="file">VDS Figma file</FigmaLink>
+2. Navigate to <FigmaLink to="collection">Collection frame</FigmaLink> for the full semantic inventory
 3. Rebind component fills and strokes to semantic variables (never raw hex)
 4. Verify light and dark columns (dark is labeled "Dark Mode Testing")
 5. Use Alert Button and Checkbox as reference patterns before other components
@@ -48,9 +48,12 @@ Examples from the VDS Collection:
 
 ## Open in Figma
 
-- [Collection frame (full token spec)]({FIGMA_LINKS.collection})
-- [Semantic colors table]({FIGMA_LINKS.semanticTable})
-- [VDS file root]({FIGMA_LINKS.file})
+- <FigmaLink to="collection">Collection frame (full token spec)</FigmaLink>
+- <FigmaLink to="semanticTable">Semantic colors table</FigmaLink>
+- <FigmaLink to="primitivesTable">Color primitives table</FigmaLink>
+- <FigmaLink to="sizeTable">Size tokens table</FigmaLink>
+- <FigmaLink to="effectsTable">Effects tokens table</FigmaLink>
+- <FigmaLink to="file">VDS file root</FigmaLink>
 
 ## Where to go next
 

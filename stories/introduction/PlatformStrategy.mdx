@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/blocks'
 import { DocsTable } from '../../src/components/docs/DocsTable'
-import { FIGMA_LINKS } from '../../src/constants/figma'
+import { FigmaLink } from '../../src/components/docs/FigmaLink'
 import { UX_DESIGN } from '../../src/constants/ux-design'
 
 <Meta title="Intro to Color v2/Strategy" parameters={{ docs: { toc: true } }} />
@@ -29,7 +29,7 @@ Verkada Design System is moving from fragmented legacy colors to a **single sema
 ## What is in scope (Color v2)
 
 - **566 semantic color tokens** (light + dark)
-- **237 color primitives**, size, and effects tables from [Figma Collection]({FIGMA_LINKS.collection})
+- **237 color primitives**, size, and effects tables from <FigmaLink to="collection">Figma Collection</FigmaLink>
 - **Reference migration patterns:** Alert Button, Checkbox (from Color Updates deck slides 6, 8–9)
 - **Per product line examples** under Teams (Cameras, Access Control, Alarms, etc.)
 

@@ -475,12 +475,14 @@ body {
   overflow-wrap: anywhere;
 }
 
-.sbdocs .vds-docs-table a {
+.sbdocs .vds-docs-table a,
+.sbdocs .sbdocs-content a[href*='figma.com'] {
   color: var(--vds-button-background-primary, #0285c8);
   text-decoration: none;
 }
 
-.sbdocs .vds-docs-table a:hover {
+.sbdocs .vds-docs-table a:hover,
+.sbdocs .sbdocs-content a[href*='figma.com']:hover {
   text-decoration: underline;
 }
 

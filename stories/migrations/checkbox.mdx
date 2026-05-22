@@ -1,7 +1,7 @@
 import { Meta, Canvas } from '@storybook/blocks'
 import { DocsTable } from '../../src/components/docs/DocsTable'
 import * as CheckboxStories from './checkbox.stories'
-import { FIGMA_LINKS } from '../../src/constants/figma'
+import { FigmaLink } from '../../src/components/docs/FigmaLink'
 
 <Meta of={CheckboxStories} />
 
@@ -9,7 +9,7 @@ import { FIGMA_LINKS } from '../../src/constants/figma'
 
 Reference pattern from **Color Updates slides 8–9**. Covers default, selected, mixed, and alert paths on surface-01.
 
-[Open Collection in Figma]({FIGMA_LINKS.collection})
+<FigmaLink to="collection">Open Collection in Figma</FigmaLink>
 
 ## Token mapping
 

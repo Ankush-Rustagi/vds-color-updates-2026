@@ -1,7 +1,7 @@
 import { Meta, Canvas } from '@storybook/blocks'
 import { DocsTable } from '../../src/components/docs/DocsTable'
 import * as AlertButtonStories from './alert-button.stories'
-import { FIGMA_LINKS } from '../../src/constants/figma'
+import { FigmaLink } from '../../src/components/docs/FigmaLink'
 
 <Meta of={AlertButtonStories} />
 
@@ -9,7 +9,7 @@ import { FIGMA_LINKS } from '../../src/constants/figma'
 
 Reference pattern from **Color Updates slide 6**. Every product line uses destructive actions.
 
-[Open Collection in Figma]({FIGMA_LINKS.collection})
+<FigmaLink to="collection">Open Collection in Figma</FigmaLink>
 
 ## Token mapping
 
