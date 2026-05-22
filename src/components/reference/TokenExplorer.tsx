@@ -37,6 +37,30 @@ const SEMANTIC_VISIBLE_ROWS = 24
 const DEFAULT_VISIBLE_ROWS = 10
 const FIGMA_WORKFLOW_DOC = '?path=/docs/migrations-color-v2-figma-workflow--docs'
 
+const FOOTER_NOTE: Record<TokenDataset, string> = {
+  'semantic-colors': 'Dark values: Figma testing',
+  'color-primitives': 'Resolve into semantic tokens at component level',
+  size: 'Icon, radius, space, and stroke',
+  effects: 'Blur, opacity, and scrim',
+}
+
+function ExplorerFooter({ dataset, figmaLink }: { dataset: TokenDataset; figmaLink: string }) {
+  return (
+    <p className="vds-explorer__footer">
+      {FOOTER_NOTE[dataset]} ·{' '}
+      <a href={figmaLink} target="_blank" rel="noopener noreferrer">
+        Figma table
+      </a>
+      {' · '}
+      <a href={FIGMA_LINKS.collection} target="_blank" rel="noopener noreferrer">
+        Collection
+      </a>
+      {' · '}
+      <a href={FIGMA_WORKFLOW_DOC}>Workflow</a>
+    </p>
+  )
+}
+
 type Row = SemanticTokenRow | SimpleTokenRow
 
 function isSemantic(row: Row): row is SemanticTokenRow {
@@ -614,35 +638,7 @@ export function TokenExplorer({ dataset }: Props) {
 
       {toast && <div className="vds-toast" role="status">{toast}</div>}
 
-      {dataset !== 'color-primitives' && (
-        <p className="vds-explorer__footer">
-          {dataset === 'semantic-colors' ? (
-            <>
-              Dark values: Figma testing ·{' '}
-              <a href={figmaLink} target="_blank" rel="noopener noreferrer">
-                Figma table
-              </a>
-              {' · '}
-              <a href={FIGMA_LINKS.collection} target="_blank" rel="noopener noreferrer">
-                Collection
-              </a>
-              {' · '}
-              <a href={FIGMA_WORKFLOW_DOC}>Workflow</a>
-            </>
-          ) : (
-            <>
-              Source: Figma Collection ·{' '}
-              <a href={figmaLink} target="_blank" rel="noopener noreferrer">
-                Open in Figma
-              </a>
-              {' · '}
-              <a href={FIGMA_LINKS.collection} target="_blank" rel="noopener noreferrer">
-                Full Collection
-              </a>
-            </>
-          )}
-        </p>
-      )}
+      <ExplorerFooter dataset={dataset} figmaLink={figmaLink} />
     </div>
   )
 }
