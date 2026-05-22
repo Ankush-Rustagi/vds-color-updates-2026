@@ -7,9 +7,10 @@ type Props = {
   direction: SortDirection
   onSort: (column: string) => void
   className?: string
+  title?: string
 }
 
-export function SortHeader({ label, column, activeColumn, direction, onSort, className }: Props) {
+export function SortHeader({ label, column, activeColumn, direction, onSort, className, title }: Props) {
   const active = activeColumn === column
   return (
     <button
@@ -17,6 +18,7 @@ export function SortHeader({ label, column, activeColumn, direction, onSort, cla
       className={`vds-sort-header${active ? ' vds-sort-header--active' : ''}${className ? ` ${className}` : ''}`}
       onClick={() => onSort(column)}
       aria-sort={active ? (direction === 'asc' ? 'ascending' : 'descending') : 'none'}
+      title={title}
     >
       <span>{label}</span>
       <span className="vds-sort-header__icon" aria-hidden>

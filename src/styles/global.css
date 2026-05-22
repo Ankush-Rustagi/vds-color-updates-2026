@@ -671,7 +671,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .vds-explorer__controls .vds-ref__toolbar {

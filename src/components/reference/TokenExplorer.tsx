@@ -330,27 +330,6 @@ export function TokenExplorer({ dataset }: Props) {
 
   return (
     <div className="vds-ref vds-explorer">
-      {dataset === 'semantic-colors' && (
-        <p className="callout callout--warning vds-explorer__disclaimer">
-          Dark column values come from Figma <strong>Dark Mode Testing</strong>. Production dark mode is still in
-          validation.
-        </p>
-      )}
-
-      {dataset === 'semantic-colors' ? (
-        <p className="vds-explorer__source">
-          <a href={figmaLink} target="_blank" rel="noopener noreferrer">
-            Open semantic table in Figma
-          </a>
-          {' · '}
-          <a href={FIGMA_LINKS.collection} target="_blank" rel="noopener noreferrer">
-            Full Collection
-          </a>
-          {' · '}
-          <a href={FIGMA_WORKFLOW_DOC}>Figma Workflow guide</a>
-        </p>
-      ) : null}
-
       <div className="vds-explorer__controls">
         <div
           className={`vds-ref__toolbar vds-explorer__toolbar${
@@ -506,6 +485,7 @@ export function TokenExplorer({ dataset }: Props) {
                   direction={sortDirection}
                   onSort={handleSort}
                   className="vds-explorer__col vds-explorer__col--value"
+                  title="From Figma Dark Mode Testing; production dark mode not validated"
                 />
                 <SortHeader
                   label="Step"
@@ -634,18 +614,33 @@ export function TokenExplorer({ dataset }: Props) {
 
       {toast && <div className="vds-toast" role="status">{toast}</div>}
 
-      {dataset !== 'semantic-colors' && (
-        <p className="vds-explorer__footer">
-          Source: Figma Collection ·{' '}
-          <a href={figmaLink} target="_blank" rel="noopener noreferrer">
-            Open in Figma
-          </a>
-          {' · '}
-          <a href={FIGMA_LINKS.collection} target="_blank" rel="noopener noreferrer">
-            Full Collection
-          </a>
-        </p>
-      )}
+      <p className="vds-explorer__footer">
+        {dataset === 'semantic-colors' ? (
+          <>
+            Dark values: Figma testing ·{' '}
+            <a href={figmaLink} target="_blank" rel="noopener noreferrer">
+              Figma table
+            </a>
+            {' · '}
+            <a href={FIGMA_LINKS.collection} target="_blank" rel="noopener noreferrer">
+              Collection
+            </a>
+            {' · '}
+            <a href={FIGMA_WORKFLOW_DOC}>Workflow</a>
+          </>
+        ) : (
+          <>
+            Source: Figma Collection ·{' '}
+            <a href={figmaLink} target="_blank" rel="noopener noreferrer">
+              Open in Figma
+            </a>
+            {' · '}
+            <a href={FIGMA_LINKS.collection} target="_blank" rel="noopener noreferrer">
+              Full Collection
+            </a>
+          </>
+        )}
+      </p>
     </div>
   )
 }
