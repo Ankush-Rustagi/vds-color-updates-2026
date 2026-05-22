@@ -219,8 +219,8 @@ export function TokenExplorer({ dataset }: Props) {
   }, [filtered, sortColumn, sortDirection, dataset])
 
   const gridColumns = useMemo(
-    () => computeExplorerGridColumns(dataset, sorted),
-    [dataset, sorted],
+    () => computeExplorerGridColumns(dataset, rows),
+    [dataset, rows],
   )
 
   const tableGridStyle = useMemo(

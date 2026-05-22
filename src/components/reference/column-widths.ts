@@ -55,6 +55,7 @@ function simpleStep(row: SimpleTokenRow, dataset: TokenDataset): string {
   return row.step ?? '—'
 }
 
+/** Grid columns sized from the full dataset so widths stay stable while filtering. */
 export function computeExplorerGridColumns(
   dataset: TokenDataset,
   rows: Array<SemanticTokenRow | SimpleTokenRow>,
