@@ -614,33 +614,35 @@ export function TokenExplorer({ dataset }: Props) {
 
       {toast && <div className="vds-toast" role="status">{toast}</div>}
 
-      <p className="vds-explorer__footer">
-        {dataset === 'semantic-colors' ? (
-          <>
-            Dark values: Figma testing ·{' '}
-            <a href={figmaLink} target="_blank" rel="noopener noreferrer">
-              Figma table
-            </a>
-            {' · '}
-            <a href={FIGMA_LINKS.collection} target="_blank" rel="noopener noreferrer">
-              Collection
-            </a>
-            {' · '}
-            <a href={FIGMA_WORKFLOW_DOC}>Workflow</a>
-          </>
-        ) : (
-          <>
-            Source: Figma Collection ·{' '}
-            <a href={figmaLink} target="_blank" rel="noopener noreferrer">
-              Open in Figma
-            </a>
-            {' · '}
-            <a href={FIGMA_LINKS.collection} target="_blank" rel="noopener noreferrer">
-              Full Collection
-            </a>
-          </>
-        )}
-      </p>
+      {dataset !== 'color-primitives' && (
+        <p className="vds-explorer__footer">
+          {dataset === 'semantic-colors' ? (
+            <>
+              Dark values: Figma testing ·{' '}
+              <a href={figmaLink} target="_blank" rel="noopener noreferrer">
+                Figma table
+              </a>
+              {' · '}
+              <a href={FIGMA_LINKS.collection} target="_blank" rel="noopener noreferrer">
+                Collection
+              </a>
+              {' · '}
+              <a href={FIGMA_WORKFLOW_DOC}>Workflow</a>
+            </>
+          ) : (
+            <>
+              Source: Figma Collection ·{' '}
+              <a href={figmaLink} target="_blank" rel="noopener noreferrer">
+                Open in Figma
+              </a>
+              {' · '}
+              <a href={FIGMA_LINKS.collection} target="_blank" rel="noopener noreferrer">
+                Full Collection
+              </a>
+            </>
+          )}
+        </p>
+      )}
     </div>
   )
 }
