@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -31,9 +31,18 @@ jobs:
         run: npm ci
 
       - name: Build Storybook
-        run: npm run build
+        run: |
+          rm -rf storybook-static
+          npm run build
         env:
           NODE_ENV: production
+
+      - name: Verify iframe CSS asset exists
+        run: |
+          CSS=$(grep -oE 'assets/(preview|style)-[A-Za-z0-9_-]+\.css' storybook-static/iframe.html | head -1)
+          test -n "$CSS" || (echo "No CSS link in iframe.html" && exit 1)
+          test -f "storybook-static/$CSS" || (echo "Missing storybook-static/$CSS" && exit 1)
+          echo "Verified storybook-static/$CSS"
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
