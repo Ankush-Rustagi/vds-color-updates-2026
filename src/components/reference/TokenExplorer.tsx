@@ -33,7 +33,7 @@ type Props = {
   title?: string
 }
 
-const SEMANTIC_VISIBLE_ROWS = 24
+const EXPLORER_VISIBLE_ROWS = 24
 const DEFAULT_VISIBLE_ROWS = 10
 const FIGMA_WORKFLOW_DOC = '?path=/docs/migrations-color-v2-figma-workflow--docs'
 
@@ -254,13 +254,14 @@ export function TokenExplorer({ dataset }: Props) {
   )
 
   const rowHeight = 56
-  const maxVisibleRows = dataset === 'semantic-colors' ? SEMANTIC_VISIBLE_ROWS : DEFAULT_VISIBLE_ROWS
+  const isLargeTable = dataset === 'semantic-colors' || dataset === 'color-primitives'
+  const maxVisibleRows = isLargeTable ? EXPLORER_VISIBLE_ROWS : DEFAULT_VISIBLE_ROWS
   const scrollHeight = Math.min(sorted.length, maxVisibleRows) * rowHeight + 8
   const virtualizer = useVirtualizer({
     count: sorted.length,
     getScrollElement: () => parentRef.current,
     estimateSize: () => rowHeight,
-    overscan: dataset === 'semantic-colors' ? 20 : 12,
+    overscan: isLargeTable ? 20 : 12,
   })
 
   useEffect(() => {
