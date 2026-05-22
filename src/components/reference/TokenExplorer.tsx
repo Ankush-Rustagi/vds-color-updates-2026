@@ -262,14 +262,18 @@ export function TokenExplorer({ dataset }: Props) {
   const isSimple = !isSemanticTable
   const rowLayoutClass = isPrimitives
     ? ' vds-explorer__row--primitives'
-    : isSimple
-      ? ' vds-explorer__row--simple'
-      : ''
+    : isSemanticTable
+      ? ' vds-explorer__row--semantic'
+      : isSimple
+        ? ' vds-explorer__row--simple'
+        : ''
   const headerLayoutClass = isPrimitives
     ? ' vds-explorer__header-row--primitives'
-    : isSimple
-      ? ' vds-explorer__header-row--simple'
-      : ''
+    : isSemanticTable
+      ? ' vds-explorer__header-row--semantic'
+      : isSimple
+        ? ' vds-explorer__header-row--simple'
+        : ''
   const paletteFilterLabel = isPrimitives ? 'palette' : 'group'
 
   const activeFilterLabels = useMemo(() => {
@@ -314,104 +318,106 @@ export function TokenExplorer({ dataset }: Props) {
         </p>
       ) : null}
 
-      <div
-        className={`vds-ref__toolbar vds-explorer__toolbar${
-          dataset === 'color-primitives'
-            ? ' vds-explorer__toolbar--with-sort'
-            : dataset === 'semantic-colors'
-              ? ' vds-explorer__toolbar--semantic'
-              : ''
-        }`}
-      >
-        <input
-          className="vds-input"
-          type="search"
-          placeholder="Search token, group, hex, step…"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          aria-label="Search tokens"
-        />
-        {dataset === 'semantic-colors' && (
+      <div className="vds-explorer__controls">
+        <div
+          className={`vds-ref__toolbar vds-explorer__toolbar${
+            dataset === 'color-primitives'
+              ? ' vds-explorer__toolbar--with-sort'
+              : dataset === 'semantic-colors'
+                ? ' vds-explorer__toolbar--semantic'
+                : ''
+          }`}
+        >
+          <input
+            className="vds-input"
+            type="search"
+            placeholder="Search token, group, hex, step…"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            aria-label="Search tokens"
+          />
+          {dataset === 'semantic-colors' && (
+            <select
+              className="vds-select"
+              value={categoryFilter}
+              onChange={(e) => handleCategoryChange(e.target.value)}
+              aria-label="Filter by category"
+            >
+              <option value="">All categories</option>
+              {sortedCategories.map(([cat, n]) => (
+                <option key={cat} value={cat}>
+                  {cat} ({n})
+                </option>
+              ))}
+            </select>
+          )}
           <select
             className="vds-select"
-            value={categoryFilter}
-            onChange={(e) => handleCategoryChange(e.target.value)}
-            aria-label="Filter by category"
+            value={groups.includes(groupFilter) || groupFilter === '' ? groupFilter : ''}
+            onChange={(e) => setGroupFilter(e.target.value)}
+            aria-label={
+              dataset === 'semantic-colors'
+                ? 'Filter by Figma group'
+                : isPrimitives
+                  ? 'Filter by palette'
+                  : 'Filter by group'
+            }
           >
-            <option value="">All categories</option>
-            {sortedCategories.map(([cat, n]) => (
-              <option key={cat} value={cat}>
-                {cat} ({n})
+            <option value="">
+              {dataset === 'semantic-colors'
+                ? 'All groups'
+                : isPrimitives
+                  ? 'All palettes'
+                  : 'All groups'}
+            </option>
+            {visibleGroups.map((g) => (
+              <option key={g} value={g}>
+                {g}
               </option>
             ))}
           </select>
-        )}
-        <select
-          className="vds-select"
-          value={groups.includes(groupFilter) || groupFilter === '' ? groupFilter : ''}
-          onChange={(e) => setGroupFilter(e.target.value)}
-          aria-label={
-            dataset === 'semantic-colors'
-              ? 'Filter by Figma group'
-              : isPrimitives
-                ? 'Filter by palette'
-                : 'Filter by group'
-          }
-        >
-          <option value="">
-            {dataset === 'semantic-colors'
-              ? 'All groups'
-              : isPrimitives
-                ? 'All palettes'
-                : 'All groups'}
-          </option>
-          {visibleGroups.map((g) => (
-            <option key={g} value={g}>
-              {g}
-            </option>
-          ))}
-        </select>
-        {dataset === 'color-primitives' && (
-          <select
-            className="vds-select"
-            value={sortColumn}
-            onChange={(e) => handleSortPreset(e.target.value)}
-            aria-label="Sort order"
-          >
-            <option value="gradation">Gradation (default)</option>
-            <option value="palette">Palette</option>
-            <option value="token">Token name</option>
-            <option value="value">Hex value</option>
-            <option value="step">Step</option>
-          </select>
-        )}
-        <div className="vds-explorer__toolbar-actions">
-          <button
-            type="button"
-            className="vds-density-btn"
-            onClick={() => setDensity((d) => (d === 'comfortable' ? 'compact' : 'comfortable'))}
-          >
-            {density === 'comfortable' ? 'Compact' : 'Comfortable'}
-          </button>
-          <span className="vds-count">
-            {sorted.length} / {countLabel}
-          </span>
-        </div>
-      </div>
-
-      {activeFilterLabels.length > 0 && (
-        <div className="vds-explorer__active-filters">
-          <span className="vds-explorer__active-filters-label">Active filters:</span>
-          {activeFilterLabels.map((label) => (
-            <span key={label} className="vds-explorer__filter-tag">
-              {label}
+          {dataset === 'color-primitives' && (
+            <select
+              className="vds-select"
+              value={sortColumn}
+              onChange={(e) => handleSortPreset(e.target.value)}
+              aria-label="Sort order"
+            >
+              <option value="gradation">Gradation (default)</option>
+              <option value="palette">Palette</option>
+              <option value="token">Token name</option>
+              <option value="value">Hex value</option>
+              <option value="step">Step</option>
+            </select>
+          )}
+          <div className="vds-explorer__toolbar-actions">
+            <button
+              type="button"
+              className="vds-density-btn"
+              onClick={() => setDensity((d) => (d === 'comfortable' ? 'compact' : 'comfortable'))}
+            >
+              {density === 'comfortable' ? 'Compact' : 'Comfortable'}
+            </button>
+            <span className="vds-count">
+              {sorted.length} / {countLabel}
             </span>
-          ))}
-          <button type="button" className="vds-link-btn" onClick={clearFilters}>
-            Clear all
-          </button>
+          </div>
         </div>
-      )}
+
+        {activeFilterLabels.length > 0 && (
+          <div className="vds-explorer__active-filters">
+            <span className="vds-explorer__active-filters-label">Active filters:</span>
+            {activeFilterLabels.map((label) => (
+              <span key={label} className="vds-explorer__filter-tag">
+                {label}
+              </span>
+            ))}
+            <button type="button" className="vds-link-btn" onClick={clearFilters}>
+              Clear all
+            </button>
+          </div>
+        )}
+      </div>
 
       {sorted.length === 0 ? (
         <div className="vds-empty vds-explorer__empty">
@@ -424,16 +430,7 @@ export function TokenExplorer({ dataset }: Props) {
       ) : (
         <div className="vds-table-wrap vds-explorer__table-wrap">
           <div className={`vds-explorer__header-row${headerLayoutClass}`}>
-            {dataset === 'semantic-colors' ? (
-              <SortHeader
-                label="Group"
-                column="group"
-                activeColumn={sortColumn}
-                direction={sortDirection}
-                onSort={handleSort}
-                className="vds-explorer__col vds-explorer__col--group"
-              />
-            ) : !isPrimitives ? (
+            {!isPrimitives && !isSemanticTable ? (
               <SortHeader
                 label="Palette"
                 column="palette"
@@ -525,7 +522,7 @@ export function TokenExplorer({ dataset }: Props) {
                       transform: `translateY(${vRow.start}px)`,
                     }}
                   >
-                    {!isPrimitives && (
+                    {!isPrimitives && !isSemanticTable && (
                       <span className="vds-explorer__col vds-explorer__col--group vds-group-cell">{groupKey}</span>
                     )}
                     <span className="vds-explorer__col vds-explorer__col--token">
