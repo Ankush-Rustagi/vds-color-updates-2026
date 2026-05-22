@@ -137,6 +137,11 @@ export function TokenExplorer({ dataset }: Props) {
     return groups.filter((g) => topCategory(g) === categoryFilter)
   }, [groups, categoryFilter, dataset])
 
+  const sortedCategories = useMemo(
+    () => [...TOP_CATEGORIES].sort((a, b) => a[0].localeCompare(b[0])),
+    [],
+  )
+
   // Heal stale URLs where a category name (e.g. "scheduler") was stored as group=
   useEffect(() => {
     if (dataset !== 'semantic-colors') return
@@ -300,7 +305,7 @@ export function TokenExplorer({ dataset }: Props) {
             aria-label="Filter by category"
           >
             <option value="">All categories</option>
-            {TOP_CATEGORIES.map(([cat, n]) => (
+            {sortedCategories.map(([cat, n]) => (
               <option key={cat} value={cat}>
                 {cat} ({n})
               </option>
@@ -461,6 +466,7 @@ export function TokenExplorer({ dataset }: Props) {
                 const row = sorted[vRow.index]
                 const groupKey = isSemantic(row) ? row.group : (row as SimpleTokenRow).palette
                 const lightHex = isSemantic(row) ? row.light : (row as SimpleTokenRow).value
+                const darkHex = isSemantic(row) ? row.dark : null
 
                 return (
                   <div
@@ -517,7 +523,14 @@ export function TokenExplorer({ dataset }: Props) {
                         <CopyButton label="Name" value={row.token} onCopied={showCopied} />
                         {isHex(lightHex) && (
                           <>
-                            <CopyButton label="Hex" value={lightHex} onCopied={showCopied} />
+                            <CopyButton
+                              label={isSemantic(row) ? 'Light' : 'Hex'}
+                              value={lightHex}
+                              onCopied={showCopied}
+                            />
+                            {isHex(darkHex) && (
+                              <CopyButton label="Dark" value={darkHex} onCopied={showCopied} />
+                            )}
                             <CopyButton
                               label="CSS"
                               value={cssDeclaration(row.token, lightHex)}
