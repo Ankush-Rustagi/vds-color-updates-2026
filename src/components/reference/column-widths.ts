@@ -27,8 +27,16 @@ function columnWidth(
   font: string,
   { min = 40, max = 640, pad = CELL_PAD, extra = 0 }: { min?: number; max?: number; pad?: number; extra?: number } = {},
 ): number {
-  const longest = values.reduce((best, value) => (value.length > best.length ? value : best), '')
-  const measured = Math.ceil(measureTextPx(longest, font)) + extra + pad
+  let widest = ''
+  let widestPx = 0
+  for (const value of values) {
+    const px = measureTextPx(value, font)
+    if (px > widestPx) {
+      widestPx = px
+      widest = value
+    }
+  }
+  const measured = Math.ceil(widestPx) + extra + pad
   return Math.min(max, Math.max(min, measured))
 }
 
@@ -87,7 +95,7 @@ export function computeExplorerGridColumns(
     const copyW = copyColumnWidth(true)
 
     return [
-      `minmax(${tokenW}px, 1fr)`,
+      fixedTrack(tokenW),
       fixedTrack(lightW),
       fixedTrack(darkW),
       fixedTrack(stepW),
@@ -115,7 +123,7 @@ export function computeExplorerGridColumns(
     const copyW = copyColumnWidth(false)
 
     return [
-      `minmax(${tokenW}px, 1fr)`,
+      fixedTrack(tokenW),
       fixedTrack(valueW),
       fixedTrack(stepW),
       fixedTrack(copyW),
@@ -148,7 +156,7 @@ export function computeExplorerGridColumns(
 
   return [
     fixedTrack(paletteW),
-    `minmax(${tokenW}px, 1fr)`,
+    fixedTrack(tokenW),
     fixedTrack(valueW),
     fixedTrack(stepW),
     fixedTrack(copyW),

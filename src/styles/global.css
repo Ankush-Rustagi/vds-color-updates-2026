@@ -712,7 +712,8 @@ body {
 }
 
 .vds-explorer__table-wrap {
-  overflow: hidden;
+  overflow-x: auto;
+  width: fit-content;
   max-width: 100%;
   margin-top: 12px;
 }
